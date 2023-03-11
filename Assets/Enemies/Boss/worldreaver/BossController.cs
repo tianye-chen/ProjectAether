@@ -6,31 +6,18 @@ public class BossController : MonoBehaviour
 {
     [SerializeField] public float MaxHealth = 500;
     [SerializeField] public float Health = 500;
-    [SerializeField] public float FireRate = 1f;
-    [SerializeField] public float RocketsFireRate = 2f;
     [SerializeField] public Rigidbody2D rigid;
     [SerializeField] public GameObject DefaultBullet;
     [SerializeField] public GameObject BossP2Ball;
     [SerializeField] public GameObject BossP2Wave_1;
     [SerializeField] public GameObject BossP2Wave_2;
     [SerializeField] public Animator BossTransitions;
+    public int initOrbs = 4;
     private GameObject InstBullet; // Used to operate on instanced objects
-    private bool IsDead = false;
-    private bool IsPhase2Dead = false;
     private bool IsAttacking = false;
-    private int phase = 1;
-    private float timer = 0f; // Used to determine the interval which the basic attack will occur
-    private float BeamTimer = 0f; // Used to determine the interval which the beam attack will occur
-    private float RocketTimer = 0f; // Used to determine the interval which the rocket attack will occur
     private float AttackCooldownTimer = 2; // Used to determine the interval which phase 2 attacks will occur
     private float AttackCooldownDuration = 5; // The time between attacks of phase 2
     private bool ReadyToFire = false; // Used for blast attack of phase 2
-    private GameObject BeamTemp;
-
-    private void Awake()
-    {
-
-    }
 
     void Start()
     {
@@ -40,8 +27,11 @@ public class BossController : MonoBehaviour
         Health = MaxHealth;
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.496746f, 0.4308989f);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.1622606f, -0.004992545f);
-        Instantiate(BossP2Ball, new Vector2(-5,7), Quaternion.identity);
-        Instantiate(BossP2Ball, new Vector2(5, 7), Quaternion.identity);
+
+        for (int i = 0; i < initOrbs; i++){
+            GameObject orb = Instantiate(BossP2Ball, transform.position, Quaternion.identity);
+            orb.GetComponent<BossP2Ball>().owner = gameObject;
+        }
     }
 
     private void FixedUpdate()

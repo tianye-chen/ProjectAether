@@ -71,8 +71,7 @@ public class BulletController : MonoBehaviour
     {
         switch (collision.gameObject.tag) {
             case ("Terrain"):
-                if (instObject != "BossP2Spiral")
-                    StartCoroutine(Wait());
+                Destroy(gameObject);
                 break;
             default:
                 break;
@@ -98,10 +97,5 @@ public class BulletController : MonoBehaviour
     {
         yield return new WaitUntil(() => BossP2.GetComponent<BossController>().IsReadyToFire());
         instObject = "BossP2BlastMove";
-    }
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
     }
 }

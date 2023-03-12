@@ -5,13 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] float verticalMove;
-    [SerializeField] Rigidbody2D rigid;
-    [SerializeField] Sprite BossP2Ball_Sprite;
-    [SerializeField] Sprite RedBullet_Sprite;
-    [SerializeField] GameObject BossP2;
-    [SerializeField] public AudioClip BlastSpawn_Sound;
-    [SerializeField] public AudioClip BlastShoot_Sound;
+    // public variables
+    public float verticalMove;
+    public Rigidbody2D rigid;
+    public Sprite BossP2Ball_Sprite;
+    public Sprite RedBullet_Sprite;
+    public GameObject BossP2;
+    public AudioClip BlastSpawn_Sound;
+    public AudioClip BlastShoot_Sound;
+
+    // private variables
     private string instObject;
     private float EnemyProjectileSpeed = 1;
     private float PlayerProjectileSpeed = 1;
@@ -24,8 +27,8 @@ public class BulletController : MonoBehaviour
     {
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-        if (SceneManager.GetActiveScene().buildIndex == 3)
-            BossP2 = GameObject.FindGameObjectWithTag("Boss");
+
+        BossP2 = GameObject.FindGameObjectWithTag("WorldReaverBoss");
     }
 
     void FixedUpdate()
@@ -72,6 +75,10 @@ public class BulletController : MonoBehaviour
         switch (collision.gameObject.tag) {
             case ("Terrain"):
                 Destroy(gameObject);
+                break;
+            case ("Player"):
+                Destroy(gameObject);
+                collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
                 break;
             default:
                 break;

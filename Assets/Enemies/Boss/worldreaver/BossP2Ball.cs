@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BossP2Ball : MonoBehaviour
 {
-    [SerializeField] public float FireRate = 1f;
-    [SerializeField] public GameObject DefaultBullet;
-    [SerializeField] public Rigidbody2D rigid;
+    // public variables
+    public float FireRate = 1f;
+    public GameObject DefaultBullet;
+    public Rigidbody2D rigid;
     public GameObject owner;
+    public int numShots = 5;
+
+    // private variables
     private GameObject InstBullet;
     private bool IsAttack = false;
     private bool IsOverBoundary = false;
     private float speed = 10;
-    private float TimeSinceInstanced = 0;
     private float ballCount;
     private bool isEvenlySpaced = false;
     private float ownerX;
@@ -71,7 +74,7 @@ public class BossP2Ball : MonoBehaviour
         if (timer > FireRate && !IsOverBoundary) // Prevents firing when the object is outside the boundary
         {
             gameObject.GetComponent<AudioSource>().Play();
-            for (float i = 0; i <= 360; i += 45)
+            for (float i = 0; i <= 360; i += 360f/numShots)
             {
                 InstBullet = Instantiate(DefaultBullet, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
                 InstBullet.GetComponent<BulletController>().SetInstObject("Boss");
@@ -82,32 +85,25 @@ public class BossP2Ball : MonoBehaviour
         }
         else
             timer += Time.deltaTime;
-        if (IsAttack) // If the current instance is part of an attack of phase 2 boss
+        if (IsAttack) // If the current instance is part of an attack of boss
         {
             transform.Translate(Vector2.up * 0.5f / speed);
-            TimeSinceInstanced += Time.deltaTime;
-            if (TimeSinceInstanced >= 5)
-                Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Boundary")
-            if (IsOverBoundary)
-                StartCoroutine(Wait());
-            else
-                IsOverBoundary = !IsOverBoundary;
+        if (collision.gameObject.tag == "Terrain")
+        {
+            IsOverBoundary = true;
+            if (IsAttack){
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void SetIsAttack(bool val) 
     {
         IsAttack = val;
-    }
-
-    IEnumerator Wait() 
-    {
-        yield return new WaitForSeconds(0.3f);
-        IsOverBoundary = !IsOverBoundary;
     }
 }

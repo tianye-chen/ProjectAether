@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Terrain
+  - BossProjectile
+  - WorldReaverOrb
+  - WorldReaverBoss
   layers:
   - Default
   - TransparentFX

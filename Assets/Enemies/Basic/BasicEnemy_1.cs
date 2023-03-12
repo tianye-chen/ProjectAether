@@ -98,7 +98,6 @@ public class BasicEnemy_1 : MonoBehaviour
     {
         if ((isAttacking && !isRecoveringFromAttack) && collision.gameObject.tag == "Player")
         {
-            Debug.Log("Attacked");
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
         }
     }

@@ -94,6 +94,15 @@ public class BasicEnemy_2 : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float damage)
+    {
+        currHealth -= damage;
+        if (currHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // ignore collision if colliding with player
     private void OnCollisionEnter2D(Collision2D collision)
     {

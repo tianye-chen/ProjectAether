@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 273234885215811918}
   m_Layer: 7
   m_Name: BossP2Ball
-  m_TagString: BossProjectile
+  m_TagString: WorldReaverOrb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   FireRate: 1
   DefaultBullet: {fileID: 6294995133622601483, guid: 912aa40d806093d408d98f16b7cbb8f4, type: 3}
   rigid: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!50 &4570690840501385684
 Rigidbody2D:
   serializedVersion: 4

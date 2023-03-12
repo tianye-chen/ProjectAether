@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1978159273477732231}
   m_Layer: 6
   m_Name: DefaultBullet
-  m_TagString: Untagged
+  m_TagString: BossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalMove: 0
   rigid: {fileID: 0}
-  BossP2Ball_Sprite: {fileID: 0}
-  RedBullet_Sprite: {fileID: 0}
+  BossP2Ball_Sprite: {fileID: 21300000, guid: b96ffed640890434a974908222c0f06f, type: 3}
+  RedBullet_Sprite: {fileID: 21300000, guid: a767a29a12cd9eb40817d2b2f9067804, type: 3}
   BossP2: {fileID: 0}
   BlastSpawn_Sound: {fileID: 0}
   BlastShoot_Sound: {fileID: 0}

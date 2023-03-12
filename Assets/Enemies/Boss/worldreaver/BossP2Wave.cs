@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossP2Wave : MonoBehaviour
 {
-    [SerializeField] public Rigidbody2D rigid;
+    public Rigidbody2D rigid;
     public float speed = 10f;
 
     void Start()
@@ -19,6 +19,9 @@ public class BossP2Wave : MonoBehaviour
             rigid.AddForce(-transform.up * speed);
         else
             transform.Translate(-Vector2.up * 3 / speed);
+
+        if (transform.position.y < -100)
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,13 +29,9 @@ public class BossP2Wave : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
         }
-        else if ((collision.gameObject.tag == "Terrain" && gameObject.transform.position.y < 5) || (gameObject.name == "waveattack_2(Clone)" && collision.gameObject.tag == "Terrain"))
-            StartCoroutine(Wait());
-    }
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1F);
-        Destroy(gameObject);
+        else if (collision.gameObject.tag == "Terrain")
+            Destroy(gameObject);
     }
 }

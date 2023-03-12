@@ -4,61 +4,48 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [SerializeField] public float MaxHealth = 500;
-    [SerializeField] public float Health = 500;
-    [SerializeField] public float FireRate = 1f;
-    [SerializeField] public float RocketsFireRate = 2f;
-    [SerializeField] public Rigidbody2D rigid;
-    [SerializeField] public GameObject DefaultBullet;
-    [SerializeField] public GameObject BossP2Ball;
-    [SerializeField] public GameObject BossP2Wave_1;
-    [SerializeField] public GameObject BossP2Wave_2;
-    [SerializeField] public Animator BossTransitions;
+    // public variables
+    public float MaxHealth = 500;
+    public float Health;
+    public Rigidbody2D rigid;
+    public GameObject DefaultBullet;
+    public GameObject BossP2Ball;
+    public GameObject BossP2Wave_1;
+    public GameObject BossP2Wave_2;
+    public GameObject Player; 
+    public Animator BossTransitions;
+    public int initOrbs = 4;
+
+    // private variables
     private GameObject InstBullet; // Used to operate on instanced objects
-    private bool IsDead = false;
-    private bool IsPhase2Dead = false;
     private bool IsAttacking = false;
-    private int phase = 1;
-    private float timer = 0f; // Used to determine the interval which the basic attack will occur
-    private float BeamTimer = 0f; // Used to determine the interval which the beam attack will occur
-    private float RocketTimer = 0f; // Used to determine the interval which the rocket attack will occur
-    private float AttackCooldownTimer = 2; // Used to determine the interval which phase 2 attacks will occur
-    private float AttackCooldownDuration = 5; // The time between attacks of phase 2
-    private bool ReadyToFire = false; // Used for blast attack of phase 2
-    private GameObject BeamTemp;
-
-    private void Awake()
-    {
-
-    }
+    private float AttackCooldownTimer = 2; // Used to determine the interval which attacks will occur
+    private float AttackCooldownDuration = 5; // The time between attacks
+    private bool ReadyToFire = false; // Used for blast attack
 
     void Start()
     {
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-        MaxHealth = 500;
+
+        if (Player == null)
+            Player = GameObject.FindGameObjectWithTag("Player");
+
         Health = MaxHealth;
-        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.496746f, 0.4308989f);
-        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.1622606f, -0.004992545f);
-        Instantiate(BossP2Ball, new Vector2(-5,7), Quaternion.identity);
-        Instantiate(BossP2Ball, new Vector2(5, 7), Quaternion.identity);
+
+        // spawns initial rotating orbs
+        for (int i = 0; i < initOrbs; i++){
+            GameObject orb = Instantiate(BossP2Ball, transform.position, Quaternion.identity);
+            orb.GetComponent<BossP2Ball>().owner = gameObject;
+        }
     }
 
     private void FixedUpdate()
     {
-        Phase2Boss();
+        initiateBoss();
     }
 
-    //Spawns a bullet and rotate it to the angle parameter
-    private void SpreadAttack(float angle)
-    {
-        InstBullet = Instantiate(DefaultBullet, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 2), Quaternion.identity);
-        InstBullet.GetComponent<SpriteRenderer>().color = new Color(255, 255, 0, 255);
-        InstBullet.GetComponent<BulletController>().SetInstObject("Boss");
-        InstBullet.transform.eulerAngles = Vector3.forward * angle;
-    }
-
-    private void Phase2Boss() 
+    private void initiateBoss() 
     {
         if (Health <= MaxHealth * 0.50) // When below 50% hp, attack twice as fast
             AttackCooldownDuration = 2.5f;
@@ -93,7 +80,7 @@ public class BossController : MonoBehaviour
             AttackCooldownTimer += Time.deltaTime;
     }
 
-    IEnumerator WaveAttack_1()  // Wave attacks will fall down from the top of the screen
+    IEnumerator WaveAttack_1()  // Wave attacks will fall down from above the player
     {
         IsAttacking = true;
         BossTransitions.SetBool("ArmRaised", true);
@@ -101,10 +88,10 @@ public class BossController : MonoBehaviour
         float AttackDuration = 0;
         while (AttackDuration <= 10)
         {
-            yield return new WaitForEndOfFrame();
+            yield return null;
             if (AttackTimer > 0.3f)
             {
-                Instantiate(BossP2Wave_1, new Vector2(Random.Range(-12, 12), 12), Quaternion.identity);
+                Instantiate(BossP2Wave_1, new Vector2(Random.Range(Player.transform.position.x - 6, Player.transform.position.x + 6), Player.transform.position.y + 12), Quaternion.identity);
                 AttackTimer = 0;
             }
             else
@@ -124,7 +111,7 @@ public class BossController : MonoBehaviour
         while (AttackDuration <= 10)
         { 
             yield return new WaitForSeconds(0.1f);
-            InstBullet = Instantiate(BossP2Wave_2, new Vector2(0,5), Quaternion.identity);
+            InstBullet = Instantiate(BossP2Wave_2, new Vector2(transform.position.x - 1.25f, transform.position.y - 1.75f), Quaternion.identity);
             InstBullet.transform.eulerAngles = Vector3.forward * Random.Range(-90,90);
             AttackDuration += 0.1f;
         }
@@ -135,7 +122,7 @@ public class BossController : MonoBehaviour
         BossTransitions.SetBool("ArmRaised", false);
         for (int i = -90; i <= 90; i += 25) // Final instance of this boss attack, instantly fires several fire waves in a 180 degree area
         {
-            InstBullet = Instantiate(BossP2Wave_2, new Vector2(0, 5), Quaternion.identity);
+            InstBullet = Instantiate(BossP2Wave_2, new Vector2(transform.position.x - 1.25f, transform.position.y - 1.75f), Quaternion.identity);
             InstBullet.transform.eulerAngles = Vector3.forward * i;
         }
         IsAttacking = false;
@@ -152,7 +139,7 @@ public class BossController : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             for (int i = -1; i <= 1; i+=2)
             {
-                InstBullet = Instantiate(DefaultBullet, new Vector2(0, 6), Quaternion.identity);
+                InstBullet = Instantiate(DefaultBullet, new Vector2(transform.position.x - 1.25f, transform.position.y - 0.75f), Quaternion.identity);
                 InstBullet.GetComponent<BulletController>().SetInstObject("BossP2Spiral");
                 InstBullet.GetComponent<BulletController>().SetSpiralDirection(i);
             }
@@ -173,7 +160,7 @@ public class BossController : MonoBehaviour
             yield return new WaitForSeconds(3f);
             for (int i = -1; i <= 1; i+=2)
             {
-                InstBullet = Instantiate(BossP2Ball, new Vector2(0, 6), Quaternion.identity);
+                InstBullet = Instantiate(BossP2Ball, new Vector2(transform.position.x - 1.25f, transform.position.y - 0.75f), Quaternion.identity);
                 InstBullet.transform.eulerAngles = Vector3.forward * Random.Range(0,360);
                 InstBullet.GetComponent<BossP2Ball>().SetIsAttack(true);
             }
@@ -196,7 +183,7 @@ public class BossController : MonoBehaviour
             ReadyToFire = false;
             for (int i = 0; i <= 360; i += Random.Range(10, 20))
             {
-                InstBullet = Instantiate(DefaultBullet, new Vector2(0,6), Quaternion.identity);
+                InstBullet = Instantiate(DefaultBullet, new Vector2(transform.position.x - 1.25f, transform.position.y - 0.75f), Quaternion.identity);
                 InstBullet.transform.eulerAngles = Vector3.forward * i;
                 InstBullet.transform.Translate(Vector2.up * 3.5f);
                 InstBullet.GetComponent<BulletController>().SetInstObject("BossP2BlastWait");

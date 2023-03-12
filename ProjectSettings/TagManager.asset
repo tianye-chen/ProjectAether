@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - BossProjectile
   - WorldReaverOrb
+  - WorldReaverBoss
   layers:
   - Default
   - TransparentFX

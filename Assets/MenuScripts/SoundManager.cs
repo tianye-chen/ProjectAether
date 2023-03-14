@@ -30,11 +30,11 @@ public class SoundManager : MonoBehaviour
     private void Load() //Loads previous saved volume
     {
         PlayerPrefs.GetFloat("musicVolume");
+        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume", volumeSlider.value);
     }
     private void Save() //Function to save volume 
     {
         PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
-        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume", volumeSlider.value);
     }
 
 }

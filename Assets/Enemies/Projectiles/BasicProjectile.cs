@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicProjectile : MonoBehaviour
 {
     public Rigidbody2D rigid;
+    public float damage = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +19,15 @@ public class BasicProjectile : MonoBehaviour
         transform.Translate(Vector2.up * 0.1f);
     }
 
+    public void Delete(){
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
         }
 
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Terrain")

@@ -38,4 +38,14 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage){
         Debug.Log("TakeDamage");
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyBase>().TakeDamage(1);
+
+            Debug.Log("colliding");
+        }
+    }
 }

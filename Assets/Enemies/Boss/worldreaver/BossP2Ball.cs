@@ -95,7 +95,7 @@ public class BossP2Ball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Terrain")
         {
-            IsOverBoundary = true;
+            IsOverBoundary = !IsOverBoundary;
             if (IsAttack){
                 Destroy(gameObject);
             }

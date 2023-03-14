@@ -11,58 +11,44 @@ using UnityEngine;
  *  And attack the player with projectiles
  *  When within 4 units, the enemy will move away from the player
  *
+ *  default common values:
+ *      maxHealth = 10
+ *      speed = 1.5
+ *      aggroRange = 10
+ *      disengageRange = 10
+ *      attackRange = 5
+ *      attackSpeed = 0.5 
 */
-public class BasicEnemy_2 : MonoBehaviour
+public class BasicEnemy_2 : EnemyBase
 {
     // public variables
-    public Rigidbody2D rigid;
-    public Transform Player;
     public GameObject ProjectileObject;
-    public float attackSpeed = 0.5f;
-    public float speed = 0.75f;
-    public float maxHealth = 10f;
     public int numProjectiles = 1;
-    public float aggroDistance = 10f;
-    public float attackingDistance = 4f;
 
     // private variables
     private float currHealth;
-    private bool isAttacking = false;
     private float attackTimer = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (rigid == null)
-            rigid = GetComponent<Rigidbody2D>();
-        if (Player == null)
-            Player = GameObject.FindGameObjectWithTag("Player").transform;
-        currHealth = maxHealth;
-    }
-
-    void FixedUpdate()
+    public override void FixedUpdate()
     {
         // check if player is within 10 units
-        if (Vector2.Distance(transform.position, Player.position) < aggroDistance){
+        if (Vector2.Distance(transform.position, Player.transform.position) < aggroRange){
 
             // move towards player until 5 units
-            if (Vector2.Distance(transform.position, Player.position) > 5f && !isAttacking)
+            if (Vector2.Distance(transform.position, Player.transform.position) > attackRange)
             {
-                isAttacking = false;
-                transform.position = Vector2.MoveTowards(transform.position, Player.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
 
-            } else if(Vector2.Distance(transform.position, Player.position) < attackingDistance)
+            // if the player is within 4 units, move away from the player
+            } else if(Vector2.Distance(transform.position, Player.transform.position) < attackRange - 1)
             {
-                // move away from the player
-                isAttacking = false;
-                transform.position = Vector2.MoveTowards(transform.position, Player.position, -speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, -speed * Time.deltaTime);
                 Attack();
                 
             } else 
             {
-                isAttacking = true;
                 // circle around the player
-                transform.RotateAround(Player.position, Vector3.forward, 20 * Time.deltaTime);
+                transform.RotateAround(Player.transform.position, Vector3.forward, 20 * Time.deltaTime);
 
                 // prevent enemy from rotating upside down
                 transform.eulerAngles = new Vector3(0, 0, 0);
@@ -82,7 +68,7 @@ public class BasicEnemy_2 : MonoBehaviour
                 GameObject projectile = Instantiate(ProjectileObject, transform.position, Quaternion.identity);
 
                 // rotate projectile to face the player
-                projectile.transform.up = Player.position - projectile.transform.position;
+                projectile.transform.up = Player.transform.position - projectile.transform.position;
 
                 // rotate projectile by i degrees and adjust spread based on number of projectiles
                 projectile.transform.Rotate(0, 0, i - 15 * (numProjectiles - 1));
@@ -91,24 +77,6 @@ public class BasicEnemy_2 : MonoBehaviour
         } else 
         {
             attackTimer += Time.deltaTime;
-        }
-    }
-
-    public void TakeDamage(float damage)
-    {
-        currHealth -= damage;
-        if (currHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    // ignore collision if colliding with player
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
         }
     }
 }

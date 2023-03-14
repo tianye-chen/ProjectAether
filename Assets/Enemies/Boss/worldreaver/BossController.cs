@@ -2,28 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossController : MonoBehaviour
+/**
+ *  Boss Controller for World Reaver
+ *  
+ *  Boss will spawn with initOrb number of rotating orbs
+ *  Boss will perform one of 5 attacks at random:
+ *      1. Wave projectiles will spawn above the player and move down
+ *      2. The boss will fire a number of waves at quick succession in a random direction and 
+ *         fires several waves instantly in a 180 degree arc at the end of the attack
+ *      3. The boss will spawn projectiles spiraling outwards from the boss
+ *      4. The boss will spawn 2 orbs that will move outwards from the boss and fire projectiles at regular intervals
+ *      5. The boss will charge up a number of projectiles in a circle around the boss and fire them all at once with great speed
+ * 
+ *  Boss will perform attack twice as fast when below 50% hp
+ *  
+ *  default common values:
+ *      maxHealth = 100
+ *      speed = 0
+ *      aggroRange = 0
+ *      disengageRange = 0
+ *      attackRange = 0
+ *      attackSpeed = 4 
+ */
+
+public class BossController : EnemyBase
 {
     // public variables
-    public float MaxHealth = 500;
-    public float Health;
-    public Rigidbody2D rigid;
-    public GameObject DefaultBullet;
-    public GameObject BossP2Ball;
-    public GameObject BossP2Wave_1;
-    public GameObject BossP2Wave_2;
-    public GameObject Player; 
-    public Animator BossTransitions;
-    public int initOrbs = 4;
+    public int initOrbs;
 
     // private variables
     private GameObject InstBullet; // Used to operate on instanced objects
     private bool IsAttacking = false;
-    private float AttackCooldownTimer = 2; // Used to determine the interval which attacks will occur
-    private float AttackCooldownDuration = 5; // The time between attacks
+    private float AttackCooldownTimer = 0; // Used to determine the interval which attacks will occur
     private bool ReadyToFire = false; // Used for blast attack
 
-    void Start()
+    // assets
+    public GameObject DefaultBullet;
+    public GameObject BossP2Ball;
+    public GameObject BossP2Wave_1;
+    public GameObject BossP2Wave_2;
+    public Animator BossTransitions;
+
+    public override void Start()
     {
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
@@ -31,7 +51,7 @@ public class BossController : MonoBehaviour
         if (Player == null)
             Player = GameObject.FindGameObjectWithTag("Player");
 
-        Health = MaxHealth;
+        health = maxHealth;
 
         // spawns initial rotating orbs
         for (int i = 0; i < initOrbs; i++){
@@ -40,16 +60,16 @@ public class BossController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public override void FixedUpdate()
     {
         initiateBoss();
     }
 
     private void initiateBoss() 
     {
-        if (Health <= MaxHealth * 0.50) // When below 50% hp, attack twice as fast
-            AttackCooldownDuration = 2.5f;
-        if (AttackCooldownTimer > AttackCooldownDuration && !IsAttacking)
+        if (health <= maxHealth * 0.50) // When below 50% hp, attack twice as fast
+            attackSpeed = 2.5f;
+        if (AttackCooldownTimer > attackSpeed && !IsAttacking)
         {
             float RandomNum = Random.Range(0, 5);
             Debug.Log("New attack cycle with attack #"+RandomNum);
@@ -197,11 +217,6 @@ public class BossController : MonoBehaviour
         IsAttacking = false;
         BossTransitions.SetBool("IsStance", false);
         AttackCooldownTimer = 0;
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-
     }
 
     public bool IsReadyToFire() 

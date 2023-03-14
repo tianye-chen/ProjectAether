@@ -104,6 +104,7 @@ MonoBehaviour:
   DefaultBullet: {fileID: 6294995133622601483, guid: 912aa40d806093d408d98f16b7cbb8f4, type: 3}
   rigid: {fileID: 0}
   owner: {fileID: 0}
+  numShots: 5
 --- !u!50 &4570690840501385684
 Rigidbody2D:
   serializedVersion: 4

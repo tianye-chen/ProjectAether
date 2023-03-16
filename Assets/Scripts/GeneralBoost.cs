@@ -22,15 +22,15 @@ public class GeneralBoost : Ability
     {
         InitiateAbility(character1);
         yield return new WaitForSeconds(1f);
-        character1.selfCharacter.spd = (int)(character1.selfCharacter.spd * 1.3f);
-        character1.selfCharacter.atk = (int)(character1.selfCharacter.atk * 1.3f);
-        character1.selfCharacter.def = (int)(character1.selfCharacter.def * 1.3f);
+        character1.speed = (int)(character1.speed * 1.3f);
+        character1.atk = (int)(character1.atk * 1.3f);
+        character1.def = (int)(character1.def * 1.3f);
         yield return new WaitForSeconds(1f);
         EndAbility(character1);
         yield return new WaitForSeconds(10f);
-        character1.selfCharacter.spd = (int)(character1.selfCharacter.spd * 1f);
-        character1.selfCharacter.atk = (int)(character1.selfCharacter.atk * 1f);
-        character1.selfCharacter.def = (int)(character1.selfCharacter.def * 1f);
+        character1.speed = (int)(character1.speed * 1f);
+        character1.atk = (int)(character1.atk * 1f);
+        character1.def = (int)(character1.def * 1f);
         //add more stat boosts
     }
 }

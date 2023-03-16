@@ -5,36 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class CharacterBase : MonoBehaviour
 {
+    // public variables
+    public bool attacking = false, usingAbility = false, beingHit = false, dodging = false,  blocking = false;
+
+    //public List<Ability> abilities = new List<Ability>();
+
+    public int direction = 2;
+    public bool initiatedBlocking = false;
+    public float maxHealth, maxSpeed, maxAtk, maxDef;
+    public float health, speed, atk, def;
+    public bool isInvulnerable;
+
+    // assets
+    //public Ability generalBoost, EnergyBall, SuperBlock;
     public Animator animator;
-
-    public Character selfCharacter;
-
-    public CharacterBase enemyCharacter;
+    public Rigidbody2D rigid;
 
     public bool defeated = false;
 
-    public RegularAbilities myRegularAbilities;
+    //public RegularAbilities myRegularAbilities;
 
-    public bool attacking = false, usingAbility = false, beingHit = false, dodging = false,  blocking = false;
-
-    public List<Ability> abilities = new List<Ability>();
-
-    public int direction = 2;
-
-    public bool initiatedBlocking = false;
-
-    public Ability generalBoost, EnergyBall, SuperBlock;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        //initialize var to max vars
-        
-        
+        SetStats();
+        if (rigid == null)
+            rigid = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void FixedUpdate()
     {
         
     }
@@ -51,10 +51,10 @@ public class CharacterBase : MonoBehaviour
     }
     public void SetStats()
     {
-        selfCharacter.hp = selfCharacter.maxHP;
-        selfCharacter.speed = selfCharacter.maxSpeed;
-        selfCharacter.atk = selfCharacter.maxAtk;
-        selfCharacter.def = selfCharacter.maxDef;
+        health = maxHealth;
+        speed = maxSpeed;
+        atk = maxAtk;
+        def = maxDef;
     }
     public void SetAnimation(string animation)
     {
@@ -64,4 +64,21 @@ public class CharacterBase : MonoBehaviour
         
     }
    
+    public virtual void TakeDamage(float damage){
+       
+        if (!isInvulnerable)
+        {
+            health -= damage;
+            Debug.Log("Enemy TakeDamage");
+        }
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die(){
+        Destroy(gameObject);
+    }
 }

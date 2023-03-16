@@ -28,7 +28,10 @@ public class BulletController : MonoBehaviour
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
 
-        BossP2 = GameObject.FindGameObjectWithTag("WorldReaverBoss");
+        BossP2 = GameObject.Find("worldreaver");
+
+        if (BossP2 == null)
+            BossP2 = GameObject.Find("worldreaver(Clone)");
     }
 
     void FixedUpdate()

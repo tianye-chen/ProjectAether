@@ -17,6 +17,7 @@ public class GeneralBoost : Ability
     {
         
     }
+    
     public override IEnumerator Use(CharacterBase character1, CharacterBase character2)
     {
         InitiateAbility(character1);

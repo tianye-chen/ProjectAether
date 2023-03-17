@@ -19,9 +19,12 @@ public class DontDestroyAudio : MonoBehaviour
     void Update()
     {
         Scene scene = SceneManager.GetActiveScene(); //Checks for current scene
-        if (scene.name == "SampleScene") //If scene Is sample scene then destory mainmenu background audio
+        if (scene.name != "StartScreen") //If scene Is sample scene then destory mainmenu background audio
         {
-            Destroy(gameObject);
+            if (scene.name != "Settings")
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

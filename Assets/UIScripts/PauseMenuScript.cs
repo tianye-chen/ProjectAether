@@ -9,8 +9,9 @@ using UnityEngine.UI;
 public class PauseMenuScript : MonoBehaviour
 {
     public static bool IsPaused = false;
-
+    private static bool isActive = false;
     public GameObject pauseMenuUI;
+    public GameObject SkillsMenuUI;
 
 
     // Update is called once per frame
@@ -18,13 +19,17 @@ public class PauseMenuScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(IsPaused == true)
+            if(IsPaused == true && isActive == true)
             {
                 Resume();
             }
-            else
+            else if(IsPaused == false)
             {
                 Pause();
+            }
+            else
+            {
+                BacktoPauseMenu();
             }
         }
     }
@@ -34,7 +39,8 @@ public class PauseMenuScript : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        IsPaused = false;
+        IsPaused = false; 
+        isActive = false;
     }
 
     public void Pause()
@@ -42,10 +48,22 @@ public class PauseMenuScript : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
+        isActive = true;
     }
     public void SkillsMenu()
     {
+        isActive = false;
+        pauseMenuUI.SetActive(false);
         UnityEngine.Debug.Log("Skills");
+        SkillsMenuUI.SetActive(true);
+        
+    }
+    public void BacktoPauseMenu()
+    {
+        SkillsMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
+        isActive = true;
+
     }
 
     public void OptionsMenu()

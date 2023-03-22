@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class StunnedState : CasterStateController
 {
-    private float timer = 0;
+  private float timer = 0;
 
-    public override void EnterState(CasterEnemyController caster)
-    {
-        Debug.Log("Entering Stunned State");
-    }
+  public override void EnterState(CasterEnemyController caster)
+  {
+    Debug.Log("Entering Stunned State");
+  }
 
-    public override void Update(CasterEnemyController caster)
+  public override void Update(CasterEnemyController caster)
+  {
+    // stun for the stun time
+    timer += Time.deltaTime;
+    if (timer > caster.stunTime)
     {
-        // stun for the stun time
-        timer += Time.deltaTime;
-        if (timer > caster.stunTime)
-        {
-            caster.SwitchState(caster.regularState);
-            timer = 0;
-        }
+      caster.SwitchState(caster.regularState);
+      timer = 0;
     }
+  }
 }

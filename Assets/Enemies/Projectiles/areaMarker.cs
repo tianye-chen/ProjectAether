@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class areaMarker : MonoBehaviour
 {
-    // public variables
-    public float duration;
-    public float radius;
-    public GameObject InstObject;
+  // public variables
+  public float duration;
+  public float radius;
+  public GameObject InstObject;
 
-    // private variables
-    private float timer = 0f;
+  // private variables
+  private float timer = 0f;
 
-    void Start()
+  void Start()
+  {
+    transform.localScale = new Vector3(radius, radius, 1);
+  }
+
+  void FixedUpdate()
+  {
+    timer += Time.deltaTime;
+    if (timer > duration)
     {
-        transform.localScale = new Vector3(radius, radius, 1);
+      if (InstObject != null)
+        Instantiate(InstObject, transform.position, Quaternion.identity);
+      Destroy(gameObject);
     }
-
-    void FixedUpdate()
-    {        
-        timer += Time.deltaTime;
-        if (timer > duration)
-        {
-            if (InstObject != null)
-                Instantiate(InstObject, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-    }
+  }
 }

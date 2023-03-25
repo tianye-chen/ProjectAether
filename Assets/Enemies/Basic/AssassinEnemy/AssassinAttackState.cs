@@ -17,7 +17,7 @@ public class AssassinAttackState : AssassinStateController
 
   public override void Update(AssassinEnemyController assassin)
   {
-    assassin.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+    assassin.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     assassin.speed = assassin.maxSpeed;
 
     if (!isAttacking)
@@ -33,7 +33,7 @@ public class AssassinAttackState : AssassinStateController
     isAttacking = true;
     yield return new WaitForSeconds(0.5f);
 
-    assassin.transform.rotation = Quaternion.LookRotation(Vector3.forward, assassin.Player.transform.position - assassin.transform.position);
+    assassin.LookAt2D(assassin.gameObject, assassin.Player);
 
     maxTime = 0.125f;
     elapsedTime = 0f;
@@ -44,6 +44,7 @@ public class AssassinAttackState : AssassinStateController
 
       // keeping the sprite upright
       assassin.transform.GetChild(0).gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+      
       elapsedTime += Time.deltaTime;
       yield return null;
     }

@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CastingState : CasterStateController
+public class CasterCastingState : CasterStateController
 {
   private GameObject Inst;
   private float timer;
 
   public override void EnterState(CasterEnemyController caster)
   {
-    Debug.Log("Entering Casting State");
+    Debug.Log("Caster entering casting state");
 
     // spawn numCast amount of areaMarkers at the player location which will spawn the a beam attack
     // the spawn location of the areaMarkers is offset by half the number of casts so that the beams will be centered on the player

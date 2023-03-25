@@ -27,4 +27,12 @@ public class BeamController : MonoBehaviour
     }
     timer += Time.deltaTime;
   }
+
+  public void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (collision.gameObject.tag == "Player")
+    {
+      collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
+    }
+  }
 }

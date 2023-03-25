@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6294995133622601487}
   - component: {fileID: 7496348043366741658}
   - component: {fileID: 1978159273477732231}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: DefaultBullet
   m_TagString: BossProjectile
   m_Icon: {fileID: 0}

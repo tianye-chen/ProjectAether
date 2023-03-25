@@ -29,13 +29,12 @@ public class CasterEnemyController : EnemyBase
   public float castCooldown = 4f;
   public int numCasts = 3;
   public int numProjectiles = 3;
-  public bool facingEast = true;
 
   // state variables
   public CasterStateController currentState;
-  public CastingState castingState = new CastingState();
-  public StunnedState stunnedState = new StunnedState();
-  public RegularState regularState = new RegularState();
+  public CasterCastingState castingState = new CasterCastingState();
+  public CasterStunnedState stunnedState = new CasterStunnedState();
+  public CasterRegularState regularState = new CasterRegularState();
 
   //assets
   public GameObject areaMarker;
@@ -55,17 +54,7 @@ public class CasterEnemyController : EnemyBase
   {
     if (currentState != stunnedState)
     {
-      // turn to face the player
-      if (Player.transform.position.x < transform.position.x)
-      {
-        transform.localScale = new Vector2(-1, 1);
-        facingEast = false;
-      }
-      else
-      {
-        transform.localScale = new Vector2(1, 1);
-        facingEast = true;
-      }
+      facePlayer();
     }
     currentState.Update(this);
   }
@@ -78,8 +67,6 @@ public class CasterEnemyController : EnemyBase
 
   public override void TakeDamage(float damage)
   {
-    health -= damage;
-
     // stun the enemy if it is casting
     if (currentState == castingState)
     {
@@ -87,9 +74,6 @@ public class CasterEnemyController : EnemyBase
       currentState.EnterState(this);
     }
 
-    if (health <= 0)
-    {
-      base.Die();
-    }
+    base.TakeDamage(damage);
   }
 }

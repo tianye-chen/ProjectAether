@@ -62,8 +62,7 @@ public class BasicEnemy_2 : EnemyBase
         // Instantiate projectile
         GameObject projectile = Instantiate(ProjectileObject, transform.position, Quaternion.identity);
 
-        // rotate projectile to face the player
-        projectile.transform.up = Player.transform.position - projectile.transform.position;
+        LookAt2D(projectile, Player);
 
         // rotate projectile by i degrees and adjust spread based on number of projectiles
         projectile.transform.Rotate(0, 0, i - 15 * (numProjectiles - 1));

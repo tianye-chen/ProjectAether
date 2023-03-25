@@ -61,12 +61,11 @@ public class BasicEnemy_1 : EnemyBase
   }
 
   // when the enemy hits the player, deal damage
-  public override void OnCollisionEnter2D(Collision2D collision)
+  public void OnCollisionEnter2D(Collision2D collision)
   {
     if (collision.gameObject.tag == "Player")
     {
       collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
-      Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
     }
   }
 }

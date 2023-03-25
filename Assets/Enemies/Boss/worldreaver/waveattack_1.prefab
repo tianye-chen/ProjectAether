@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5981596633121878072}
   - component: {fileID: 5981596633121878073}
   - component: {fileID: -5463228944191274680}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: waveattack_1
   m_TagString: BossProjectile
   m_Icon: {fileID: 0}

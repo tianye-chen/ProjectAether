@@ -10,6 +10,7 @@ public class BossP2Ball : MonoBehaviour
   public Rigidbody2D rigid;
   public GameObject owner;
   public int numShots = 5;
+  public Color orbColor;
 
   // private variables
   private GameObject InstBullet;
@@ -24,7 +25,6 @@ public class BossP2Ball : MonoBehaviour
   private float yModifier = -0.75f;
   private float timer = 0f;
   private float lerpTimer = 0f;
-
   void Start()
   {
     if (rigid == null)
@@ -34,6 +34,7 @@ public class BossP2Ball : MonoBehaviour
       ownerX = owner.transform.position.x + xModifier;
       ownerY = owner.transform.position.y + yModifier;
     }
+
     ballCount = GameObject.FindGameObjectsWithTag("WorldReaverOrb").Length;
   }
 
@@ -71,6 +72,7 @@ public class BossP2Ball : MonoBehaviour
       }
 
     }
+
     if (timer > FireRate && !IsOverBoundary) // Prevents firing when the object is outside the boundary
     {
       gameObject.GetComponent<AudioSource>().Play();
@@ -78,13 +80,19 @@ public class BossP2Ball : MonoBehaviour
       {
         InstBullet = Instantiate(DefaultBullet, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
         InstBullet.GetComponent<BulletController>().SetInstObject("Boss");
-        InstBullet.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+
+        SpriteRenderer bulletSprite = InstBullet.GetComponent<SpriteRenderer>();
+        bulletSprite.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+        if (orbColor != null)
+          bulletSprite.color = orbColor;
+
         InstBullet.transform.eulerAngles = Vector3.forward * i;
       }
       timer = 0;
     }
     else
       timer += Time.deltaTime;
+
     if (IsAttack) // If the current instance is part of an attack of boss
     {
       transform.Translate(Vector2.up * 0.5f / speed);
@@ -101,6 +109,12 @@ public class BossP2Ball : MonoBehaviour
         Destroy(gameObject);
       }
     }
+  }
+
+  public void setOrbColor(Color color)
+  {
+    orbColor = color;
+    GetComponent<SpriteRenderer>().color = orbColor;
   }
 
   public void SetIsAttack(bool val)

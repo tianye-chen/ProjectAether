@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RegularState : CasterStateController
+public class CasterRegularState : CasterStateController
 {
   public float castTimer = 0;
   public float projectileTimer = 0;
@@ -10,7 +10,7 @@ public class RegularState : CasterStateController
 
   public override void EnterState(CasterEnemyController caster)
   {
-    Debug.Log("Entering Regular State");
+    Debug.Log("Caster entering regular state");
   }
 
   public override void Update(CasterEnemyController caster)
@@ -31,7 +31,7 @@ public class RegularState : CasterStateController
         for (int i = 0; i < caster.numProjectiles; i++)
         {
           Inst = MonoBehaviour.Instantiate(caster.projectileObject, caster.transform.position, Quaternion.identity);
-          if (caster.facingEast)
+          if (caster.direction == 2)
             Inst.transform.Rotate(0, 0, (-90 + 10 * caster.numProjectiles / 2) - i * 10);
           else
             Inst.transform.Rotate(0, 0, (90 - 10 * caster.numProjectiles / 2) + i * 10);

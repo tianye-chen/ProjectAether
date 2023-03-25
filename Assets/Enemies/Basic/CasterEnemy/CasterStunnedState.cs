@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StunnedState : CasterStateController
+public class CasterStunnedState : CasterStateController
 {
   private float timer = 0;
 
   public override void EnterState(CasterEnemyController caster)
   {
-    Debug.Log("Entering Stunned State");
+    Debug.Log("Caster entering stunned state");
   }
 
   public override void Update(CasterEnemyController caster)

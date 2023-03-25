@@ -71,6 +71,9 @@ public class BulletController : MonoBehaviour
         transform.Translate(Vector2.up * 0.1f);
         break;
     }
+
+    // destroy bullet after 20 secs
+    Destroy(gameObject, 20);
   }
 
   private void OnTriggerEnter2D(Collider2D collision)

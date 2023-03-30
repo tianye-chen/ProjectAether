@@ -20,7 +20,7 @@ public abstract class Ability : ScriptableObject
 
     }
 
-    public abstract IEnumerator Use(CharacterBase character1, CharacterBase character2);
+    public abstract IEnumerator Use(CharacterBase character1, CharacterBase character2 = null);
     public void InitiateAbility(CharacterBase character)
     {
         character.usingAbility = true;

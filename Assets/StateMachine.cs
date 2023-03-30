@@ -18,6 +18,16 @@ public class StateMachine
         states.Add(state);
     }
 
+    public void RemoveState(State state)
+    {
+        if (currentState == state)
+        {
+            currentState.Exit();
+            currentState = null;
+        }
+        states.Remove(state);
+    }
+
     public void SetState(string name)
     {
         State newState = states.Find(s => s.Name == name);
@@ -39,20 +49,4 @@ public class StateMachine
             currentState.Update();
         }
     }
-}
-
-public abstract class State
-{
-    public string Name { get; private set; }
-
-    public State(string name)
-    {
-        Name = name;
-    }
-
-    public virtual void Enter() { }
-
-    public virtual void Exit() { }
-
-    public abstract void Update();
 }

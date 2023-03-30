@@ -29,7 +29,7 @@ public class CharacterBase : MonoBehaviour
     //public RegularAbilities myRegularAbilities;
 
 
-    private StateMachine stateMachine;
+    public StateMachine stateMachine;
 
     // Start is called before the first frame update
     public virtual void Start()

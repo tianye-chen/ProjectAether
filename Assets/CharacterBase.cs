@@ -17,6 +17,8 @@ public class CharacterBase : MonoBehaviour
     public float health, speed, atk, def;
     public bool isInvulnerable;
 
+
+
     // assets
     //public Ability generalBoost, EnergyBall, SuperBlock;
     public Animator animator;
@@ -27,12 +29,19 @@ public class CharacterBase : MonoBehaviour
     //public RegularAbilities myRegularAbilities;
 
 
+    public StateMachine stateMachine;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        stateMachine.Update();
     }
 
     public virtual void FixedUpdate()

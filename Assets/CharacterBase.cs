@@ -10,6 +10,7 @@ public class CharacterBase : MonoBehaviour
 
     //public List<Ability> abilities = new List<Ability>();
 
+    // 1 = west 2 = east 3 = north 4 = south
     public int direction = 2;
     public bool initiatedBlocking = false;
     public float maxHealth, maxSpeed, maxAtk, maxDef;

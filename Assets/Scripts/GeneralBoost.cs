@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "General_Boost", menuName = "Ability/General_Boost")]
 public class GeneralBoost : Ability
 {
 

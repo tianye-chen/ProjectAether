@@ -22,6 +22,7 @@ public class ProjectileAbility : Ability
         if(Vector3.zero == direction) { Debug.LogError("Projectile clip error.")}
         GameObject Projectile = Instantiate(projectile) as GameObject;
         Projectile.transform.position = character1.transform.position + (direction * distanceStartProject);
+        projectile.GetComponent<Rigidbody2D>().velocity = direction;
         EndAbility(character1);
     }
 }

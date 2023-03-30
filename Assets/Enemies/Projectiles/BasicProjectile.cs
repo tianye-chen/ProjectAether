@@ -4,35 +4,36 @@ using UnityEngine;
 
 public class BasicProjectile : MonoBehaviour
 {
-    public Rigidbody2D rigid;
-    public float damage = 1f;
+  public Rigidbody2D rigid;
+  public float damage = 1f;
 
-    // Start is called before the first frame update
-    void Start()
+  // Start is called before the first frame update
+  void Start()
+  {
+    if (rigid == null)
+      rigid = GetComponent<Rigidbody2D>();
+  }
+
+  void FixedUpdate()
+  {
+    transform.Translate(Vector2.up * 0.1f);
+  }
+
+  public void Delete()
+  {
+    Destroy(gameObject);
+  }
+
+  private void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (collision.gameObject.tag == "Player")
     {
-        if (rigid == null)
-            rigid = GetComponent<Rigidbody2D>();
+      collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
     }
 
-    void FixedUpdate()
+    if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Terrain")
     {
-        transform.Translate(Vector2.up * 0.1f);
+      Destroy(gameObject);
     }
-
-    public void Delete(){
-        Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
-        }
-
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Terrain")
-        {
-            Destroy(gameObject);
-        }
-    }
+  }
 }

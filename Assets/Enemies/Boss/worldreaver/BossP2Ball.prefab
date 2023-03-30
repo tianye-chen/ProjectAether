@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4570690840501385684}
   - component: {fileID: 2350011442317909886}
   - component: {fileID: 273234885215811918}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: BossP2Ball
   m_TagString: WorldReaverOrb
   m_Icon: {fileID: 0}

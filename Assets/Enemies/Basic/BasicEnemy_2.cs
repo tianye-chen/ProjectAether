@@ -21,62 +21,57 @@ using UnityEngine;
 */
 public class BasicEnemy_2 : EnemyBase
 {
-    // public variables
-    public GameObject ProjectileObject;
-    public int numProjectiles = 1;
+  // public variables
+  public GameObject ProjectileObject;
+  public int numProjectiles = 1;
 
-    // private variables
-    private float currHealth;
-    private float attackTimer = 0;
+  // private variables
+  private float currHealth;
+  private float attackTimer = 0;
 
-    public override void FixedUpdate()
+  public override void FixedUpdate()
+  {
+    move();
+
+    // if the player is within 4 units, move away from the player
+    if (Vector2.Distance(transform.position, Player.transform.position) < attackRange - 1)
     {
-        // check if player is within 10 units
-        if (Vector2.Distance(transform.position, Player.transform.position) < aggroRange){
+      transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, -speed * Time.deltaTime);
+      Attack();
 
-            // move towards player until 5 units
-            if (Vector2.Distance(transform.position, Player.transform.position) > attackRange)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
-
-            // if the player is within 4 units, move away from the player
-            } else if(Vector2.Distance(transform.position, Player.transform.position) < attackRange - 1)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, -speed * Time.deltaTime);
-                Attack();
-                
-            } else 
-            {
-                // circle around the player
-                transform.RotateAround(Player.transform.position, Vector3.forward, 20 * Time.deltaTime);
-
-                // prevent enemy from rotating upside down
-                transform.eulerAngles = new Vector3(0, 0, 0);
-
-                Attack();
-            }
-        }
     }
-
-    void Attack()
+    else if (playerInAttackRange)
     {
-        // fire projectile based on attack speed
-        if (attackTimer > attackSpeed)
-        {
-            for (int i = 0; i < 30 * numProjectiles; i += 30){
-                // Instantiate projectile
-                GameObject projectile = Instantiate(ProjectileObject, transform.position, Quaternion.identity);
+      // circle around the player
+      transform.RotateAround(Player.transform.position, Vector3.forward, 20 * Time.deltaTime);
 
-                // rotate projectile to face the player
-                projectile.transform.up = Player.transform.position - projectile.transform.position;
+      // prevent enemy from rotating upside down
+      transform.eulerAngles = new Vector3(0, 0, 0);
 
-                // rotate projectile by i degrees and adjust spread based on number of projectiles
-                projectile.transform.Rotate(0, 0, i - 15 * (numProjectiles - 1));
-            }
-            attackTimer = 0;
-        } else 
-        {
-            attackTimer += Time.deltaTime;
-        }
+      Attack();
     }
+  }
+
+  void Attack()
+  {
+    // fire projectile based on attack speed
+    if (attackTimer > attackSpeed)
+    {
+      for (int i = 0; i < 30 * numProjectiles; i += 30)
+      {
+        // Instantiate projectile
+        GameObject projectile = Instantiate(ProjectileObject, transform.position, Quaternion.identity);
+
+        LookAt2D(projectile, Player);
+
+        // rotate projectile by i degrees and adjust spread based on number of projectiles
+        projectile.transform.Rotate(0, 0, i - 15 * (numProjectiles - 1));
+      }
+      attackTimer = 0;
+    }
+    else
+    {
+      attackTimer += Time.deltaTime;
+    }
+  }
 }

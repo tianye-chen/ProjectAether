@@ -16,6 +16,7 @@ public class CharacterBase : MonoBehaviour
     public float maxHealth, maxSpeed, maxAtk, maxDef;
     public float health, speed, atk, def;
     public bool isInvulnerable;
+    
 
 
 
@@ -65,6 +66,7 @@ public class CharacterBase : MonoBehaviour
         speed = maxSpeed;
         atk = maxAtk;
         def = maxDef;
+        
     }
     public void SetAnimation(string animation)
     {
@@ -79,6 +81,7 @@ public class CharacterBase : MonoBehaviour
         if (!isInvulnerable)
         {
             health -= damage;
+           
             Debug.Log("Enemy TakeDamage");
         }
 

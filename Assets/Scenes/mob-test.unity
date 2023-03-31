@@ -992,6 +992,7 @@ MonoBehaviour:
   atk: 15
   def: 5
   isInvulnerable: 0
+  healthBar: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 0}
   defeated: 0
@@ -3289,6 +3290,10 @@ PrefabInstance:
     - target: {fileID: 1954229729934718352, guid: 6db1df75a013d774cae185b2d80b993c, type: 3}
       propertyPath: maxSpeed
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954229729934718352, guid: 6db1df75a013d774cae185b2d80b993c, type: 3}
+      propertyPath: attacking
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1954229729934718352, guid: 6db1df75a013d774cae185b2d80b993c, type: 3}
       propertyPath: aggroRange

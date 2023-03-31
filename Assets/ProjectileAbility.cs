@@ -19,7 +19,7 @@ public class ProjectileAbility : Ability
         else if (character1.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "right") direction = Vector2.right;
         else if (character1.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "down") direction = Vector2.down;
         else if (character1.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "left") direction = Vector2.left;
-        if(Vector3.zero == direction) { Debug.LogError("Projectile clip error.")}
+        if(Vector3.zero == direction) { Debug.LogError("Projectile clip error."); }
         GameObject Projectile = Instantiate(projectile) as GameObject;
         Projectile.transform.position = character1.transform.position + (direction * distanceStartProject);
         projectile.GetComponent<Rigidbody2D>().velocity = direction;

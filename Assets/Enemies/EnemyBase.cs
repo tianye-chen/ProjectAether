@@ -30,6 +30,7 @@ public class EnemyBase : CharacterBase
     Physics2D.IgnoreLayerCollision(0 , 0);
 
     health = maxHealth;
+
   }
 
   public virtual void move()

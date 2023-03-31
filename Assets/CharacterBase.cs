@@ -22,13 +22,13 @@ public class CharacterBase : MonoBehaviour
 
 
     // assets
-    //public Ability generalBoost, EnergyBall, SuperBlock;
+    public Ability generalBoost, EnergyBall, SuperBlock;
     public Animator animator;
     public Rigidbody2D rigid;
 
     public bool defeated = false;
 
-    //public RegularAbilities myRegularAbilities;
+    // public RegularAbilities myRegularAbilities;
 
 
     public StateMachine stateMachine;
@@ -39,13 +39,11 @@ public class CharacterBase : MonoBehaviour
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-        healthBar = new HealthBar();
-        stateMachine = new StateMachine();
     }
 
     private void Update()
     {
-        stateMachine.Update();
+        //stateMachine.Update();
     }
 
     public virtual void FixedUpdate()
@@ -66,7 +64,7 @@ public class CharacterBase : MonoBehaviour
     public void SetStats()
     {
         health = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        //healthBar.SetMaxHealth(maxHealth);
         speed = maxSpeed;
         atk = maxAtk;
         def = maxDef;

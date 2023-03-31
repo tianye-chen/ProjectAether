@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterBase
 {
-    [SerializeField] Rigidbody2D rigid;
-    public static float speed = 5.0f;
     private float verticalMovement;
     private float horizontalMovement;
 

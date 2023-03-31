@@ -39,6 +39,8 @@ public class CharacterBase : MonoBehaviour
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
+        healthBar = new HealthBar();
+        stateMachine = new StateMachine();
     }
 
     private void Update()

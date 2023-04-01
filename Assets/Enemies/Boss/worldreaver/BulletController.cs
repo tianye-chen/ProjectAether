@@ -16,8 +16,7 @@ public class BulletController : MonoBehaviour
 
   // private variables
   private string instObject;
-  private float EnemyProjectileSpeed = 1;
-  private float PlayerProjectileSpeed = 1;
+  private float projectileSpeed = 1;
   private float SpiralMove = 0;
   private float SpiralSpeed = 0;
   private int SpiralDir = 1;
@@ -44,7 +43,7 @@ public class BulletController : MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.2498093f, 0.2494715f);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.005095348f, 0.004776936f);
         gameObject.transform.localScale = new Vector3(2, 2, 0);
-        SpiralSpeed += Time.deltaTime + Time.deltaTime * EnemyProjectileSpeed / 20;
+        SpiralSpeed += Time.deltaTime + Time.deltaTime * projectileSpeed / 20;
 
         float x = Mathf.Cos(SpiralSpeed) * SpiralMove; // (Cos(SpiralSpeed), Sin(SpiralSpeed)) will create a circle pattern
         float y = Mathf.Sin(SpiralSpeed) * SpiralMove; // Multiplying it with SpiralMove will create a spiral pattern
@@ -63,7 +62,7 @@ public class BulletController : MonoBehaviour
         }
         break;
       case ("BossP2BlastMove"):
-        transform.Translate(Vector2.up * EnemyProjectileSpeed);
+        transform.Translate(Vector2.up * projectileSpeed);
         if (transform.position.x > 20 || transform.position.x < -20 || transform.position.y > 20 || transform.position.y < -20)
           Destroy(gameObject);
         break;
@@ -102,9 +101,9 @@ public class BulletController : MonoBehaviour
     SpiralDir = val;
   }
 
-  public void SetPlayerProjectileSpeed(float val)
+  public void SetProjectileSpeed(float val)
   {
-    PlayerProjectileSpeed = val;
+    projectileSpeed = val;
   }
 
   IEnumerator BlastAttackWait()

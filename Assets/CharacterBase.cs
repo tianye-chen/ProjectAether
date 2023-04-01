@@ -83,7 +83,7 @@ public class CharacterBase : MonoBehaviour
         if (!isInvulnerable)
         {
             health -= damage;
-            healthBar.SetHealth(health);
+//            healthBar.SetHealth(health);
             Debug.Log("Enemy TakeDamage");
         }
 

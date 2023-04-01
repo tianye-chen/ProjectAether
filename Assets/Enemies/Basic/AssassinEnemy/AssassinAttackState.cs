@@ -33,7 +33,7 @@ public class AssassinAttackState : AssassinStateController
     isAttacking = true;
     yield return new WaitForSeconds(0.5f);
 
-    assassin.LookAt2D(assassin.gameObject, assassin.Player);
+    assassin.LookAt2D(assassin.gameObject.transform, assassin.Player.transform);
 
     maxTime = 0.125f;
     elapsedTime = 0f;

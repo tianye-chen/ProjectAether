@@ -59,7 +59,7 @@ public class TeleportMage : EnemyBase
     InstOrb = Instantiate(attackOrb, transform.position, Quaternion.identity);
     BossP2Ball orbComponent = InstOrb.GetComponent<BossP2Ball>();
 
-    LookAt2D(InstOrb, Player);
+    LookAt2D(InstOrb.transform, Player.transform);
 
     // set orb color to green
 

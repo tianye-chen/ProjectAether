@@ -161,6 +161,7 @@ public class BossController : EnemyBase
       for (int i = -1; i <= 1; i += 2)
       {
         InstBullet = Instantiate(DefaultBullet, new Vector2(transform.position.x - 1.25f, transform.position.y - 0.75f), Quaternion.identity);
+        InstBullet.GetComponent<BulletController>().SetProjectileSpeed(1f);
         InstBullet.GetComponent<BulletController>().SetInstObject("BossP2Spiral");
         InstBullet.GetComponent<BulletController>().SetSpiralDirection(i);
       }
@@ -205,6 +206,7 @@ public class BossController : EnemyBase
       for (int i = 0; i <= 360; i += Random.Range(10, 20))
       {
         InstBullet = Instantiate(DefaultBullet, new Vector2(transform.position.x - 1.25f, transform.position.y - 0.75f), Quaternion.identity);
+        InstBullet.GetComponent<BulletController>().SetProjectileSpeed(1f);
         InstBullet.transform.eulerAngles = Vector3.forward * i;
         InstBullet.transform.Translate(Vector2.up * 3.5f);
         InstBullet.GetComponent<BulletController>().SetInstObject("BossP2BlastWait");

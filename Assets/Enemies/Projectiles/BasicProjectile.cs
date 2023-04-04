@@ -6,6 +6,7 @@ public class BasicProjectile : MonoBehaviour
 {
   public Rigidbody2D rigid;
   public float damage = 1f;
+  public Color projectileColor;
 
   // Start is called before the first frame update
   void Start()
@@ -35,5 +36,11 @@ public class BasicProjectile : MonoBehaviour
     {
       Destroy(gameObject);
     }
+  }
+
+  public void SetColor(Color color)
+  {
+    projectileColor = color;
+    GetComponent<SpriteRenderer>().color = projectileColor;
   }
 }

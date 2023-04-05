@@ -25,6 +25,7 @@ public class BasicEnemy_1 : EnemyBase
 
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
     move();
 
     // check if player is within 10 units

@@ -19,6 +19,7 @@ public class CaptainEnemy : EnemyBase
 
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
     move();
     facePlayer();
 
@@ -38,6 +39,9 @@ public class CaptainEnemy : EnemyBase
         Vector3 circleVector = new Vector3(Mathf.Cos(i * Mathf.Deg2Rad) * amplitude, Mathf.Sin(i * Mathf.Deg2Rad) * amplitude);
         instProj = Instantiate(projectile, circleVector + transform.position, Quaternion.identity);
         instProj.GetComponent<BasicProjectile>().SetColor(new Color(0, 155, 155));
+
+        // adds the slow effect to the projectile
+        instProj.GetComponent<BasicProjectile>().stateEffect = new Blind_State(2, 0.25f);
 
         // three different attack patterns
 

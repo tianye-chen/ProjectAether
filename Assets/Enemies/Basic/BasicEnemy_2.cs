@@ -31,6 +31,7 @@ public class BasicEnemy_2 : EnemyBase
 
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
     move();
 
     // if the player is within 4 units, move away from the player

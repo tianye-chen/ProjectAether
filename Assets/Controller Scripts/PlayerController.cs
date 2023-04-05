@@ -9,6 +9,8 @@ public class PlayerController : CharacterBase
 
     public override void FixedUpdate()
     {
+        base.FixedUpdate();
+
         verticalMovement = Input.GetAxis("Vertical");
         horizontalMovement = Input.GetAxis("Horizontal");
 

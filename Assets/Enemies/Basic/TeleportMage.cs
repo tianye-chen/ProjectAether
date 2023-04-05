@@ -26,6 +26,7 @@ public class TeleportMage : EnemyBase
   // Update is called once per frame
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
     facePlayer();
     move();
   }

@@ -13,6 +13,7 @@ public class BulletController : MonoBehaviour
   public GameObject BossP2;
   public AudioClip BlastSpawn_Sound;
   public AudioClip BlastShoot_Sound;
+  public State stateEffect;
 
   // private variables
   private string instObject;
@@ -85,6 +86,10 @@ public class BulletController : MonoBehaviour
       case ("Player"):
         Destroy(gameObject);
         collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
+        if (stateEffect != null)
+        {
+          collision.gameObject.GetComponent<PlayerController>().stateMachine.AddState(stateEffect);
+        }
         break;
       default:
         break;

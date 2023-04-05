@@ -7,6 +7,7 @@ public class BasicProjectile : MonoBehaviour
   public Rigidbody2D rigid;
   public float damage = 1f;
   public Color projectileColor;
+  public State stateEffect;
 
   // Start is called before the first frame update
   void Start()
@@ -17,7 +18,7 @@ public class BasicProjectile : MonoBehaviour
 
   void FixedUpdate()
   {
-    transform.Translate(Vector2.up * 0.1f);
+    move();
   }
 
   public void Delete()
@@ -25,11 +26,20 @@ public class BasicProjectile : MonoBehaviour
     Destroy(gameObject);
   }
 
+  public void move()
+  {
+    transform.Translate(Vector2.up * 0.1f);
+  }
+
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.gameObject.tag == "Player")
     {
       collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+      if (stateEffect!= null)
+      {
+        collision.gameObject.GetComponent<PlayerController>().stateMachine.AddState(stateEffect);
+      }
     }
 
     if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Terrain")

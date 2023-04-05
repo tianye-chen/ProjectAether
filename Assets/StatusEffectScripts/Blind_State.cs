@@ -3,32 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
+
+// This state causes the camera to be zoomed in, can only be used against the player.
 public class Blind_State : State
 {
-    float timer;
+  private float timer;
+  private float duration;
+  private float amplitude;
+  private CameraController camera; 
 
-    private CharacterBase character;
+  // stateName as required by the State class
+  public override string stateName {get => "Blind";}
 
-    public Blind_State(CharacterBase character, string name)
+  // The camera is zoomed in by the duration and the amplitude
+  // Lower amplitude means the camera is zoomed in more
+  public Blind_State(float duration, float amplitude)
+  {
+    timer = 0;
+    this.duration = duration;
+    this.amplitude = amplitude;
+  }
+
+  public override void Enter()
+  {
+    camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+    camera.SetCameraSize(amplitude * camera.baseZoom);
+  }
+
+  public override void Update()
+  {
+    if (timer < duration)
     {
-        this.character = character;
-        timer = 50f;
-        Name = name;
-    }
-
- 
-
-
-    public override void Update()
+      timer += Time.deltaTime;
+    } else 
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
-            character.stateMachine.RemoveState(new Blind_State(character, "blinded"));
+      timer = 0;
+      camera.SetCameraSize(camera.baseZoom);
+      Exit();
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  }
 }

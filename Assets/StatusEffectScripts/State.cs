@@ -4,26 +4,20 @@ using UnityEngine;
 
 public abstract class State
 {
-    public CharacterBase Character;
+  protected StateMachine stateMachine;
+  public abstract string stateName { get; }
 
-    public string Name { get; protected set; }
+  public virtual void Exit()
+  {
+    stateMachine.RemoveState(this);
+  }
 
-    public State(string name)
-    {
-        Name = name;
-    }
+  public virtual void SetStateMachine(StateMachine stateMachine)
+  {
+    this.stateMachine = stateMachine;
+  }
 
-    public State() { }
+  public virtual void Enter() { }
 
-    public State(CharacterBase character, string name)
-    {
-        Character = character;
-        Name = name;
-    }
-
-    public virtual void Enter() { }
-
-    public virtual void Exit() { }
-
-    public abstract void Update();
+  public abstract void Update();
 }

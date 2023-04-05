@@ -52,6 +52,8 @@ public class CasterEnemyController : EnemyBase
   }
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
+
     if (currentState != stunnedState)
     {
       facePlayer();

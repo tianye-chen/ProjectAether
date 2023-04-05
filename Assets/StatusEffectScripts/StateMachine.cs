@@ -4,49 +4,46 @@ using UnityEngine;
 
 public class StateMachine
 {
-    private List<State> states;
-    private State currentState;
+  // states is used to keep track of all the states that are currently applied
+  public List<State> states;
+  // existingStates is used to prevent duplicate states being applied
+  public List<string> existingStates;
+  // the character that owns this state machine
+  public CharacterBase character;
 
-    public StateMachine()
-    {
-        states = new List<State>();
-        currentState = null;
-    }
+  // Starts the state machine
+  public StateMachine(CharacterBase characterBase)
+  {
+    states = new List<State>();
+    existingStates = new List<string>();
+    this.character = characterBase;
+  }
 
-    public void AddState(State state)
+  // Adds a state to the state machine
+  public void AddState(State state)
+  {
+    if (!existingStates.Contains(state.stateName))
     {
-        states.Add(state);
+      states.Add(state);
+      existingStates.Add(state.stateName);
+      state.SetStateMachine(this);
+      state.Enter();
     }
+  }
 
-    public void RemoveState(State state)
-    {
-        if (currentState == state)
-        {
-            currentState.Exit();
-            currentState = null;
-        }
-        states.Remove(state);
-    }
+  // Removes a state from the state machine
+  public void RemoveState(State state)
+  {
+    states.Remove(state);
+    existingStates.Remove(state.stateName);
+  }
 
-    public void SetState(string name)
+  // Applies the effects of the states to the character
+  public void UpdateStates()
+  {
+    foreach (State state in states.ToArray())
     {
-        State newState = states.Find(s => s.Name == name);
-        if (newState != null)
-        {
-            if (currentState != null)
-            {
-                currentState.Exit();
-            }
-            currentState = newState;
-            currentState.Enter();
-        }
+      state.Update();
     }
-
-    public void Update()
-    {
-        if (currentState != null)
-        {
-            currentState.Update();
-        }
-    }
+  }
 }

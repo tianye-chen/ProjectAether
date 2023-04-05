@@ -31,6 +31,7 @@ public class BasicEnemy_2 : EnemyBase
 
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
     move();
 
     // if the player is within 4 units, move away from the player
@@ -62,7 +63,7 @@ public class BasicEnemy_2 : EnemyBase
         // Instantiate projectile
         GameObject projectile = Instantiate(ProjectileObject, transform.position, Quaternion.identity);
 
-        LookAt2D(projectile, Player);
+        LookAt2D(projectile.transform, Player.transform);
 
         // rotate projectile by i degrees and adjust spread based on number of projectiles
         projectile.transform.Rotate(0, 0, i - 15 * (numProjectiles - 1));

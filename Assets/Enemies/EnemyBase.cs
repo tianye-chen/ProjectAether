@@ -75,8 +75,13 @@ public class EnemyBase : CharacterBase
     }
   }
 
-  public void LookAt2D(GameObject self, GameObject target)
+  public void LookAt2D(Transform self, Transform target)
   {
-    self.transform.up = target.transform.position - self.transform.position;
+    self.up = target.position - self.position;
+  }
+
+  public void LookAt2D(Transform self, Transform target, Vector3 offset)
+  {
+    self.up = target.position - self.position + offset;
   }
 }

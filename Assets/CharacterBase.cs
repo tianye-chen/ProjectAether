@@ -39,16 +39,13 @@ public class CharacterBase : MonoBehaviour
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-    }
-
-    private void Update()
-    {
-        //stateMachine.Update();
+        if (stateMachine == null)
+            stateMachine = new StateMachine(this);
     }
 
     public virtual void FixedUpdate()
     {
-        
+        stateMachine.UpdateStates();
     }
 
     
@@ -83,8 +80,7 @@ public class CharacterBase : MonoBehaviour
         if (!isInvulnerable)
         {
             health -= damage;
-            healthBar.SetHealth(health);
-            Debug.Log("Enemy TakeDamage");
+//            healthBar.SetHealth(health);
         }
 
         if (health <= 0)

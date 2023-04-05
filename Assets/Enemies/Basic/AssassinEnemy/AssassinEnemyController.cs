@@ -44,6 +44,8 @@ public class AssassinEnemyController : EnemyBase
 
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
+
     if (currentState != stunnedState && currentState != attackState)
     {
       // turn to face the player

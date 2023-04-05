@@ -41,7 +41,7 @@ public class CaptainEnemy : EnemyBase
         instProj.GetComponent<BasicProjectile>().SetColor(new Color(0, 155, 155));
 
         // adds the slow effect to the projectile
-        instProj.GetComponent<BasicProjectile>().stateEffect = new Blind_State(2, 0.25f);
+        instProj.GetComponent<BasicProjectile>().stateEffect = new Slow_State(2, 0.25f);
 
         // three different attack patterns
 

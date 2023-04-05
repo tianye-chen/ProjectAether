@@ -8,8 +8,9 @@ public class BasicProjectile : MonoBehaviour
   public float damage = 1f;
   public Color projectileColor;
   public State stateEffect;
+  public delegate void callbackHandler();
+  public event callbackHandler callback;
 
-  // Start is called before the first frame update
   void Start()
   {
     if (rigid == null)
@@ -18,7 +19,13 @@ public class BasicProjectile : MonoBehaviour
 
   void FixedUpdate()
   {
-    move();
+    if (callback == null)
+    {
+      move();
+    } else 
+    {
+      callback();
+    }
   }
 
   public void Delete()
@@ -29,6 +36,11 @@ public class BasicProjectile : MonoBehaviour
   public void move()
   {
     transform.Translate(Vector2.up * 0.1f);
+  }
+
+  public void useCallbackMove(callbackHandler callbackRequest)
+  {
+    callback = callbackRequest;
   }
 
   private void OnTriggerEnter2D(Collider2D collision)

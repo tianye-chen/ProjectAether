@@ -12,7 +12,9 @@ using UnityEngine;
  * 
  *  default common values:
  *      maxHealth = 10
- *      speed = 2
+ *      maxSpeed = 2
+ *      maxAtk = 1
+ *      maxDef = 1
  *      aggroRange = 10
  *      disengageRange = 10
  *      attackRange = 3

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5526920298174759729}
   m_Layer: 0
   m_Name: TeleportMage
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +162,10 @@ MonoBehaviour:
   atk: 15
   def: 5
   isInvulnerable: 0
+  healthBar: {fileID: 0}
+  generalBoost: {fileID: 0}
+  EnergyBall: {fileID: 0}
+  SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 0}
   defeated: 0

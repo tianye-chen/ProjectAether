@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7214322385409738510}
   m_Layer: 0
   m_Name: AssassinEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,12 +104,16 @@ MonoBehaviour:
   maxHealth: 10
   maxSpeed: 5
   maxAtk: 10
-  maxDef: 10
+  maxDef: 3
   health: 20
   speed: 5
   atk: 10
   def: 10
   isInvulnerable: 0
+  healthBar: {fileID: 0}
+  generalBoost: {fileID: 0}
+  EnergyBall: {fileID: 0}
+  SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 0}
   defeated: 0

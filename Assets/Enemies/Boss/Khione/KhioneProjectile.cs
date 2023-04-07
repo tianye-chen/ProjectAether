@@ -18,15 +18,14 @@ public class KhioneProjectile : BasicProjectile
     useCallback(projectileBehavior);
 
     base.Start();
-    
     player = GameObject.FindGameObjectWithTag("Player");
-    rigid = GetComponent<Rigidbody2D>();
     attackSpeed = 3f;
     attackRange = 5f;
   }
 
   public void projectileBehavior()
   {
+    // if the player is within range and attack cooldown is over and not currently attacking
     if (Vector2.Distance(transform.position, player.transform.position) < attackRange && attackSpeed < attackSpeedTimer && !isAttacking)
     {
       StartCoroutine(Attack());
@@ -77,6 +76,7 @@ public class KhioneProjectile : BasicProjectile
     isAttacking = false;
   }
 
+  // override the OnTriggerEnter2D method from BasicProjectile to add the bounce off terrain behavior
   public override void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.gameObject.tag == "Terrain")
@@ -84,6 +84,13 @@ public class KhioneProjectile : BasicProjectile
       // bounce off terrain at the direction of approach
       Vector2 direction = collision.ClosestPoint(transform.position) - (Vector2)transform.position;
       rigid.velocity = Vector2.Reflect(rigid.velocity, direction.normalized);
+    } else if (collision.gameObject.tag == "Player")
+    {
+      collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+      if (stateEffect != null)
+      {
+        collision.gameObject.GetComponent<PlayerController>().stateMachine.AddState(stateEffect);
+      }
     }
   }
 }

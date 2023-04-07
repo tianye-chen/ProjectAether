@@ -89,7 +89,7 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    public void Die(){
+    public virtual void Die(){
         Destroy(gameObject);
     }
 }

@@ -2,17 +2,78 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KhioneCrystal : MonoBehaviour
+public class KhioneCrystal : EnemyBase
 {
-    // Start is called before the first frame update
-    void Start()
+  public int numShots;
+  public float projectileSpeed;
+
+  public GameObject KhioneProjectile;
+  public GameObject BasicProjectile;
+
+  private float attackTimer;
+  
+
+  public override void FixedUpdate()
+  {
+    base.FixedUpdate();
+
+    areaSlow();
+    Attack();
+  }
+
+  public void areaSlow()
+  {
+    if (isPlayerInAttackRange())
     {
-        
+      Player.GetComponent<PlayerController>().stateMachine.AddState(new Slow_State(0.5f, 0.5f));
+    }
+  }
+
+  public void Attack()
+  {
+    // fire projectiles in a 360 area
+    if (attackTimer > attackSpeed)
+    {
+      for (int i = 0; i < 360; i += 360 / numShots)
+      {
+        StartCoroutine(pulsingAttack(i));
+      }
+
+      attackTimer = 0;
+    }
+    else
+    {
+      attackTimer += Time.deltaTime;
+    }
+  }
+
+  IEnumerator pulsingAttack(int i)
+  {
+    GameObject projectile = Instantiate(BasicProjectile, transform.position, Quaternion.identity);
+    BasicProjectile projectileComp = projectile.GetComponent<BasicProjectile>();
+    projectileComp.useVelocity = true;
+    projectileComp.setVelocity(Mathf.Cos(i * Mathf.Deg2Rad) * projectileSpeed, Mathf.Sin(i * Mathf.Deg2Rad) * projectileSpeed);
+    projectileComp.SetDamage(1);
+
+    yield return new WaitForSeconds(1f);
+
+    // projectile moves back
+    if (projectile != null)
+    {
+      projectileComp.setVelocity(-projectileComp.xVelocity, -projectileComp.yVelocity);
     }
 
-    // Update is called once per frame
-    void Update()
+    yield return new WaitForSeconds(1f);
+    
+    if (projectile != null)
     {
-        
+      projectileComp.Delete();
     }
+  }
+
+  public override void Die()
+  {
+    Instantiate(KhioneProjectile, transform.position, Quaternion.identity);
+    base.Die();
+  }
 }

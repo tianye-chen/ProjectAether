@@ -6,7 +6,7 @@ public class KhioneProjectile : BasicProjectile
 {
   public float attackRange;
   public float attackSpeed;
-  public float attackSpeedTimer = 0;
+  public float attackSpeedTimer;
   public bool isAttacking = false;
 
   public GameObject player;
@@ -21,6 +21,7 @@ public class KhioneProjectile : BasicProjectile
     player = GameObject.FindGameObjectWithTag("Player");
     attackSpeed = 3f;
     attackRange = 5f;
+    attackSpeedTimer = attackSpeed;
   }
 
   public void projectileBehavior()

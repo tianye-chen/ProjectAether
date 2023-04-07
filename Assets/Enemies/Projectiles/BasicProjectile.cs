@@ -20,7 +20,7 @@ public class BasicProjectile : MonoBehaviour
     if (rigid == null)
       rigid = GetComponent<Rigidbody2D>();
     if (useVelocity)
-      rigid.AddForce(new Vector2(xVelocity * 100f, yVelocity * 100f));
+      rigid.velocity = new Vector2(xVelocity , yVelocity);
   }
 
   void FixedUpdate()
@@ -66,6 +66,23 @@ public class BasicProjectile : MonoBehaviour
     {
       Destroy(gameObject);
     }
+  }
+
+  public void SetDamage(float damage)
+  {
+    this.damage = damage;
+  }
+
+  public void SetSpeed(float speed)
+  {
+    this.speed = speed;
+  }
+
+  public void setVelocity(float x, float y)
+  {
+    xVelocity = x;
+    yVelocity = y;
+    rigid.velocity = new Vector2(xVelocity , yVelocity);
   }
 
   public void SetColor(Color color)

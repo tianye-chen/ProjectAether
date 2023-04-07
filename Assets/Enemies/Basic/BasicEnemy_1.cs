@@ -31,7 +31,7 @@ public class BasicEnemy_1 : EnemyBase
     move();
 
     // check if player is within 10 units
-    if (!isAttacking && playerInAttackRange)
+    if (!isAttacking && isPlayerInAttackRange())
     {
       StartCoroutine(Attack());
     }

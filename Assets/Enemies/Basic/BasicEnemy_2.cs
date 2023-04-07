@@ -43,7 +43,7 @@ public class BasicEnemy_2 : EnemyBase
       Attack();
 
     }
-    else if (playerInAttackRange)
+    else if (isPlayerInAttackRange())
     {
       // circle around the player
       transform.RotateAround(Player.transform.position, Vector3.forward, 20 * Time.deltaTime);

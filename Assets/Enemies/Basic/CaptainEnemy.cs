@@ -23,7 +23,7 @@ public class CaptainEnemy : EnemyBase
     move();
     facePlayer();
 
-    if (playerInAttackRange)
+    if (isPlayerInAttackRange())
     {
       Attack();
     }
@@ -83,7 +83,7 @@ public class CaptainEnemy : EnemyBase
   {
     base.move();
 
-    if (playerInAttackRange && !enteredRandomMove)
+    if (isPlayerInAttackRange() && !enteredRandomMove)
     {
       // move randomly within 2 units
       StartCoroutine(randomMove(1));
@@ -95,7 +95,7 @@ public class CaptainEnemy : EnemyBase
     enteredRandomMove = true;
     Vector2 newPos;
 
-    while (playerInAttackRange)
+    while (isPlayerInAttackRange())
     {
       newPos = new Vector2(Random.Range(transform.position.x - range, transform.position.x + range), Random.Range(transform.position.y - range, transform.position.y + range));
       

@@ -37,7 +37,7 @@ public class TeleportMage : EnemyBase
   {
     base.move();
 
-    if (teleportTimer > 2 && playerInAttackRange)
+    if (teleportTimer > 2 && isPlayerInAttackRange())
     {
       Teleport();
       Attack();

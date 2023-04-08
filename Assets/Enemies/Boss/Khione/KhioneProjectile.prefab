@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957f7c11c78734466961de69a984cefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
+  rigid: {fileID: 5640463489654180328}
   damage: 1
   projectileColor: {r: 0, g: 0, b: 0, a: 0}
   speed: 0.1
@@ -157,4 +157,5 @@ MonoBehaviour:
   attackSpeed: 0
   attackSpeedTimer: 0
   isAttacking: 0
+  monoSprite: {fileID: 21300000, guid: 6cc194a5b48324718a730e2f276ba82a, type: 3}
   player: {fileID: 0}

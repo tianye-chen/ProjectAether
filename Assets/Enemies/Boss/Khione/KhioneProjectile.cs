@@ -8,13 +8,14 @@ public class KhioneProjectile : BasicProjectile
   public float attackSpeed;
   public float attackSpeedTimer;
   public bool isAttacking = false;
+  public Sprite monoSprite;
 
   public GameObject player;
   
   public override void Start()
   {
     useVelocity = true;
-    yVelocity = 2f;
+    yVelocity = yVelocity * 2;
     useCallback(projectileBehavior);
 
     base.Start();
@@ -75,6 +76,11 @@ public class KhioneProjectile : BasicProjectile
     // return to normal speed
     rigid.velocity /= 2;
     isAttacking = false;
+  }
+
+  public void useMonoSprite()
+  {
+    GetComponent<SpriteRenderer>().sprite = monoSprite;
   }
 
   // override the OnTriggerEnter2D method from BasicProjectile to add the bounce off terrain behavior

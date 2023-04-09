@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd752a0ebee181f49944ad795ff149a6, type: 3}
+  m_Name: Boost_Atk_Def
+  m_EditorClassIdentifier: 
+  playWhichAnimation: 0
+  inAbility: 0
+  accuracyBoostAbs: 0
+  speedBoostAbs: 0
+  atkBoostAbs: 5
+  defBoostAbs: 5
+  accuracyBoostRel: 0
+  speedBoostRel: 0
+  atkBoostRel: 0.1
+  defBoostRel: 0.1

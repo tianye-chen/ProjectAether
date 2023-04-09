@@ -13,8 +13,8 @@ public class CharacterBase : MonoBehaviour
     // 1 = west 2 = east 3 = north 4 = south
     public int direction = 2;
     public bool initiatedBlocking = false;
-    public float maxHealth, maxSpeed, maxAtk, maxDef;
-    public float health, speed, atk, def;
+    public float maxHealth, maxSpeed, maxAtk, maxDef, maxAccuracy;
+    public float health, speed, atk, def, accuracy;
     public bool isInvulnerable;
     public HealthBar healthBar;
     

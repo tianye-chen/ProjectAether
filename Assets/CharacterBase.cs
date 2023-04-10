@@ -18,6 +18,8 @@ public class CharacterBase : MonoBehaviour
     public bool isInvulnerable;
     public HealthBar healthBar;
     
+    public enum selfElement { Water, Fire, Wind, Earth, Electricity };
+    public selfElement SelfElement;
 
 
 
@@ -39,11 +41,6 @@ public class CharacterBase : MonoBehaviour
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-    }
-
-    private void Update()
-    {
-        //stateMachine.Update();
     }
 
     public virtual void FixedUpdate()

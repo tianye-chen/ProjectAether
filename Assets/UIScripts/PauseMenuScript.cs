@@ -12,7 +12,7 @@ public class PauseMenuScript : MonoBehaviour
     private static bool isActive = false;
     public GameObject pauseMenuUI;
     public GameObject SkillsMenuUI;
-
+    public GameObject OptionsMenuUI;
 
     // Update is called once per frame
     void Update()
@@ -61,6 +61,7 @@ public class PauseMenuScript : MonoBehaviour
     public void BacktoPauseMenu()
     {
         SkillsMenuUI.SetActive(false);
+        OptionsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         isActive = true;
 
@@ -69,6 +70,9 @@ public class PauseMenuScript : MonoBehaviour
     public void OptionsMenu()
     {
         UnityEngine.Debug.Log("Options");
+        isActive = false;
+        pauseMenuUI.SetActive(false);
+        OptionsMenuUI.SetActive(true);
     }
 
     public void QuitGame()

@@ -45,8 +45,8 @@ public class CharacterBase : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
-        stateMachine.UpdateStates();
-    }
+      stateMachine.UpdateStates();
+   }
 
     
     public bool CantMove()
@@ -61,10 +61,13 @@ public class CharacterBase : MonoBehaviour
     public void SetStats()
     {
         health = maxHealth;
-        //healthBar.SetMaxHealth(maxHealth);
         speed = maxSpeed;
         atk = maxAtk;
         def = maxDef;
+        //sets healthbar maximum health base on the player maxHealth stat
+        if(gameObject.tag == "Player") {
+            healthBar.SetMaxHealth(maxHealth);
+        }
         
     }
     public void SetAnimation(string animation)
@@ -80,7 +83,10 @@ public class CharacterBase : MonoBehaviour
         if (!isInvulnerable)
         {
             health -= damage;
-//            healthBar.SetHealth(health);
+            //controls health bar
+            if(gameObject.tag == "Player") {
+                healthBar.SetHealth(health);
+            }
         }
 
         if (health <= 0)

@@ -41,6 +41,8 @@ public class CharacterBase : MonoBehaviour
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
+        if (stateMachine == null)
+            stateMachine = new StateMachine(this);
     }
 
     public virtual void FixedUpdate()

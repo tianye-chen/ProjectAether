@@ -106,16 +106,19 @@ MonoBehaviour:
   blocking: 0
   direction: 2
   initiatedBlocking: 0
-  maxHealth: 0
+  maxHealth: 20
   maxSpeed: 2
-  maxAtk: 0
-  maxDef: 0
+  maxAtk: 10
+  maxDef: 10
+  maxAccuracy: 0
   health: 0
   speed: 0
   atk: 0
   def: 0
+  accuracy: 0
   isInvulnerable: 0
   healthBar: {fileID: 0}
+  SelfElement: 0
   generalBoost: {fileID: 0}
   EnergyBall: {fileID: 0}
   SuperBlock: {fileID: 0}
@@ -126,7 +129,6 @@ MonoBehaviour:
   disengageRange: 20
   attackRange: 10
   attackSpeed: 2
-  playerInAttackRange: 0
   inDisengageRange: 0
   Player: {fileID: 0}
   projectile: {fileID: 7749449408827115259, guid: 02b6c934e01ae064eae2714ac78dde14, type: 3}

@@ -13,11 +13,13 @@ public class CharacterBase : MonoBehaviour
     // 1 = west 2 = east 3 = north 4 = south
     public int direction = 2;
     public bool initiatedBlocking = false;
-    public float maxHealth, maxSpeed, maxAtk, maxDef;
-    public float health, speed, atk, def;
+    public float maxHealth, maxSpeed, maxAtk, maxDef, maxAccuracy;
+    public float health, speed, atk, def, accuracy;
     public bool isInvulnerable;
     public HealthBar healthBar;
     
+    public enum selfElement { Water, Fire, Wind, Earth, Electricity };
+    public selfElement SelfElement;
 
 
 
@@ -39,14 +41,12 @@ public class CharacterBase : MonoBehaviour
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-        if (stateMachine == null)
-            stateMachine = new StateMachine(this);
     }
 
     public virtual void FixedUpdate()
     {
-        stateMachine.UpdateStates();
-    }
+      stateMachine.UpdateStates();
+   }
 
     
     public bool CantMove()
@@ -61,10 +61,13 @@ public class CharacterBase : MonoBehaviour
     public void SetStats()
     {
         health = maxHealth;
-        //healthBar.SetMaxHealth(maxHealth);
         speed = maxSpeed;
         atk = maxAtk;
         def = maxDef;
+        //sets healthbar maximum health base on the player maxHealth stat
+        if(gameObject.tag == "Player") {
+            healthBar.SetMaxHealth(maxHealth);
+        }
         
     }
     public void SetAnimation(string animation)
@@ -80,7 +83,10 @@ public class CharacterBase : MonoBehaviour
         if (!isInvulnerable)
         {
             health -= damage;
-//            healthBar.SetHealth(health);
+            //controls health bar
+            if(gameObject.tag == "Player") {
+                healthBar.SetHealth(health);
+            }
         }
 
         if (health <= 0)

@@ -9,7 +9,9 @@ public class SlowAbility : Ability
     {
         InitiateAbility(character1);
         yield return new WaitForSeconds(1f);
-        character2.speed = character2.maxSpeed;
+        character2.speed = character2.maxSpeed / 2;
         EndAbility(character1);
+        yield return new WaitForSeconds(10f);
+        character2.speed = character2.maxSpeed;
     }
 }

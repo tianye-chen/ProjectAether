@@ -7,6 +7,7 @@ public class KhioneProjectile : BasicProjectile
   public float attackRange;
   public float attackSpeed;
   public float attackSpeedTimer;
+  public bool attackDisabled = false;
   public bool isAttacking = false;
   public Sprite monoSprite;
 
@@ -28,7 +29,7 @@ public class KhioneProjectile : BasicProjectile
   public void projectileBehavior()
   {
     // if the player is within range and attack cooldown is over and not currently attacking
-    if (Vector2.Distance(transform.position, player.transform.position) < attackRange && attackSpeed < attackSpeedTimer && !isAttacking)
+    if (Vector2.Distance(transform.position, player.transform.position) < attackRange && attackSpeed < attackSpeedTimer && !isAttacking && !attackDisabled)
     {
       StartCoroutine(Attack());
       attackSpeedTimer = 0;
@@ -50,6 +51,7 @@ public class KhioneProjectile : BasicProjectile
   {
     isAttacking = true;
     rigid.velocity = Vector2.zero;
+    Vector2 originalVelocity;
 
     // rotate the sprite around 3 times over 1 second
     float time = 0;
@@ -70,7 +72,7 @@ public class KhioneProjectile : BasicProjectile
     yield return new WaitForSeconds(0.5f);
 
     // significantly increase speed
-    rigid.velocity = (player.transform.position - transform.position).normalized * (yVelocity * 4f);
+    rigid.velocity = (player.transform.position - transform.position).normalized * (yVelocity * 2f);
     yield return new WaitForSeconds(1.5f);
 
     // return to normal speed
@@ -91,7 +93,9 @@ public class KhioneProjectile : BasicProjectile
       // bounce off terrain at the direction of approach
       Vector2 direction = collision.ClosestPoint(transform.position) - (Vector2)transform.position;
       rigid.velocity = Vector2.Reflect(rigid.velocity, direction.normalized);
-    } else if (collision.gameObject.tag == "Player")
+    }
+    
+    if (collision.gameObject.tag == "Player")
     {
       collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
       if (stateEffect != null)

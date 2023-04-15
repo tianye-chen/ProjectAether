@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5640463489654180327}
   - component: {fileID: 5640463489654180328}
   - component: {fileID: 5640463489654180329}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KhioneProjectile
   m_TagString: BossProjectile
   m_Icon: {fileID: 0}
@@ -156,6 +156,7 @@ MonoBehaviour:
   attackRange: 5
   attackSpeed: 0
   attackSpeedTimer: 0
+  attackDisabled: 0
   isAttacking: 0
   monoSprite: {fileID: 21300000, guid: 6cc194a5b48324718a730e2f276ba82a, type: 3}
   player: {fileID: 0}

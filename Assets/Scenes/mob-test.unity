@@ -646,7 +646,8 @@ MonoBehaviour:
   KhioneCrystal: {fileID: 3431126240912287944, guid: bd7810f66d2914bc1bd2802b0c7d6aa7, type: 3}
   numCrystalsToSpawn: 6
   numShots_Spiral: 3
-  numTimesToAttack_BlueProjectile: 5
+  attackSpeed_Spiral: 0.1
+  attackDuration_Spiral: 10
   numShots_BlueProjectile: 5
   BasicProjectile: {fileID: 7749449408827115259, guid: 02b6c934e01ae064eae2714ac78dde14, type: 3}
   KhioneProjectile: {fileID: 5640463489654180330, guid: 0a61d86a8ea2148119f38cdd28331ecf, type: 3}

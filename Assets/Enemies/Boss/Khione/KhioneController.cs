@@ -9,9 +9,10 @@ public class KhioneController : EnemyBase
 
   // for spiral attack
   public int numShots_Spiral;
+  public float attackSpeed_Spiral;
+  public float attackDuration_Spiral;
 
   // for blue projectile attack
-  public int numTimesToAttack_BlueProjectile;
   public int numShots_BlueProjectile;
 
   public GameObject BasicProjectile;
@@ -61,7 +62,7 @@ public class KhioneController : EnemyBase
     {
       if (!IsAttacking)
       {
-        StartCoroutine(BlueProjectileAttack());
+         StartCoroutine(BlueProjectileAttack(1));
       }
     }
     else
@@ -73,17 +74,15 @@ public class KhioneController : EnemyBase
   IEnumerator SpiralAttack()
   {
     IsAttacking = true;
-    float innerAttackSpeed = 0.1f;
     float innerAttackSpeedTimer = 0;
-    float innerAttackDuration = 10f;
     float innerAttackDurationTimer = 0;
     float projectileSpeed = 4f;
     int attackOffset = 0;
     int attackOffsetAmount = 15;
 
-    while (innerAttackDuration > innerAttackDurationTimer)
+    while (attackDuration_Spiral > innerAttackDurationTimer)
     {
-      if (innerAttackSpeedTimer > innerAttackSpeed)
+      if (innerAttackSpeedTimer > attackSpeed_Spiral)
       {
         for (int i = 0 + attackOffset; i < 360 + attackOffset; i += (360) / numShots_Spiral)
         {
@@ -111,28 +110,32 @@ public class KhioneController : EnemyBase
     IsAttacking = false;
   }
 
-  IEnumerator BlueProjectileAttack()
+  IEnumerator BlueProjectileAttack(int pattern)
   {
     IsAttacking = true;
+    int numTimesToAttack_BlueProjectile = pattern == 0 ? 5 : 100;
 
+    // fire projectiles upwards with slight delay, alternating between left and right if pattern 0
+    // if pattern 1, fire all projectile simultaneously
     for (int i = 0; i < numTimesToAttack_BlueProjectile; i++)
     {
-      for (int j = 0; j < numShots_BlueProjectile; j++)
+      for (int j = pattern == 0 ? 0 : 1; j < numShots_BlueProjectile; j++)
       {
         StartCoroutine(SummonBlueProjectile(i % 2 == 0 ? j : -j));
-        yield return new WaitForSeconds(0.1f);
+
+        yield return pattern == 0 ? new WaitForSeconds(0.1f) : null;
       }
 
-      yield return new WaitForSeconds(0.75f);
+      yield return new WaitForSeconds(pattern == 0 ? 0.75f : 0.1f);
     }
 
     attackTimer = 0;
     IsAttacking = false;
-    
+
     // helper function to summon a blue projectile 
-    IEnumerator SummonBlueProjectile(int i)
+    IEnumerator SummonBlueProjectile(int xVelocity)
     {
-      float lifespan = 5f;
+      float lifespan = pattern == 0 ? 5f : 10f;
       float lifespanTimer = 0;
       float gravityOnTime = 2f;
       float yVelocity = 3f;
@@ -141,7 +144,12 @@ public class KhioneController : EnemyBase
       KhioneProjectile projectileComp = projectile.GetComponent<KhioneProjectile>();
       projectileComp.useMonoSprite();
       projectileComp.SetColor(new Color(0, 1, 1f));
-      projectileComp.setVelocity(i, yVelocity);
+      projectileComp.setVelocity(xVelocity, yVelocity);
+
+      if (pattern == 1)
+      {
+        projectileComp.attackDisabled = true;
+      }
 
       yield return new WaitForSeconds(1f);
       projectileComp.rigid.gravityScale = 1;

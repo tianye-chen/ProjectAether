@@ -46,7 +46,7 @@ public class CasterRegularState : CasterStateController
 
       // if the player is within the cast range enter the casting state
     }
-    else if (caster.playerInAttackRange)
+    else if (caster.isPlayerInAttackRange())
     {
       castTimer += Time.deltaTime;
       if (castTimer > caster.castCooldown)

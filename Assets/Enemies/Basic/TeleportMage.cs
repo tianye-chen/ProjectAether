@@ -9,7 +9,9 @@ using UnityEngine;
  * 
  * default common values:
  *      maxHealth = 20
- *      speed = 2
+ *      maxSpeed = 2
+ *      maxAtk = 15
+ *      maxDef = 5
  *      aggroRange = 10
  *      disengageRange = 15
  *      attackRange = 7.5
@@ -35,7 +37,7 @@ public class TeleportMage : EnemyBase
   {
     base.move();
 
-    if (teleportTimer > 2 && playerInAttackRange)
+    if (teleportTimer > 2 && isPlayerInAttackRange())
     {
       Teleport();
       Attack();

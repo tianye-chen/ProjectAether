@@ -41,6 +41,8 @@ public class CharacterBase : MonoBehaviour
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
+        if (stateMachine == null)
+            stateMachine = new StateMachine(this);
     }
 
     public virtual void FixedUpdate()
@@ -95,7 +97,7 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    public void Die(){
+    public virtual void Die(){
         Destroy(gameObject);
     }
 }

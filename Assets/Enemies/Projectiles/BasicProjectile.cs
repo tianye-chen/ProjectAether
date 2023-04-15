@@ -7,18 +7,33 @@ public class BasicProjectile : MonoBehaviour
   public Rigidbody2D rigid;
   public float damage = 1f;
   public Color projectileColor;
+  public float speed = 0.1f;
+  public float xVelocity = 0f;
+  public float yVelocity = 1f;
+  public bool useVelocity = false;
   public State stateEffect;
+  public delegate void callbackHandler();
+  public event callbackHandler callback;
 
-  // Start is called before the first frame update
-  void Start()
+  public virtual void Start()
   {
     if (rigid == null)
       rigid = GetComponent<Rigidbody2D>();
+    if (useVelocity)
+      rigid.velocity = new Vector2(xVelocity , yVelocity);
   }
 
   void FixedUpdate()
   {
-    move();
+    if (callback != null)
+    {
+      callback();
+    }
+    
+    if (!useVelocity)
+    {
+      move();
+    }
   }
 
   public void Delete()
@@ -26,12 +41,17 @@ public class BasicProjectile : MonoBehaviour
     Destroy(gameObject);
   }
 
-  public void move()
+  public virtual void move()
   {
-    transform.Translate(Vector2.up * 0.1f);
+    transform.Translate(Vector2.up * speed);
   }
 
-  private void OnTriggerEnter2D(Collider2D collision)
+  public void useCallback(callbackHandler callbackRequest)
+  {
+    callback = callbackRequest;
+  }
+
+  public virtual void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.gameObject.tag == "Player")
     {
@@ -46,6 +66,23 @@ public class BasicProjectile : MonoBehaviour
     {
       Destroy(gameObject);
     }
+  }
+
+  public void SetDamage(float damage)
+  {
+    this.damage = damage;
+  }
+
+  public void SetSpeed(float speed)
+  {
+    this.speed = speed;
+  }
+
+  public void setVelocity(float x, float y)
+  {
+    xVelocity = x;
+    yVelocity = y;
+    rigid.velocity = new Vector2(xVelocity , yVelocity);
   }
 
   public void SetColor(Color color)

@@ -7,6 +7,9 @@ public class PlayerController : CharacterBase
     private float verticalMovement;
     private float horizontalMovement;
 
+    // testing purposes only
+    public GameObject testSpawnMob;
+
     public void Update ()
     {
         PlayerAction();
@@ -58,6 +61,12 @@ public class PlayerController : CharacterBase
             }
           }
         }
+      }
+
+      // testing purposes only
+      if (Input.GetKeyDown(KeyCode.Alpha1))
+      {
+        Instantiate(testSpawnMob, new Vector3(0, 0, 0), Quaternion.identity);
       }
     }
     

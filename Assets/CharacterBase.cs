@@ -48,7 +48,7 @@ public class CharacterBase : MonoBehaviour
     public virtual void FixedUpdate()
     {
       stateMachine.UpdateStates();
-   }
+    }
 
     
     public bool CantMove()

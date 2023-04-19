@@ -6,12 +6,19 @@ public class KhioneCrystal : EnemyBase
 {
   public int numShots;
   public float projectileSpeed;
-
+  
   public GameObject KhioneProjectile;
   public GameObject BasicProjectile;
 
+  private GameObject khioneController;
   private float attackTimer;
-  
+
+  public override void Start()
+  {
+    base.Start();
+
+    khioneController = GameObject.Find("Khione(Clone)");
+  }
 
   public override void FixedUpdate()
   {
@@ -53,7 +60,7 @@ public class KhioneCrystal : EnemyBase
     BasicProjectile projectileComp = projectile.GetComponent<BasicProjectile>();
     projectileComp.useVelocity = true;
     projectileComp.setVelocity(Mathf.Cos(i * Mathf.Deg2Rad) * projectileSpeed, Mathf.Sin(i * Mathf.Deg2Rad) * projectileSpeed);
-    projectileComp.SetDamage(1);
+    projectileComp.SetDamage(atk);
 
     yield return new WaitForSeconds(1f);
 
@@ -74,6 +81,7 @@ public class KhioneCrystal : EnemyBase
   public override void Die()
   {
     Instantiate(KhioneProjectile, transform.position, Quaternion.identity);
+    khioneController.GetComponent<KhioneController>().crystalDestroyed(this);
     base.Die();
   }
 }

@@ -18,10 +18,16 @@ public class KhioneController : EnemyBase
   public GameObject BasicProjectile;
   public GameObject KhioneProjectile;
 
+  // for summoning blue skulls
+  public GameObject BlueSkull;
+  private bool hasSkullsBeenSpawned = false;
+
   private List<KhioneCrystal> crystals = new List<KhioneCrystal>();
   private int phase = 1;
   private float attackTimer;
   private bool IsAttacking = false;
+  private bool hasCrystalPhaseStarted = false;
+  private int currentAttackPattern = 0; 
 
   public override void Start()
   {
@@ -47,22 +53,53 @@ public class KhioneController : EnemyBase
 
   public void initBossBehaviors()
   {
-    switch (phase)
+    // spawn blue skulls when boss is at 50% health
+    if (health / maxHealth <= 0.5f && !hasSkullsBeenSpawned)
     {
-      case 1:
-        phase1();
-        break;
+      hasSkullsBeenSpawned = true;
+      spawnBlueSkulls();
     }
+    // start crystal phase when boss is at 25% health
+    else if (health / maxHealth <= 0.25 && !hasCrystalPhaseStarted)
+    {
+      hasCrystalPhaseStarted = true;
+      isInvulnerable = true;
+      phase = 2;
+    }
+
+    if (isInvulnerable)
+    {
+      GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
+    } else 
+    {
+      GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+    }
+
+    attackPatterns();
   }
 
-  public void phase1()
+  public void attackPatterns()
   {
-    // fire projectiles in a 360 area
+
     if (attackTimer > attackSpeed)
     {
       if (!IsAttacking)
       {
-         StartCoroutine(BlueProjectileAttack(1));
+        // 2 attacks in phase 1, 3 attacks in phase 2
+        switch (currentAttackPattern % (phase == 1 ? 2 : 3))
+        {
+          case 0:
+            StartCoroutine(SpiralAttack());
+            break;
+          case 1:
+            StartCoroutine(BlueProjectileAttack(0));
+            break;
+          case 2:
+            StartCoroutine(BlueProjectileAttack(1));
+            break;
+        }
+
+        currentAttackPattern++;
       }
     }
     else
@@ -91,7 +128,7 @@ public class KhioneController : EnemyBase
           projectileComp.SetColor(new Color(0.6f, 0.63f, 0.92f));
           projectileComp.useVelocity = true;
           projectileComp.setVelocity(Mathf.Cos(i * Mathf.Deg2Rad) * projectileSpeed, Mathf.Sin(i * Mathf.Deg2Rad) * projectileSpeed);
-          projectileComp.SetDamage(1);
+          projectileComp.SetDamage(atk * 2f);
         }
 
         attackOffset += attackOffsetAmount;
@@ -145,6 +182,7 @@ public class KhioneController : EnemyBase
       projectileComp.useMonoSprite();
       projectileComp.SetColor(new Color(0, 1, 1f));
       projectileComp.setVelocity(xVelocity, yVelocity);
+      projectileComp.SetDamage(atk * 3f);
 
       if (pattern == 1)
       {
@@ -178,5 +216,42 @@ public class KhioneController : EnemyBase
     }
   }
 
+  public void spawnBlueSkulls()
+  {
+    GameObject skull;
 
+    skull = Instantiate(BlueSkull, new Vector2(transform.position.x, transform.position.y - 0.75f), Quaternion.identity);
+    skull.GetComponent<BlueSkull>().changeMoveDirection(new Vector2(0, 1));
+    skull = Instantiate(BlueSkull, transform.position, Quaternion.identity);
+    skull.GetComponent<BlueSkull>().changeMoveDirection(new Vector2(1, -1));
+    skull = Instantiate(BlueSkull, transform.position, Quaternion.identity);
+    skull.GetComponent<BlueSkull>().changeMoveDirection(new Vector2(-1, -1));
+  }
+
+  public void crystalDestroyed(KhioneCrystal crystal)
+  {
+    crystals.Remove(crystal);
+    if (crystals.Count == 0)
+    {
+      isInvulnerable = false;
+    }
+  }
+
+  public override void Die()
+  {
+    base.Die();
+    // destroy all khione projectiles
+    foreach (KhioneProjectile projectile in GameObject.FindObjectsOfType(typeof(KhioneProjectile)))
+    {
+      Destroy(projectile.gameObject);
+    }
+
+    // destroy all blue skulls
+    foreach (BlueSkull skull in GameObject.FindObjectsOfType(typeof(BlueSkull)))
+    {
+      Destroy(skull.gameObject);
+    }
+
+    Destroy(gameObject);
+  }
 }

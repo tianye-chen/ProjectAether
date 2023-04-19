@@ -13,10 +13,11 @@ public class CharacterBase : MonoBehaviour
     // 1 = west 2 = east 3 = north 4 = south
     public int direction = 2;
     public bool initiatedBlocking = false;
-    public float maxHealth, maxSpeed, maxAtk, maxDef, maxAccuracy;
-    public float health, speed, atk, def, accuracy;
+    public float maxHealth, maxSpeed, maxAtk, maxDef, maxAccuracy, maxMana;
+    public float health, speed, atk, def, accuracy, mana;
     public bool isInvulnerable;
     public HealthBar healthBar;
+    public ManaBar manaBar;
     
     public enum selfElement { Water, Fire, Wind, Earth, Electricity };
     public selfElement SelfElement;
@@ -62,6 +63,7 @@ public class CharacterBase : MonoBehaviour
     }
     public void SetStats()
     {
+        mana = maxMana;
         health = maxHealth;
         speed = maxSpeed;
         atk = maxAtk;
@@ -69,7 +71,9 @@ public class CharacterBase : MonoBehaviour
         //sets healthbar maximum health base on the player maxHealth stat
         if(gameObject.tag == "Player") {
             healthBar.SetMaxHealth(maxHealth);
+            manaBar.SetMaxMana(maxMana);
         }
+        
         
     }
     public void SetAnimation(string animation)

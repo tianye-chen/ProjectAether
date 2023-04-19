@@ -51,7 +51,6 @@ public class KhioneProjectile : BasicProjectile
   {
     isAttacking = true;
     rigid.velocity = Vector2.zero;
-    Vector2 originalVelocity;
 
     // rotate the sprite around 3 times over 1 second
     float time = 0;

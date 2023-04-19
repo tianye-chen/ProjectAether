@@ -155,7 +155,7 @@ MonoBehaviour:
   initiatedBlocking: 0
   maxHealth: 1
   maxSpeed: 3
-  maxAtk: 1
+  maxAtk: 15
   maxDef: 0
   maxAccuracy: 0
   health: 0
@@ -180,5 +180,5 @@ MonoBehaviour:
   Player: {fileID: 0}
   khioneController: {fileID: 3555651093457781927, guid: 1251f2bb14eb4434c847e044224b2b89, type: 3}
   projectile: {fileID: 7749449408827115239, guid: 02b6c934e01ae064eae2714ac78dde14, type: 3}
-  numProjectiles: 13
+  numProjectiles: 1
   projectileSprite: {fileID: 21300000, guid: cd302d90829094731b3a1cd5f2315bb7, type: 3}

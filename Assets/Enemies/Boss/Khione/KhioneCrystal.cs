@@ -60,7 +60,7 @@ public class KhioneCrystal : EnemyBase
     BasicProjectile projectileComp = projectile.GetComponent<BasicProjectile>();
     projectileComp.useVelocity = true;
     projectileComp.setVelocity(Mathf.Cos(i * Mathf.Deg2Rad) * projectileSpeed, Mathf.Sin(i * Mathf.Deg2Rad) * projectileSpeed);
-    projectileComp.SetDamage(1);
+    projectileComp.SetDamage(atk);
 
     yield return new WaitForSeconds(1f);
 

@@ -45,6 +45,7 @@ public class BlueSkull : EnemyBase
           LookAt2D(projectileInst.transform, khioneController.transform);
           projectileInst.transform.Rotate(0, 0, i - 7.5f * (numProjectiles - 1));
           projectileInst.GetComponent<SpriteRenderer>().sprite = projectileSprite;
+          projectileInst.GetComponent<BasicProjectile>().SetDamage(atk);
         }
         attackTimer = 0;
       }

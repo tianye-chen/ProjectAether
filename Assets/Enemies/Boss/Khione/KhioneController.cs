@@ -128,7 +128,7 @@ public class KhioneController : EnemyBase
           projectileComp.SetColor(new Color(0.6f, 0.63f, 0.92f));
           projectileComp.useVelocity = true;
           projectileComp.setVelocity(Mathf.Cos(i * Mathf.Deg2Rad) * projectileSpeed, Mathf.Sin(i * Mathf.Deg2Rad) * projectileSpeed);
-          projectileComp.SetDamage(1);
+          projectileComp.SetDamage(atk * 2f);
         }
 
         attackOffset += attackOffsetAmount;
@@ -182,6 +182,7 @@ public class KhioneController : EnemyBase
       projectileComp.useMonoSprite();
       projectileComp.SetColor(new Color(0, 1, 1f));
       projectileComp.setVelocity(xVelocity, yVelocity);
+      projectileComp.SetDamage(atk * 3f);
 
       if (pattern == 1)
       {

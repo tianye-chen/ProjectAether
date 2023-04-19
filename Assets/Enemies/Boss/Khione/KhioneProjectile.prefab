@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 5640463489654180328}
-  damage: 1
+  damage: 5
   projectileColor: {r: 0, g: 0, b: 0, a: 0}
   speed: 0.1
   xVelocity: 0

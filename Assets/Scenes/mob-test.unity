@@ -1121,6 +1121,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rigid: {fileID: 0}
   defeated: 0
+  testSpawnMob: {fileID: 3555651093457781920, guid: 1251f2bb14eb4434c847e044224b2b89, type: 3}
 --- !u!1 &402023285
 GameObject:
   m_ObjectHideFlags: 0

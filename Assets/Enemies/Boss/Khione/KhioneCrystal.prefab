@@ -153,7 +153,7 @@ MonoBehaviour:
   blocking: 0
   direction: 2
   initiatedBlocking: 0
-  maxHealth: 20
+  maxHealth: 1
   maxSpeed: 0
   maxAtk: 25
   maxDef: 15

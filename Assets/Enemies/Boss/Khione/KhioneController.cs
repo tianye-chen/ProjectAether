@@ -236,4 +236,22 @@ public class KhioneController : EnemyBase
       isInvulnerable = false;
     }
   }
+
+  public override void Die()
+  {
+    base.Die();
+    // destroy all khione projectiles
+    foreach (KhioneProjectile projectile in GameObject.FindObjectsOfType(typeof(KhioneProjectile)))
+    {
+      Destroy(projectile.gameObject);
+    }
+
+    // destroy all blue skulls
+    foreach (BlueSkull skull in GameObject.FindObjectsOfType(typeof(BlueSkull)))
+    {
+      Destroy(skull.gameObject);
+    }
+
+    Destroy(gameObject);
+  }
 }

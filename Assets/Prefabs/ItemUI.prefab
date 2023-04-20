@@ -90,6 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b3f4c30273d604bbb3c6c8a13d2266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costTxt: {fileID: 0}
+  descTxt: {fileID: 0}
+  image: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &5324645791324744003
 MonoBehaviour:

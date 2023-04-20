@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,7 +14,6 @@ public class ShopItemUI : MonoBehaviour
     public Image image;
 
     public ShopItem item;
-    ShopManager shopManager;
 
     public void Start()
     {
@@ -25,7 +25,15 @@ public class ShopItemUI : MonoBehaviour
         PointerEventData pointerData = (PointerEventData)eventData;
         if(pointerData.button == PointerEventData.InputButton.Left)
         {
-            
+            SetData(item.icon);
         }
+    }
+
+    public void SetData(Sprite sprite)
+    {
+        this.image.gameObject.SetActive(true);
+        this.image.sprite = sprite;
+        this.costTxt.text = item.itemPrice.ToString();
+        this.descTxt.text = item.itemDesc.ToString();
     }
 }

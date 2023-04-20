@@ -7,15 +7,15 @@ using UnityEngine.EventSystems;
 
 public class ShopManager : MonoBehaviour
 {
-    public ShopItemUI itemPrefab;
+    public ShopItemUI itemUI;
     public RectTransform itemContainer;
     public TextMeshProUGUI goldTxt;
 
     public Button buyBtn;
 
-    public List<ShopItemUI> itemList;
+    //public List<ShopItemUI> itemList;
 
-    int gold = 0;
+    public int gold = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,14 @@ public class ShopManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void BuyItem()
+    {
+        if(gold >= itemUI.item.itemPrice)
+        {
+            gold -= itemUI.item.itemPrice;
+        }
     }
 
     public void UpdateGoldText()

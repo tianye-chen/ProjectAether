@@ -108,13 +108,17 @@ MonoBehaviour:
   initiatedBlocking: 0
   maxHealth: 10
   maxSpeed: 4
-  maxAtk: 0
-  maxDef: 0
+  maxAtk: 4
+  maxDef: 5
   health: 10
   speed: 0
   atk: 0
   def: 0
   isInvulnerable: 0
+  healthBar: {fileID: 0}
+  generalBoost: {fileID: 0}
+  EnergyBall: {fileID: 0}
+  SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 0}
   defeated: 0

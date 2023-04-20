@@ -14,7 +14,9 @@ using UnityEngine;
  *  
  *  default common variables:
  *    maxHealth = 10
- *    speed = 5
+ *    maxSpeed = 5
+ *    maxAtk = 10
+ *    maxDef = 3
  *    aggroRange = 10
  *    disengageRange = 15
  *    attackRange = 3
@@ -44,6 +46,8 @@ public class AssassinEnemyController : EnemyBase
 
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
+
     if (currentState != stunnedState && currentState != attackState)
     {
       // turn to face the player

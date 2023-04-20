@@ -146,12 +146,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc7c44f3bdfb4f4f8e34dc04b1868f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attacking: 0
+  usingAbility: 0
+  beingHit: 0
+  dodging: 0
+  blocking: 0
+  direction: 2
+  initiatedBlocking: 0
+  maxHealth: 10
+  maxSpeed: 1.5
+  maxAtk: 1
+  maxDef: 3
+  health: 10
+  speed: 1.5
+  atk: 1
+  def: 3
+  isInvulnerable: 0
+  healthBar: {fileID: 0}
+  generalBoost: {fileID: 0}
+  EnergyBall: {fileID: 0}
+  SuperBlock: {fileID: 0}
+  animator: {fileID: 0}
   rigid: {fileID: 0}
+  defeated: 0
+  aggroRange: 10
+  disengageRange: 10
+  attackRange: 5
+  attackSpeed: 0.5
+  playerInAttackRange: 0
+  inDisengageRange: 0
   Player: {fileID: 0}
   ProjectileObject: {fileID: 7749449408827115259, guid: 02b6c934e01ae064eae2714ac78dde14, type: 3}
-  attackSpeed: 0.5
-  speed: 1.5
-  maxHealth: 10
   numProjectiles: 1
-  aggroDistance: 10
-  attackingDistance: 4

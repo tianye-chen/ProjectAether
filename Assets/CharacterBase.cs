@@ -13,22 +13,25 @@ public class CharacterBase : MonoBehaviour
     // 1 = west 2 = east 3 = north 4 = south
     public int direction = 2;
     public bool initiatedBlocking = false;
-    public float maxHealth, maxSpeed, maxAtk, maxDef;
-    public float health, speed, atk, def;
+    public float maxHealth, maxSpeed, maxAtk, maxDef, maxAccuracy, maxMana;
+    public float health, speed, atk, def, accuracy, mana;
     public bool isInvulnerable;
     public HealthBar healthBar;
+    public ManaBar manaBar;
     
+    public enum selfElement { Water, Fire, Wind, Earth, Electricity };
+    public selfElement SelfElement;
 
 
 
     // assets
-    //public Ability generalBoost, EnergyBall, SuperBlock;
+    public Ability generalBoost, EnergyBall, SuperBlock;
     public Animator animator;
     public Rigidbody2D rigid;
 
     public bool defeated = false;
 
-    //public RegularAbilities myRegularAbilities;
+    // public RegularAbilities myRegularAbilities;
 
 
     public StateMachine stateMachine;
@@ -39,16 +42,13 @@ public class CharacterBase : MonoBehaviour
         SetStats();
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-    }
-
-    private void Update()
-    {
-        stateMachine.Update();
+        if (stateMachine == null)
+            stateMachine = new StateMachine(this);
     }
 
     public virtual void FixedUpdate()
     {
-        
+      stateMachine.UpdateStates();
     }
 
     
@@ -63,11 +63,17 @@ public class CharacterBase : MonoBehaviour
     }
     public void SetStats()
     {
+        mana = maxMana;
         health = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
         speed = maxSpeed;
         atk = maxAtk;
         def = maxDef;
+        //sets healthbar maximum health base on the player maxHealth stat
+        if(gameObject.tag == "Player") {
+            healthBar.SetMaxHealth(maxHealth);
+            manaBar.SetMaxMana(maxMana);
+        }
+        
         
     }
     public void SetAnimation(string animation)
@@ -83,8 +89,10 @@ public class CharacterBase : MonoBehaviour
         if (!isInvulnerable)
         {
             health -= damage;
-            healthBar.SetHealth(health);
-            Debug.Log("Enemy TakeDamage");
+            //controls health bar
+            if(gameObject.tag == "Player") {
+                healthBar.SetHealth(health);
+            }
         }
 
         if (health <= 0)
@@ -93,7 +101,7 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    public void Die(){
+    public virtual void Die(){
         Destroy(gameObject);
     }
 }

@@ -9,7 +9,9 @@ using UnityEngine;
  * 
  * default common values:
  *      maxHealth = 20
- *      speed = 2
+ *      maxSpeed = 2
+ *      maxAtk = 15
+ *      maxDef = 5
  *      aggroRange = 10
  *      disengageRange = 15
  *      attackRange = 7.5
@@ -26,6 +28,7 @@ public class TeleportMage : EnemyBase
   // Update is called once per frame
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
     facePlayer();
     move();
   }
@@ -34,7 +37,7 @@ public class TeleportMage : EnemyBase
   {
     base.move();
 
-    if (teleportTimer > 2 && playerInAttackRange)
+    if (teleportTimer > 2 && isPlayerInAttackRange())
     {
       Teleport();
       Attack();
@@ -59,7 +62,7 @@ public class TeleportMage : EnemyBase
     InstOrb = Instantiate(attackOrb, transform.position, Quaternion.identity);
     BossP2Ball orbComponent = InstOrb.GetComponent<BossP2Ball>();
 
-    LookAt2D(InstOrb, Player);
+    LookAt2D(InstOrb.transform, Player.transform);
 
     // set orb color to green
 

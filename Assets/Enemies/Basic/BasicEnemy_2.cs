@@ -13,7 +13,9 @@ using UnityEngine;
  *
  *  default common values:
  *      maxHealth = 10
- *      speed = 1.5
+ *      maxSpeed = 1.5
+ *      maxAtk = 1
+ *      maxDef = 3
  *      aggroRange = 10
  *      disengageRange = 10
  *      attackRange = 5
@@ -31,6 +33,7 @@ public class BasicEnemy_2 : EnemyBase
 
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
     move();
 
     // if the player is within 4 units, move away from the player
@@ -40,7 +43,7 @@ public class BasicEnemy_2 : EnemyBase
       Attack();
 
     }
-    else if (playerInAttackRange)
+    else if (isPlayerInAttackRange())
     {
       // circle around the player
       transform.RotateAround(Player.transform.position, Vector3.forward, 20 * Time.deltaTime);
@@ -62,7 +65,7 @@ public class BasicEnemy_2 : EnemyBase
         // Instantiate projectile
         GameObject projectile = Instantiate(ProjectileObject, transform.position, Quaternion.identity);
 
-        LookAt2D(projectile, Player);
+        LookAt2D(projectile.transform, Player.transform);
 
         // rotate projectile by i degrees and adjust spread based on number of projectiles
         projectile.transform.Rotate(0, 0, i - 15 * (numProjectiles - 1));

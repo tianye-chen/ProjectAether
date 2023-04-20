@@ -9,7 +9,6 @@ public class EnemyBase : CharacterBase
   public float disengageRange;
   public float attackRange;
   public float attackSpeed;
-  public bool playerInAttackRange;
   public bool inDisengageRange;
 
 
@@ -35,30 +34,30 @@ public class EnemyBase : CharacterBase
 
   public virtual void move()
   {
-    // check if player is within disengageRange
-    if (Vector2.Distance(transform.position, Player.transform.position) < disengageRange)
-    {
-      inDisengageRange = true;
-    }
-    else
-    {
-      inDisengageRange = false;
-    }
-
     // check if player is within aggroRange
-    if (Vector2.Distance(transform.position, Player.transform.position) < aggroRange || inDisengageRange)
+    if (isPlayerInAggroRange() || isPlayerInDisengageRange())
     {
       // move towards player until within attackRange
-      if (Vector2.Distance(transform.position, Player.transform.position) > attackRange)
+      if (!isPlayerInAttackRange())
       {
-        playerInAttackRange = false;
         transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
       }
-      else
-      {
-        playerInAttackRange = true;
-      }
     }
+  }
+
+  public bool isPlayerInAttackRange()
+  {
+    return (Vector2.Distance(transform.position, Player.transform.position) < attackRange);
+  }
+
+  public bool isPlayerInDisengageRange()
+  {
+    return (Vector2.Distance(transform.position, Player.transform.position) < disengageRange);
+  }
+
+  public bool isPlayerInAggroRange()
+  {
+    return (Vector2.Distance(transform.position, Player.transform.position) < aggroRange);
   }
 
   public void facePlayer(){
@@ -75,8 +74,13 @@ public class EnemyBase : CharacterBase
     }
   }
 
-  public void LookAt2D(GameObject self, GameObject target)
+  public void LookAt2D(Transform self, Transform target)
   {
-    self.transform.up = target.transform.position - self.transform.position;
+    self.up = target.position - self.position;
+  }
+
+  public void LookAt2D(Transform self, Transform target, Vector3 offset)
+  {
+    self.up = target.position - self.position + offset;
   }
 }

@@ -13,7 +13,9 @@ using UnityEngine;
  * 
  *  default common values:
  *      maxHealth = 10
- *      speed = 4
+ *      maxSpeed = 4
+ *      maxAtk = 4
+ *      maxDef = 5
  *      aggroRange = 15
  *      disengageRange = 15
  *      attackRange = 8
@@ -52,6 +54,8 @@ public class CasterEnemyController : EnemyBase
   }
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
+
     if (currentState != stunnedState)
     {
       facePlayer();

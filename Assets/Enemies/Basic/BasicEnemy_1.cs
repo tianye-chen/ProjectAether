@@ -12,7 +12,9 @@ using UnityEngine;
  * 
  *  default common values:
  *      maxHealth = 10
- *      speed = 2
+ *      maxSpeed = 2
+ *      maxAtk = 1
+ *      maxDef = 1
  *      aggroRange = 10
  *      disengageRange = 10
  *      attackRange = 3
@@ -25,10 +27,11 @@ public class BasicEnemy_1 : EnemyBase
 
   public override void FixedUpdate()
   {
+    base.FixedUpdate();
     move();
 
     // check if player is within 10 units
-    if (!isAttacking && playerInAttackRange)
+    if (!isAttacking && isPlayerInAttackRange())
     {
       StartCoroutine(Attack());
     }

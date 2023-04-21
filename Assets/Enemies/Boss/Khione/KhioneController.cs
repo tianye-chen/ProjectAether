@@ -67,6 +67,7 @@ public class KhioneController : EnemyBase
       phase = 2;
     }
 
+    // change color of boss when invulnerable
     if (isInvulnerable)
     {
       GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);

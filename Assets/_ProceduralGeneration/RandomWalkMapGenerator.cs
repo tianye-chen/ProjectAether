@@ -7,21 +7,23 @@ using Random = UnityEngine.Random;
 
 public class RandomWalkMapGenerator : MonoBehaviour
 {
-  public int walkLength = 10;
   public bool startRandomlyEachIteration = true;
+  public int walkLength = 10;
 
   [SerializeField]
   protected Vector2Int startPos = Vector2Int.zero;
   [SerializeField]
   private int iterations = 1;
+  [SerializeField]
+  private TilemapVisualizer tilemapVisualizer;
 
   public void runProceduralGeneration()
   {
+
+    // Collection of all floor positions
     HashSet<Vector2Int> floorPos = RunRandomWalk();
-    foreach (var pos in floorPos)
-    {
-      Debug.Log(pos);
-    }
+    tilemapVisualizer.ClearTiles();
+    tilemapVisualizer.paintFloorTiles(floorPos);
   }
 
   protected HashSet<Vector2Int> RunRandomWalk()
@@ -31,13 +33,15 @@ public class RandomWalkMapGenerator : MonoBehaviour
 
     for (int i = 0; i < iterations; i++)
     {
-      var path = ProceduralGeneationAlgorithm.SimpleRandomWalkAlgorithm(currPos, walkLength);
+      var path = ProceduralGenerationAlgorithm.SimpleRandomWalkAlgorithm(currPos, walkLength);
 
       // Union to ensure no duplicates
       floorPos.UnionWith(path);
 
       if (startRandomlyEachIteration)
       {
+
+        // Get a random position from floorPos
         currPos = floorPos.ElementAt(Random.Range(0, floorPos.Count));
       }
     }

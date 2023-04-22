@@ -9,6 +9,8 @@ TagManager:
   - BossProjectile
   - WorldReaverOrb
   - WorldReaverBoss
+  - HealthBar
+  - ManaBar
   layers:
   - Default
   - TransparentFX

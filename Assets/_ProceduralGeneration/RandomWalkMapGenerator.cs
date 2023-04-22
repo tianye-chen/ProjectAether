@@ -33,7 +33,7 @@ public class RandomWalkMapGenerator : MonoBehaviour
 
     for (int i = 0; i < iterations; i++)
     {
-      var path = ProceduralGenerationAlgorithm.SimpleRandomWalkAlgorithm(currPos, walkLength);
+      var path = ProceduralGeneration.SimpleRandomWalkAlgorithm(currPos, walkLength);
 
       // Union to ensure no duplicates
       floorPos.UnionWith(path);

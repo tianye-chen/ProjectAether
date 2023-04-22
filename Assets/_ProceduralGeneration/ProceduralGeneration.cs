@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ProceduralGenerationAlgorithm
+public static class ProceduralGeneration
 {
   public static HashSet<Vector2Int> SimpleRandomWalkAlgorithm(Vector2Int startPos, int walkLength){
     HashSet<Vector2Int> walkPath = new HashSet<Vector2Int>();

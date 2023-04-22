@@ -7,11 +7,16 @@ public class CameraController : MonoBehaviour
     public Transform player;
     public Vector3 offset;
     public float baseZoom = 8;
-    // Start is called before the first frame updates
 
     private void Awake()
     {
       SetCameraSize(baseZoom);
+    }
+
+    void Start()
+    {
+      if (player == null)
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame

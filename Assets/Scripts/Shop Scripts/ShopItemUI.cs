@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 public class ShopItemUI : MonoBehaviour
 {
     // Item Description Panel
-    public TextMeshProUGUI costTxt;
+    public TextMeshProUGUI costInt;
     public TextMeshProUGUI descTxt;
     public Image image;
 
@@ -31,9 +32,14 @@ public class ShopItemUI : MonoBehaviour
 
     public void SetData(Sprite sprite)
     {
+        Debug.Log("SetData() was called");
+
         this.image.gameObject.SetActive(true);
         this.image.sprite = sprite;
-        this.costTxt.text = item.itemPrice.ToString();
+        this.costInt.text = item.itemPrice.ToString();
         this.descTxt.text = item.itemDesc.ToString();
+
+        Debug.Log("Changed Desc to: \"" + descTxt.text + "\"");
+        Debug.Log("Set Cost to: " + costInt.text);
     }
 }

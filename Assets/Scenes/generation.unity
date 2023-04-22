@@ -276,8 +276,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1546242423}
-        m_TargetAssemblyTypeName: RandomWalkMapGenerator, Assembly-CSharp
-        m_MethodName: runProceduralGeneration
+        m_TargetAssemblyTypeName: AbstractGenerator, Assembly-CSharp
+        m_MethodName: Generate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -840,11 +840,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a027a54f845f41bc81422eee842659a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilemapVisualizer: {fileID: 1710741309}
+  startPos: {x: 0, y: 0}
   startRandomlyEachIteration: 1
   walkLength: 10
-  startPos: {x: 0, y: 0}
   iterations: 20
-  tilemapVisualizer: {fileID: 1710741309}
 --- !u!4 &1546242424
 Transform:
   m_ObjectHideFlags: 0

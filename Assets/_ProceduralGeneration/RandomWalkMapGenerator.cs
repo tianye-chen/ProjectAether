@@ -5,22 +5,18 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RandomWalkMapGenerator : MonoBehaviour
+public class RandomWalkMapGenerator : AbstractGenerator
 {
   public bool startRandomlyEachIteration = true;
   public int walkLength = 10;
 
   [SerializeField]
-  protected Vector2Int startPos = Vector2Int.zero;
-  [SerializeField]
   private int iterations = 1;
-  [SerializeField]
-  private TilemapVisualizer tilemapVisualizer;
 
-  public void runProceduralGeneration()
+  protected override void RunProceduralGeneration()
   {
 
-    // Collection of all floor positions
+    // A collection of all floor positions
     HashSet<Vector2Int> floorPos = RunRandomWalk();
     tilemapVisualizer.ClearTiles();
     tilemapVisualizer.paintFloorTiles(floorPos);

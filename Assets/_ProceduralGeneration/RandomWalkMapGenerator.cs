@@ -7,11 +7,8 @@ using Random = UnityEngine.Random;
 
 public class RandomWalkMapGenerator : AbstractGenerator
 {
-  public bool startRandomlyEachIteration = true;
-  public int walkLength = 10;
-
   [SerializeField]
-  private int iterations = 1;
+  private RandomWalkData randomWalkData;
 
   protected override void RunProceduralGeneration()
   {
@@ -27,14 +24,14 @@ public class RandomWalkMapGenerator : AbstractGenerator
     var currPos = startPos;
     HashSet<Vector2Int> floorPos = new HashSet<Vector2Int>();
 
-    for (int i = 0; i < iterations; i++)
+    for (int i = 0; i < randomWalkData.iterations; i++)
     {
-      var path = ProceduralGeneration.SimpleRandomWalkAlgorithm(currPos, walkLength);
+      var path = ProceduralGeneration.SimpleRandomWalkAlgorithm(currPos, randomWalkData.walkLength);
 
       // Union to ensure no duplicates
       floorPos.UnionWith(path);
 
-      if (startRandomlyEachIteration)
+      if (randomWalkData.startRandomlyEachIteration)
       {
 
         // Get a random position from floorPos

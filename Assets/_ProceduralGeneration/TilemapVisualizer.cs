@@ -10,6 +10,10 @@ public class TilemapVisualizer : MonoBehaviour
   private Tilemap floorTilemap;
   [SerializeField]
   private TileBase floorTile;
+  [SerializeField]
+  private Tilemap wallTilemap;
+  [SerializeField]
+  private TileBase wallTopTile;
 
   public void paintFloorTiles(IEnumerable<Vector2Int> floorPos)
   {
@@ -19,6 +23,7 @@ public class TilemapVisualizer : MonoBehaviour
   public void ClearTiles()
   {
     floorTilemap.ClearAllTiles();
+    wallTilemap.ClearAllTiles();
   }
 
   private void PaintFloorTiles(IEnumerable<Vector2Int> floorPos, Tilemap floorTilemap, TileBase floorTile)
@@ -29,9 +34,15 @@ public class TilemapVisualizer : MonoBehaviour
     }
   }
 
+  internal void PaintWallTile(Vector2Int pos)
+  {
+    PaintTile(pos, wallTilemap, wallTopTile);
+  }
+
   private void PaintTile(Vector2Int pos, Tilemap tilemap, TileBase tile)
   {
     var tilePos = tilemap.WorldToCell((Vector3Int)pos);
     tilemap.SetTile(tilePos, tile);
   }
+
 }

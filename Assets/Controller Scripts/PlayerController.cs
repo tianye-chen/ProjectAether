@@ -24,9 +24,11 @@ public class PlayerController : CharacterBase
         // Flip sprite if moving left
         if (horizontalMovement < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-        } else if (horizontalMovement > 0) {
-            transform.localScale = new Vector3(1, 1, 1);
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
         }
 
         rigid.velocity = new Vector2(horizontalMovement * speed, verticalMovement * speed);

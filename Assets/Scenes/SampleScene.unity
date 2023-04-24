@@ -1116,19 +1116,22 @@ MonoBehaviour:
   maxAtk: 10
   maxDef: 10
   maxAccuracy: 10
+  maxMana: 10
   health: 10
   speed: 10
   atk: 10
   def: 10
   accuracy: 10
+  mana: 0
   isInvulnerable: 0
-  healthBar: {fileID: 647125999}
   SelfElement: 0
   generalBoost: {fileID: 0}
   EnergyBall: {fileID: 0}
   SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 0}
+  healthBar: {fileID: 647125999}
+  manaBar: {fileID: 1479119903}
   defeated: 0
   testSpawnMob: {fileID: 0}
 --- !u!114 &383789044

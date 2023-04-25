@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [ExecuteInEditMode()]
 public class ProgressBar : MonoBehaviour
 
 {
     public int level = 1;
+    public TextMeshProUGUI xpText;
     public float minimumXP;
     public float maximumXP;
     public float currentXP;
@@ -22,6 +24,7 @@ public class ProgressBar : MonoBehaviour
             currentXP += 20;
         }
         GetCurrentFill();
+        xpText.text = "XP: " + currentXP.ToString() + "/" + maximumXP.ToString();
     }
 
     void GetCurrentFill() {
@@ -31,7 +34,7 @@ public class ProgressBar : MonoBehaviour
         slider.value = fillAmount;
         if(currentXP >= maximumXP) {
             minimumXP = maximumXP;
-            maximumXP = maximumXP * (float)1.5;
+            maximumXP = Mathf.Round(maximumXP * (float)1.5);
             level += 1;
         }
     }

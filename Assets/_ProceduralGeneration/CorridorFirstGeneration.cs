@@ -13,6 +13,8 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
   [SerializeField]
   [Range(0.1f, 1)]
   private float roomPercent = 0.8f;
+  [SerializeField] [Tooltip("Only works with odd numbers")]
+  private float corridorWidth = 1;
   [SerializeField]
   private bool tunnelRooms = false;
 
@@ -41,9 +43,36 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
       CreateRoomAtDeadEnd(deadEndPositions, roomPositions);
     }
 
+    if (corridorWidth > 1)
+    {
+      floorPositions = widenCorridors(floorPositions, corridorWidth / 2);
+    }
+
     floorPositions.UnionWith(roomPositions);
     tilemapVisualizer.paintFloorTiles(floorPositions);
     WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
+  }
+
+  // Widens the width of corridors, only works with odd numbers
+  private HashSet<Vector2Int> widenCorridors(HashSet<Vector2Int> floorPositions, float corridorWidth)
+  {
+    HashSet<Vector2Int> widenedFloorPositions = new HashSet<Vector2Int>();
+
+    // Given a single tile of a corridor, add tiles in each direction based on the corridor width
+    foreach (var pos in floorPositions)
+    {
+      widenedFloorPositions.Add(pos);
+
+      for (int i = 0; i < corridorWidth; i++)
+      {
+        foreach (var dir in Direction2D.directionsList)
+        {
+          widenedFloorPositions.Add(pos + dir * i);
+        }
+      }
+    }
+
+    return widenedFloorPositions;
   }
 
   private HashSet<Vector2Int> createTunnelRooms(HashSet<Vector2Int> potentialRoomPositions)

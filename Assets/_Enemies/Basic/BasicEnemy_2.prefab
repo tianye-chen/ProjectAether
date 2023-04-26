@@ -157,23 +157,29 @@ MonoBehaviour:
   maxSpeed: 1.5
   maxAtk: 1
   maxDef: 3
+  maxAccuracy: 0
+  maxMana: 0
   health: 10
   speed: 1.5
   atk: 1
   def: 3
+  accuracy: 0
+  mana: 0
   isInvulnerable: 0
-  healthBar: {fileID: 0}
+  SelfElement: 0
   generalBoost: {fileID: 0}
   EnergyBall: {fileID: 0}
   SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 0}
+  healthBar: {fileID: 0}
+  manaBar: {fileID: 0}
   defeated: 0
   aggroRange: 10
   disengageRange: 10
   attackRange: 5
   attackSpeed: 0.5
-  playerInAttackRange: 0
+  xp: 20
   inDisengageRange: 0
   Player: {fileID: 0}
   ProjectileObject: {fileID: 7749449408827115259, guid: 02b6c934e01ae064eae2714ac78dde14, type: 3}

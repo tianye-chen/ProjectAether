@@ -9,6 +9,7 @@ public class EnemyBase : CharacterBase
   public float disengageRange;
   public float attackRange;
   public float attackSpeed;
+  public float xp;
   public bool inDisengageRange;
 
 
@@ -82,5 +83,8 @@ public class EnemyBase : CharacterBase
   public void LookAt2D(Transform self, Transform target, Vector3 offset)
   {
     self.up = target.position - self.position + offset;
+  }
+  public void giveXP() {
+    Player.GetComponent<LevelSystem>().setCurrentXP(xp);
   }
 }

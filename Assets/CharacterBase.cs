@@ -103,6 +103,10 @@ public class CharacterBase : MonoBehaviour
 
   public virtual void Die()
   {
+    if(gameObject.tag == "Enemy") {
+      gameObject.GetComponent<EnemyBase>().giveXP();
+    }
     Destroy(gameObject);
   }
+  
 }

@@ -13,7 +13,6 @@ public static class WallGenerator
     {
       tilemapVisualizer.PaintWallTile(pos);
     }
-
   }
 
   private static HashSet<Vector2Int> FindWallsInDirections(HashSet<Vector2Int> floorPos, List<Vector2Int> directionsList)

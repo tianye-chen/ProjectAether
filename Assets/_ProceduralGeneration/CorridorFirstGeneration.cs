@@ -13,7 +13,8 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
   [SerializeField]
   [Range(0.1f, 1)]
   private float roomPercent = 0.8f;
-  [SerializeField] [Tooltip("Only works with odd numbers")]
+  [SerializeField]
+  [Tooltip("Only works with odd numbers")]
   private float corridorWidth = 1;
   [SerializeField]
   private bool tunnelRooms = false;
@@ -36,8 +37,8 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
     if (tunnelRooms)
     {
       roomPositions = createTunnelRooms(floorPositions);
-    } 
-    else 
+    }
+    else
     {
       roomPositions = CreateRooms(potentialRoomPositions);
       List<Vector2Int> deadEndPositions = FindDeadEnds(floorPositions);

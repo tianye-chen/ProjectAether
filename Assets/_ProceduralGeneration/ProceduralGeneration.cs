@@ -4,7 +4,8 @@ using UnityEngine;
 
 public static class ProceduralGeneration
 {
-  public static HashSet<Vector2Int> SimpleRandomWalkAlgorithm(Vector2Int startPos, int walkLength){
+  public static HashSet<Vector2Int> SimpleRandomWalkAlgorithm(Vector2Int startPos, int walkLength)
+  {
     HashSet<Vector2Int> walkPath = new HashSet<Vector2Int>();
     walkPath.Add(startPos);
     var prevPos = startPos;
@@ -20,7 +21,8 @@ public static class ProceduralGeneration
     return walkPath;
   }
 
-  public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPos, int corridorLength){
+  public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPos, int corridorLength)
+  {
     List<Vector2Int> corridor = new List<Vector2Int>();
     var direction = Direction2D.GetRandomDirection();
     var currPos = startPos;

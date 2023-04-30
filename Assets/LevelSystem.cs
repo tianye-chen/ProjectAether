@@ -5,11 +5,11 @@ using UnityEngine;
 public class LevelSystem : MonoBehaviour
 {
     
-    public static int level = 1;
+    public int level = 1;
     public static float minimumXP = 0;
     public static float maximumXP = 100;
     public static float currentXP = 0;
-    public static int skillPoint = 0;
+    public int StatPoint = 0;
     public ProgressBar xpBar;
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class LevelSystem : MonoBehaviour
     }
 
     public void levelUP() {
-        skillPoint += 1;
+        StatPoint += 1;
         minimumXP = maximumXP;
         maximumXP = Mathf.Round(maximumXP * (float)1.10);
             level += 1;

@@ -11,7 +11,7 @@ public class PauseMenuScript : MonoBehaviour
     public static bool IsPaused = false;
     private static bool isActive = false;
     public GameObject pauseMenuUI;
-    public GameObject SkillsMenuUI;
+    public GameObject StatusMenuUI;
     public GameObject OptionsMenuUI;
 
     // Update is called once per frame
@@ -50,17 +50,17 @@ public class PauseMenuScript : MonoBehaviour
         IsPaused = true;
         isActive = true;
     }
-    public void SkillsMenu()
+    public void StatusMenu()
     {
         isActive = false;
         pauseMenuUI.SetActive(false);
-        UnityEngine.Debug.Log("Skills");
-        SkillsMenuUI.SetActive(true);
+        UnityEngine.Debug.Log("Status");
+        StatusMenuUI.SetActive(true);
         
     }
     public void BacktoPauseMenu()
     {
-        SkillsMenuUI.SetActive(false);
+        StatusMenuUI.SetActive(false);
         OptionsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         isActive = true;

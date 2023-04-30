@@ -19,6 +19,7 @@ using UnityEngine;
  *      disengageRange = 10
  *      attackRange = 3
  *      attackSpeed = 0.75
+ *      xp = 10
  */
 public class BasicEnemy_1 : EnemyBase
 {

@@ -11,6 +11,7 @@ TagManager:
   - WorldReaverBoss
   - HealthBar
   - ManaBar
+  - Decoration
   layers:
   - Default
   - TransparentFX

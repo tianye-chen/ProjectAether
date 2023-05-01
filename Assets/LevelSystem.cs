@@ -13,12 +13,21 @@ public class LevelSystem : MonoBehaviour
     public ProgressBar xpBar;
     public ProgressBar xpBar2;
 
+    public void Start() {
+        if(xpBar == null) {
+            xpBar = GameObject.Find("XPBar").GetComponent<ProgressBar>();
+        }
+        if(xpBar2 == null) {
+            xpBar2 = GameObject.Find("StatusMenu").transform.GetChild(1).GetChild(16).GetComponent<ProgressBar>();
+        }
+        
+    }
     // Update is called once per frame
     void Update()
     {
-        /*if(Input.GetKeyDown("space")) {
+        if(Input.GetKeyDown("space")) {
             currentXP += 1000;
-        } */
+        }
         if(currentXP >= maximumXP) {
             levelUP();
         }

@@ -3141,7 +3141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.0123, y: 0.7118}
+  m_AnchoredPosition: {x: 2.012329, y: 0.711792}
   m_SizeDelta: {x: 14.0055, y: 12.4026}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &796893381
@@ -3868,10 +3868,10 @@ RectTransform:
   m_Father: {fileID: 1303765858}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1111.8, y: -102.5}
-  m_SizeDelta: {x: 400.8803, y: 18.4654}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 209.09998, y: 262.5}
+  m_SizeDelta: {x: -1434.1196, y: -810.5346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959425318
 MonoBehaviour:
@@ -7559,7 +7559,7 @@ GameObject:
   - component: {fileID: 1969682240}
   - component: {fileID: 1969682239}
   m_Layer: 5
-  m_Name: XPBar
+  m_Name: XPBar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

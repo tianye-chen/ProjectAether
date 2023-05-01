@@ -14,8 +14,13 @@ public class StatIncreaseUI : MonoBehaviour
     public TextMeshProUGUI SPD;
     public TextMeshProUGUI ACC;
     public TextMeshProUGUI StatPointsText;
+    public TextMeshProUGUI Level;
+    public TextMeshProUGUI healthValue;
     public int SP;
     public GameObject Player;
+    public HealthBar healthBar;
+    public HealthBar healthBar2;
+    public ManaBar manaBar;
 
     // Start is called before the first frame update
     public void start() {
@@ -34,6 +39,8 @@ public class StatIncreaseUI : MonoBehaviour
         SPD.text =  "SPD: " + Player.GetComponent<CharacterBase>().maxSpeed.ToString();
         ACC.text =  "ACC: " + Player.GetComponent<CharacterBase>().maxAccuracy.ToString();
         StatPointsText.text = "STAT POINTS: " + Player.GetComponent<LevelSystem>().StatPoint.ToString();
+        Level.text = "LEVEL: " + Player.GetComponent<LevelSystem>().level.ToString();
+        healthValue.text = Player.GetComponent<CharacterBase>().health.ToString() + "/" + Player.GetComponent<CharacterBase>().maxHealth.ToString();
     }
 
 
@@ -45,16 +52,21 @@ public class StatIncreaseUI : MonoBehaviour
                     UnityEngine.Debug.Log("HP");
                     Player.GetComponent<CharacterBase>().maxHealth += 10;
                     Player.GetComponent<LevelSystem>().StatPoint -= 1;
+                    healthBar.SetMaxHealth(Player.GetComponent<CharacterBase>().maxHealth);
+                    healthBar.SetHealth(Player.GetComponent<CharacterBase>().health);
+                    healthBar2.SetMaxHealth(Player.GetComponent<CharacterBase>().maxHealth);
+                    healthBar2.SetHealth(Player.GetComponent<CharacterBase>().health);
+                    
                     break;
                 case "ATK":
                     UnityEngine.Debug.Log("ATK");
-                    Player.GetComponent<CharacterBase>().maxAtk += 5;
+                    Player.GetComponent<CharacterBase>().maxAtk += 1;
                     Player.GetComponent<CharacterBase>().atk = Player.GetComponent<CharacterBase>().maxAtk;
                     Player.GetComponent<LevelSystem>().StatPoint -= 1;
                     break;
                 case "DEF":
                     UnityEngine.Debug.Log("DEF");
-                    Player.GetComponent<CharacterBase>().maxDef += 5;
+                    Player.GetComponent<CharacterBase>().maxDef += 1;
                     Player.GetComponent<CharacterBase>().def = Player.GetComponent<CharacterBase>().maxDef;
                     Player.GetComponent<LevelSystem>().StatPoint -= 1;
                     break;
@@ -62,16 +74,18 @@ public class StatIncreaseUI : MonoBehaviour
                     UnityEngine.Debug.Log("MANA");
                     Player.GetComponent<CharacterBase>().maxMana += 10;
                     Player.GetComponent<LevelSystem>().StatPoint -=1;
+                    manaBar.SetMaxMana(Player.GetComponent<CharacterBase>().maxMana);
+                    manaBar.SetMana(Player.GetComponent<CharacterBase>().mana);
                     break;
                 case "SPD":
                     UnityEngine.Debug.Log("SPD");
-                    Player.GetComponent<CharacterBase>().maxSpeed += 5;
+                    Player.GetComponent<CharacterBase>().maxSpeed += 1;
                     Player.GetComponent<CharacterBase>().speed = Player.GetComponent<CharacterBase>().maxSpeed;
                     Player.GetComponent<LevelSystem>().StatPoint -= 1;
                     break;
                 case "ACC":
                     UnityEngine.Debug.Log("ACC");
-                    Player.GetComponent<CharacterBase>().maxAccuracy += 5;
+                    Player.GetComponent<CharacterBase>().maxAccuracy += 1;
                     Player.GetComponent<CharacterBase>().accuracy = Player.GetComponent<CharacterBase>().maxAccuracy;
                     Player.GetComponent<LevelSystem>().StatPoint -= 1;
                     break;

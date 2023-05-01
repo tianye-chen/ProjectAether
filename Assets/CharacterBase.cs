@@ -25,6 +25,8 @@ public class CharacterBase : MonoBehaviour
   public Animator animator;
   public Rigidbody2D rigid;
   public HealthBar healthBar;
+  public HealthBar healthBar2;
+
   public ManaBar manaBar;
 
   public bool defeated = false;
@@ -42,7 +44,7 @@ public class CharacterBase : MonoBehaviour
     if (stateMachine == null)
       stateMachine = new StateMachine(this);
   }
-
+ 
   public virtual void FixedUpdate()
   {
     stateMachine.UpdateStates();
@@ -69,6 +71,7 @@ public class CharacterBase : MonoBehaviour
     if (gameObject.tag == "Player")
     {
       healthBar.SetMaxHealth(maxHealth);
+      healthBar2.SetMaxHealth(maxHealth);
       manaBar.SetMaxMana(maxMana);
     }
 
@@ -92,6 +95,7 @@ public class CharacterBase : MonoBehaviour
       if (gameObject.tag == "Player")
       {
         healthBar.SetHealth(health);
+        healthBar2.SetHealth(health);
       }
     }
 

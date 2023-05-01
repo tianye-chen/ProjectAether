@@ -11,17 +11,20 @@ public class LevelSystem : MonoBehaviour
     public static float currentXP = 0;
     public int StatPoint = 0;
     public ProgressBar xpBar;
+    public ProgressBar xpBar2;
 
     // Update is called once per frame
     void Update()
     {
         /*if(Input.GetKeyDown("space")) {
-            currentXP += 20;
+            currentXP += 1000;
         } */
         if(currentXP >= maximumXP) {
             levelUP();
         }
         xpBar.UpdateValues(currentXP, maximumXP, minimumXP, level);
+        xpBar2.UpdateValues(currentXP, maximumXP, minimumXP, level);
+
 
     }
 

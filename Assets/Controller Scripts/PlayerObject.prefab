@@ -206,6 +206,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rigid: {fileID: 3841321218117416122}
   healthBar: {fileID: 6922350251767023354}
+  healthBar2: {fileID: 0}
   manaBar: {fileID: 6922350252075976970}
   defeated: 0
   testSpawnMob: {fileID: 3555651093457781920, guid: 1251f2bb14eb4434c847e044224b2b89, type: 3}
@@ -219,6 +220,26 @@ PrefabInstance:
     - target: {fileID: 982377965741707085, guid: c05d14910af672644a3ef7bb9515c849, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982377966579784042, guid: c05d14910af672644a3ef7bb9515c849, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 982377966579784042, guid: c05d14910af672644a3ef7bb9515c849, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 982377966870494287, guid: c05d14910af672644a3ef7bb9515c849, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 982377967496341690, guid: c05d14910af672644a3ef7bb9515c849, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 982377967496341690, guid: c05d14910af672644a3ef7bb9515c849, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8516468081189892151, guid: c05d14910af672644a3ef7bb9515c849, type: 3}
       propertyPath: m_AnchorMax.x

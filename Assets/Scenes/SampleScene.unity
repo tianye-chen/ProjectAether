@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1054276570}
-  SkillsMenuUI: {fileID: 1698973299}
+  StatusMenuUI: {fileID: 0}
   OptionsMenuUI: {fileID: 1433558826}
 --- !u!1 &383789038
 GameObject:
@@ -1030,6 +1030,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rigid: {fileID: 0}
   healthBar: {fileID: 647125999}
+  healthBar2: {fileID: 0}
   manaBar: {fileID: 1479119903}
   defeated: 0
   testSpawnMob: {fileID: 0}
@@ -1060,7 +1061,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37add696fbbce3a4b9b8857c919b44be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1
+  StatPoint: 0
   xpBar: {fileID: 1713360182}
+  xpBar2: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

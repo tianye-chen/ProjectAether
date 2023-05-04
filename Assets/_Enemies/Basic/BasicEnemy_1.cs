@@ -14,12 +14,12 @@ using UnityEngine;
  *  default common values:
  *      maxHealth = 10
  *      maxSpeed = 2
- *      maxAtk = 1
- *      maxDef = 1
+ *      maxAtk = 3
+ *      maxDef = 3
  *      aggroRange = 10
  *      disengageRange = 10
  *      attackRange = 3
- *      attackSpeed = 0.75
+ *      attackSpeed = 1.5
  *      xp = 10
  */
 public class BasicEnemy_1 : EnemyBase

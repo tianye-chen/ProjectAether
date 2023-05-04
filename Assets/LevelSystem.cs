@@ -6,14 +6,18 @@ public class LevelSystem : MonoBehaviour
 {
     
     public int level = 1;
-    public static float minimumXP = 0;
-    public static float maximumXP = 100;
-    public static float currentXP = 0;
+    public float minimumXP = 0;
+    public float maximumXP = 100;
+    public float currentXP = 0;
     public int StatPoint = 0;
     public ProgressBar xpBar;
     public ProgressBar xpBar2;
+    public GameObject Player;
 
     public void Start() {
+        if(Player == null) {
+            Player = GameObject.FindGameObjectWithTag("Player");
+        }
         if(xpBar == null) {
             xpBar = GameObject.Find("XPBar").GetComponent<ProgressBar>();
         }
@@ -33,6 +37,8 @@ public class LevelSystem : MonoBehaviour
         }
         xpBar.UpdateValues(currentXP, maximumXP, minimumXP, level);
         xpBar2.UpdateValues(currentXP, maximumXP, minimumXP, level);
+        Player.GetComponent<CharacterBase>().UpdateLevel(minimumXP, maximumXP, currentXP, level);
+
 
 
     }

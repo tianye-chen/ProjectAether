@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954229729934718383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.42, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300022, guid: addd2af175d074643a3b1f29f6c23041, type: 3}
+  m_Sprite: {fileID: 2078392017, guid: 280affb5bf2194af6bf990d6ef2b8861, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,18 +100,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.75}
+  m_Offset: {x: -0.05545503, y: 0.021328866}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.5, y: 1.5}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 0.8}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 0.5871259, y: 0.67244124}
   m_EdgeRadius: 0
 --- !u!50 &1954229729934718380
 Rigidbody2D:
@@ -152,6 +152,7 @@ MonoBehaviour:
   dodging: 0
   blocking: 0
   direction: 2
+  level: 0
   initiatedBlocking: 0
   maxHealth: 10
   maxSpeed: 2
@@ -165,6 +166,9 @@ MonoBehaviour:
   def: 1
   accuracy: 0
   mana: 0
+  minimumXP: 0
+  maximumXP: 0
+  currentXP: 0
   isInvulnerable: 0
   SelfElement: 0
   generalBoost: {fileID: 0}
@@ -173,6 +177,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rigid: {fileID: 1954229729934718380}
   healthBar: {fileID: 0}
+  healthBar2: {fileID: 0}
   manaBar: {fileID: 0}
   defeated: 0
   aggroRange: 10

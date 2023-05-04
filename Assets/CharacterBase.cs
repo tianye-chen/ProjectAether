@@ -44,19 +44,15 @@ public class CharacterBase : MonoBehaviour
       rigid = GetComponent<Rigidbody2D>();
     if (stateMachine == null)
       stateMachine = new StateMachine(this);
+    transform.position = new Vector3(transform.position.x, transform.position.y, -1);
   }
  
   public virtual void FixedUpdate()
   {
     stateMachine.UpdateStates();
   }
-
-  public virtual void Update()
-  {
-    MaintainZAxis();
-  }
-
-  private void MaintainZAxis()
+  
+  private void Update()
   {
     transform.position = new Vector3(transform.position.x, transform.position.y, -1);
   }

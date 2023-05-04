@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,44 +25,46 @@ using UnityEngine;
 public class BasicEnemy_1 : EnemyBase
 {
   // private variables
-  private bool isAttacking = false;
+  private float attackTimer = 0.0f;
+  private Vector3 originalPosition;
+
 
   public override void FixedUpdate()
   {
     base.FixedUpdate();
-    move();
 
     // check if player is within 10 units
-    if (!isAttacking && isPlayerInAttackRange())
+    if (isPlayerInAttackRange() && attackTimer > attackSpeed)
     {
+      originalPosition = transform.position;
+      attackTimer = 0;
       StartCoroutine(Attack());
+    }
+    else
+    {
+      move();
+      attackTimer += Time.deltaTime;
     }
   }
 
-  IEnumerator Attack()
+  private IEnumerator Attack()
   {
-    isAttacking = true;
-    Vector3 posPriorToAttack = transform.position;
-    Vector3 playerPos = Player.transform.position;
-
-    yield return new WaitForSeconds(attackSpeed);
-
-    // move to player position until within 1 unit
-    while (Vector2.Distance(transform.position, playerPos) > 1f)
+    Debug.Log("Attacking");
+    // lunge attack
+    while (Vector2.Distance(transform.position, Player.transform.position) > 0.1)
     {
-      transform.position = Vector2.MoveTowards(transform.position, playerPos, speed * 3 * Time.deltaTime);
+      transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime * 3);
+      transform.position = new Vector3(transform.position.x, transform.position.y, -1);
       yield return null;
     }
 
-    // move back to original position prior to attack
-    while (transform.position != posPriorToAttack)
+    // move backwards
+    while (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
     {
-      transform.position = Vector2.MoveTowards(transform.position, posPriorToAttack, speed * 3 * Time.deltaTime);
+      transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, -speed * Time.deltaTime * 3);
+      transform.position = new Vector3(transform.position.x, transform.position.y, -1);
       yield return null;
     }
-
-    yield return new WaitForSeconds(attackSpeed * 2);
-    isAttacking = false;
   }
 
   // when the enemy hits the player, deal damage

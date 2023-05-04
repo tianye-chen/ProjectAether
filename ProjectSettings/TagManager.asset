@@ -12,6 +12,7 @@ TagManager:
   - HealthBar
   - ManaBar
   - Decoration
+  - DecorationParent
   layers:
   - Default
   - TransparentFX

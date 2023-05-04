@@ -29,6 +29,7 @@ public static class PlaceDecorations
   {
     var decoration = new GameObject("Illuminated Decoration", typeof(SpriteRenderer));
     decoration.tag = "Decoration";
+    decoration.transform.SetParent(GameObject.Find("DecorationContainer").transform);
 
     decoration.transform.position = new Vector3(pos.x + 0.5f, pos.y + 0.5f, -1);
     decoration.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -47,6 +48,7 @@ public static class PlaceDecorations
   {
     var decoration = new GameObject("Decoration", typeof(SpriteRenderer));
     decoration.tag = "Decoration";
+    decoration.transform.SetParent(GameObject.Find("DecorationContainer").transform);
 
     // Place decoration and adjust to be aligned with tilemap grid
     decoration.transform.position = new Vector3(pos.x + 0.5f, pos.y + 0.5f, -1);

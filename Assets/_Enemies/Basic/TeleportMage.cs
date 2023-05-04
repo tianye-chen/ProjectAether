@@ -52,8 +52,8 @@ public class TeleportMage : EnemyBase
   private void Teleport()
   {
     // teleport to a random location within attackRange
-    transform.position = new Vector2(Random.Range(Player.transform.position.x - attackRange + 2, Player.transform.position.x + attackRange - 2),
-    Random.Range(Player.transform.position.y - attackRange + 2, Player.transform.position.y + attackRange - 2));
+    transform.position = new Vector3(Random.Range(Player.transform.position.x - attackRange + 2, Player.transform.position.x + attackRange - 2),
+    Random.Range(Player.transform.position.y - attackRange + 2, Player.transform.position.y + attackRange - 2), -1);
   }
 
   private void Attack()

@@ -105,6 +105,7 @@ public class CaptainEnemy : EnemyBase
       while (Vector2.Distance(transform.position, newPos) > 0.1f && timeoutTimer < timeout)
       {
         transform.position = Vector2.MoveTowards(transform.position, newPos, speed * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1);
         timeoutTimer += Time.deltaTime;
         yield return null;
       }

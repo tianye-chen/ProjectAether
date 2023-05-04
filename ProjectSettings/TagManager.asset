@@ -13,6 +13,7 @@ TagManager:
   - ManaBar
   - Decoration
   - DecorationParent
+  - EnemyContainer
   layers:
   - Default
   - TransparentFX

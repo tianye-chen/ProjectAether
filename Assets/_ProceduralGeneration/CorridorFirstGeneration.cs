@@ -20,6 +20,8 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
   private bool tunnelRooms = false;
   [SerializeField]
   private Sprite[] decorations, illuminatedDecorations;
+  [SerializeField]
+  private EnemyBase[] mobs;
 
   protected override void RunProceduralGeneration()
   {
@@ -53,6 +55,7 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
 
     floorPositions.UnionWith(roomPositions);
     PlaceDecorations.PlaceDecorationsOnFloor(floorPositions, decorations, illuminatedDecorations);
+    PlaceMobs.PlaceMobsOnFloor(floorPositions, mobs);
     tilemapVisualizer.paintFloorTiles(floorPositions);
     WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
   }

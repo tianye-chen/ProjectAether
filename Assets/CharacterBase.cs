@@ -48,6 +48,15 @@ public class CharacterBase : MonoBehaviour
     stateMachine.UpdateStates();
   }
 
+  public virtual void Update()
+  {
+    MaintainZAxis();
+  }
+
+  private void MaintainZAxis()
+  {
+    transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+  }
 
   public bool CantMove()
   {

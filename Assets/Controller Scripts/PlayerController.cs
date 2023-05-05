@@ -7,6 +7,11 @@ public class PlayerController : CharacterBase
     private float verticalMovement;
     private float horizontalMovement;
 
+    private int selectedAbilityIndex = 0;
+
+    [SerializeField]
+    private List<Ability> abilities; 
+
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +19,15 @@ public class PlayerController : CharacterBase
         if (rigid == null)
         {
             rigid = GetComponent<Rigidbody2D>();
+        }
+    }
+
+    private void Update()
+    {
+        ScrollAbilities();
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            StartCoroutine(abilities[selectedAbilityIndex].Use(this));
         }
     }
 
@@ -44,6 +58,18 @@ public class PlayerController : CharacterBase
             collision.gameObject.GetComponent<EnemyBase>().TakeDamage(1);
 
             Debug.Log("colliding");
+        }
+    }
+    private void ScrollAbilities()
+    {
+        if (abilities.Count == 0) return;
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            selectedAbilityIndex++;
+            if(selectedAbilityIndex == abilities.Count)
+            {
+                selectedAbilityIndex = 0;
+            }
         }
     }
 }

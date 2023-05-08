@@ -15,6 +15,14 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject OptionsMenuUI;
     public GameObject PlayerUI;
 
+    void Start ()
+    {
+        pauseMenuUI.SetActive(false);
+        StatusMenuUI.SetActive(false);
+        OptionsMenuUI.SetActive(false);
+        PlayerUI.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {

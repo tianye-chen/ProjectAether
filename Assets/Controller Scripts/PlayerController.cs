@@ -10,8 +10,9 @@ public class PlayerController : CharacterBase
     // testing purposes only
     public GameObject testSpawnMob;
 
-    public void Update ()
+    public override void Update ()
     {
+        base.Update();
         PlayerAction();
         PlayerMovement();
     }
@@ -35,7 +36,7 @@ public class PlayerController : CharacterBase
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        rigid.velocity = new Vector2(horizontalMovement * speed, verticalMovement * speed);
+        rigid.velocity = new Vector3(horizontalMovement * speed, verticalMovement * speed, -1);
     }
 
     public void PlayerAction()

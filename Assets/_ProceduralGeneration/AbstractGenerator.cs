@@ -14,6 +14,7 @@ public abstract class AbstractGenerator : MonoBehaviour
   {
     tilemapVisualizer.ClearTiles();
     PlaceDecorations.ClearDecorations();
+    PlaceMobs.ClearMobs();
     RunProceduralGeneration();
   }
 

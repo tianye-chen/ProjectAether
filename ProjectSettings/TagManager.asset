@@ -12,6 +12,10 @@ TagManager:
   - HealthBar
   - ManaBar
   - Decoration
+  - DecorationParent
+  - EnemyContainer
+  - ProceduralGenerator
+  - UI_FloorDisplay
   layers:
   - Default
   - TransparentFX
@@ -19,7 +23,7 @@ TagManager:
   - Projectile
   - Water
   - UI
-  - 
+  - FloorLevelManager
   - 
   - 
   - 

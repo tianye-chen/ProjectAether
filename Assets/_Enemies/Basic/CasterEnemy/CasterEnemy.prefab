@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7554004040070673231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.16, y: -11.98, z: 0}
+  m_LocalPosition: {x: -10.16, y: -11.98, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -105,28 +105,39 @@ MonoBehaviour:
   dodging: 0
   blocking: 0
   direction: 2
+  level: 0
   initiatedBlocking: 0
   maxHealth: 10
   maxSpeed: 4
   maxAtk: 4
   maxDef: 5
+  maxAccuracy: 0
+  maxMana: 0
   health: 10
   speed: 0
   atk: 0
   def: 0
+  accuracy: 0
+  mana: 0
+  minimumXP: 0
+  maximumXP: 0
+  currentXP: 0
   isInvulnerable: 0
-  healthBar: {fileID: 0}
+  SelfElement: 0
   generalBoost: {fileID: 0}
   EnergyBall: {fileID: 0}
   SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 0}
+  healthBar: {fileID: 0}
+  healthBar2: {fileID: 0}
+  manaBar: {fileID: 0}
   defeated: 0
   aggroRange: 15
   disengageRange: 15
   attackRange: 8
   attackSpeed: 2
-  playerInAttackRange: 0
+  xp: 0
   inDisengageRange: 0
   Player: {fileID: 0}
   stunTime: 3

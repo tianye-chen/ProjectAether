@@ -22,7 +22,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            inventoryManager.AddItem(itemName, sprite);
+            //inventoryManager.AddItem(itemName, sprite);
             Destroy(gameObject);
         }
     }

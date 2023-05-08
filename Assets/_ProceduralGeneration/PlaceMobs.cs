@@ -22,7 +22,7 @@ public static class PlaceMobs
 
   private static void PlaceMob(Vector2Int pos, EnemyBase mob)
   {
-    var mobInstance = Object.Instantiate(mob, new Vector3(pos.x + 0.5f, pos.y + 0.5f, -1), Quaternion.identity);
+    var mobInstance = Object.Instantiate(mob, new Vector3(pos.x + 0.5f, pos.y + 0.5f, -2), Quaternion.identity);
     mobInstance.tag = "Enemy";
     mobInstance.transform.SetParent(GameObject.Find("EnemyContainer").transform);
   }
@@ -31,7 +31,14 @@ public static class PlaceMobs
   {
     foreach (var mob in GameObject.FindGameObjectsWithTag("Enemy"))
     {
-      Object.DestroyImmediate(mob);
+      if (Application.isPlaying)
+      {
+        Object.Destroy(mob);
+      }
+      else
+      {
+        Object.DestroyImmediate(mob);
+      }
     }
   }
 }

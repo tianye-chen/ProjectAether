@@ -44,7 +44,7 @@ public class CharacterBase : MonoBehaviour
       rigid = GetComponent<Rigidbody2D>();
     if (stateMachine == null)
       stateMachine = new StateMachine(this);
-    transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+    transform.position = new Vector3(transform.position.x, transform.position.y, -2);
   }
  
   public virtual void FixedUpdate()
@@ -52,9 +52,10 @@ public class CharacterBase : MonoBehaviour
     stateMachine.UpdateStates();
   }
   
-  private void Update()
+  public virtual void Update()
   {
-    transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+    transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+    Debug.Log(transform.position.z);
   }
 
   public bool CantMove()

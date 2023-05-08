@@ -59,7 +59,14 @@ public static class PlaceDecorations
   {
     foreach (var decoration in GameObject.FindGameObjectsWithTag("Decoration"))
     {
-      Object.DestroyImmediate(decoration);
+      if (Application.isPlaying)
+      {
+        Object.Destroy(decoration);
+      }
+      else
+      {
+        Object.DestroyImmediate(decoration);
+      }
     }
   }
 }

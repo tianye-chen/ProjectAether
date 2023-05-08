@@ -54,7 +54,7 @@ public class BasicEnemy_1 : EnemyBase
     while (Vector2.Distance(transform.position, Player.transform.position) > 0.1)
     {
       transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime * 3);
-      transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+      this.transform.position = new Vector3(transform.position.x, transform.position.y, -2);
       yield return null;
     }
 
@@ -62,7 +62,7 @@ public class BasicEnemy_1 : EnemyBase
     while (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
     {
       transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, -speed * Time.deltaTime * 3);
-      transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+      this.transform.position = new Vector3(transform.position.x, transform.position.y, -2);
       yield return null;
     }
   }

@@ -63,8 +63,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3841321218117416101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.535, y: 0, z: 0}
-  m_LocalScale: {x: 0.7264, y: 0.7264, z: 0.7264}
+  m_LocalPosition: {x: 0.55, y: 0.441, z: 0}
+  m_LocalScale: {x: 2.781, y: 2.781, z: 0.7264}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3841321217783059922}
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17ff727497887ae44ad23f98f4324701, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,18 +156,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.055502295, y: 0.6753689}
+  m_Offset: {x: 0.0040783063, y: -0.000027373433}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 3.125, y: 1.71875}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 3.125, y: 1.71875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.857332, y: 1.2624149}
+  m_Size: {x: 0.1525627, y: 0.3035278}
   m_EdgeRadius: 0
 --- !u!114 &3841321218117416120
 MonoBehaviour:
@@ -187,7 +187,6 @@ MonoBehaviour:
   dodging: 0
   blocking: 0
   direction: 2
-  level: 0
   initiatedBlocking: 0
   maxHealth: 1000
   maxSpeed: 5
@@ -201,9 +200,6 @@ MonoBehaviour:
   def: 0
   accuracy: 0
   mana: 0
-  minimumXP: 0
-  maximumXP: 0
-  currentXP: 0
   isInvulnerable: 0
   SelfElement: 0
   generalBoost: {fileID: 0}
@@ -229,13 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  minimumXP: 0
-  maximumXP: 100
-  currentXP: 0
   StatPoint: 0
   xpBar: {fileID: 6922350252848926755}
   xpBar2: {fileID: 7693501736313952619}
-  Player: {fileID: 3841321218117416101}
 --- !u!1001 &5891358926975323522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -387,10 +379,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -49.11502
       objectReference: {fileID: 0}
-    - target: {fileID: 4253228373378277966, guid: aae74ddb87ff9ce4ab97855795260b9b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4253228373550559145, guid: aae74ddb87ff9ce4ab97855795260b9b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -435,10 +423,6 @@ PrefabInstance:
       propertyPath: healthValue
       value: 
       objectReference: {fileID: 4753409829414153618}
-    - target: {fileID: 4253228374215606451, guid: aae74ddb87ff9ce4ab97855795260b9b, type: 3}
-      propertyPath: playerStats
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4253228374215606455, guid: aae74ddb87ff9ce4ab97855795260b9b, type: 3}
       propertyPath: m_IsActive
       value: 0

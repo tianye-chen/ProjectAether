@@ -45,6 +45,7 @@ public class CharacterBase : MonoBehaviour
     if (stateMachine == null)
       stateMachine = new StateMachine(this);
     transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+    LoadPlayer();
   }
  
   public virtual void FixedUpdate()
@@ -74,6 +75,7 @@ public class CharacterBase : MonoBehaviour
     speed = maxSpeed;
     atk = maxAtk;
     def = maxDef;
+    accuracy = maxAccuracy;
     //sets healthbar maximum health base on the player maxHealth stat
     if (gameObject.tag == "Player")
     {

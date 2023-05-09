@@ -61,6 +61,7 @@ public class FloorLevelManager : MonoBehaviour
     GameObject.FindGameObjectWithTag("UI_FloorDisplay").GetComponent<FloorLevelDisplay>().UpdateFloorLevelDisplay(floorLevel);
     generator.Generate();
     UpdateLevelManager();
+    GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterBase>().LoadPlayer();
   }
 
   private void UpdateLevelManager()
@@ -76,6 +77,7 @@ public class FloorLevelManager : MonoBehaviour
     {
       if (collision.gameObject.tag == "Player")
       {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterBase>().SavePlayer();
         IncreaseFloorLevel();
         Debug.Log("Floor level increased to " + floorLevel);
       }

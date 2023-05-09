@@ -23,12 +23,11 @@ public class PlayerData {
         accuracy = c.accuracy;
         maxMana = c.maxMana;
         mana = c.mana;
-        minimumXP = c.minimumXP;
-        maximumXP = c.maximumXP;
-        currentXP = c.currentXP;
-        level = c.level;
-        
+       
+
 
     }
+
+    
 
 }

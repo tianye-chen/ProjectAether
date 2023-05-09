@@ -5,11 +5,11 @@ using UnityEngine;
 public class LevelSystem : MonoBehaviour
 {
     
-    public int level = 1;
-    public float minimumXP = 0;
-    public float maximumXP = 100;
-    public float currentXP = 0;
-    public int StatPoint = 0;
+    public int level;
+    public float minimumXP;
+    public float maximumXP;
+    public float currentXP;
+    public int StatPoint;
     public ProgressBar xpBar;
     public ProgressBar xpBar2;
     public GameObject Player;
@@ -24,20 +24,22 @@ public class LevelSystem : MonoBehaviour
         if(xpBar2 == null) {
             xpBar2 = GameObject.Find("StatusMenu").transform.GetChild(1).GetChild(16).GetComponent<ProgressBar>();
         }
+        LoadPlayerLevel();
         
     }
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown("space")) {
-            currentXP += 1000;
+            resetLevel();
         }
+        
         if(currentXP >= maximumXP) {
             levelUP();
         }
         xpBar.UpdateValues(currentXP, maximumXP, minimumXP, level);
         xpBar2.UpdateValues(currentXP, maximumXP, minimumXP, level);
-        Player.GetComponent<CharacterBase>().UpdateLevel(minimumXP, maximumXP, currentXP, level);
+        //Player.GetComponent<CharacterBase>().UpdateLevel(minimumXP, maximumXP, currentXP, level);
 
 
 
@@ -45,13 +47,38 @@ public class LevelSystem : MonoBehaviour
 
     public void setCurrentXP(float xp) {
         currentXP += xp;
+        SavePlayerLevel();
     }
 
     public void levelUP() {
         StatPoint += 1;
         minimumXP = maximumXP;
         maximumXP = Mathf.Round(maximumXP * (float)1.10);
-            level += 1;
+        level += 1;
+        SavePlayerLevel();
+        
 
+    }
+
+    public void SavePlayerLevel() {
+      SaveSystem.SavePlayerLevel(this);
+    }
+
+
+    public void LoadPlayerLevel() {
+      PlayerLevelData data2 = SaveSystem.LoadPlayerLevel();
+      minimumXP = data2.minimumXP;
+      maximumXP = data2.maximumXP;
+      currentXP = data2.currentXP;
+      level = data2.level;
+      StatPoint = data2.StatPoint;
+
+    }
+    public void resetLevel() {
+        minimumXP = 0;
+        maximumXP = 100;
+        currentXP = 0;
+        level = 1;
+        StatPoint = 0;
     }
 }

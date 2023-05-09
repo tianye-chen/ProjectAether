@@ -15,6 +15,17 @@ public static class SaveSystem {
         stream.Close();
     }
 
+    public static void SavePlayerLevel (LevelSystem l) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/playerLevel.data";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        PlayerLevelData data2 = new PlayerLevelData(l);
+
+        formatter.Serialize(stream, data2);
+        stream.Close();
+    }
+
     public static PlayerData LoadPlayer() {
         string path = Application.persistentDataPath + "/player.data";
         if(File.Exists(path)) {
@@ -33,4 +44,22 @@ public static class SaveSystem {
         }
 
     } 
+    public static PlayerLevelData LoadPlayerLevel() {
+        string path = Application.persistentDataPath + "/playerLevel.data";
+        if(File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            PlayerLevelData data2 = formatter.Deserialize(stream) as PlayerLevelData;
+            stream.Close();
+
+            return data2;
+            
+        }
+        else {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+
+    }  
 }

@@ -13251,7 +13251,7 @@ MonoBehaviour:
   disengageRange: 15
   attackRange: 8
   attackSpeed: 2
-  xp: 0
+  xp: 10000
   inDisengageRange: 0
   Player: {fileID: 0}
   stunTime: 3
@@ -15371,7 +15371,7 @@ MonoBehaviour:
   disengageRange: 15
   attackRange: 8
   attackSpeed: 2
-  xp: 0
+  xp: 10000
   inDisengageRange: 0
   Player: {fileID: 0}
   stunTime: 3

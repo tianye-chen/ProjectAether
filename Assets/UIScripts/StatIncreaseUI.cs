@@ -43,6 +43,9 @@ public class StatIncreaseUI : MonoBehaviour
         StatPointsText.text = "STAT POINTS: " + Player.GetComponent<LevelSystem>().StatPoint.ToString();
         Level.text = "LEVEL: " + Player.GetComponent<LevelSystem>().level.ToString();
         healthValue.text = Player.GetComponent<CharacterBase>().health.ToString() + "/" + Player.GetComponent<CharacterBase>().maxHealth.ToString();
+        if(Input.GetKeyDown("space")) {
+            resetStats();
+        }
     }
 
    
@@ -105,6 +108,17 @@ public class StatIncreaseUI : MonoBehaviour
             UnityEngine.Debug.Log("You don't have enough skill points");
         }
     }
+
+public void resetStats() {
+    Player.GetComponent<CharacterBase>().maxHealth = 100;
+    Player.GetComponent<CharacterBase>().maxAtk = 100;
+    Player.GetComponent<CharacterBase>().maxDef = 10;
+    Player.GetComponent<CharacterBase>().maxMana = 100;
+    Player.GetComponent<CharacterBase>().maxSpeed = 5;
+    Player.GetComponent<CharacterBase>().maxAccuracy = 0;
+    Player.GetComponent<CharacterBase>().SetStats();
+    Player.GetComponent<CharacterBase>().SavePlayer();
+}
 
 
 

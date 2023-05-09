@@ -19,12 +19,31 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
   [SerializeField]
   private bool tunnelRooms = false;
   [SerializeField]
+  private GameObject player;
+  [SerializeField]
   private Sprite[] decorations, illuminatedDecorations;
   [SerializeField]
   private EnemyBase[] mobs;
 
+  private void Awake() 
+  {
+    if (GameObject.FindGameObjectWithTag("Player") == null)
+    {
+      GameObject.Instantiate(player, new Vector3(0, 0, -2), Quaternion.identity);
+    }
+  }
+
   protected override void RunProceduralGeneration()
   {
+    if (FloorLevelManager.floorLevel % 5 == 0)
+    {
+      randomWalkPresetIndex = 1;
+      tunnelRooms = true;
+    } else
+    {
+      randomWalkPresetIndex = 0;
+      tunnelRooms = false;
+    }
     CorridorGeneration();
   }
 
@@ -56,6 +75,7 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
     floorPositions.UnionWith(roomPositions);
     PlaceDecorations.PlaceDecorationsOnFloor(floorPositions, decorations, illuminatedDecorations);
     PlaceMobs.PlaceMobsOnFloor(floorPositions, mobs);
+    FloorLevelManager.PlacePlayer(floorPositions, player);
     tilemapVisualizer.paintFloorTiles(floorPositions);
     WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
   }
@@ -88,7 +108,7 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
 
     foreach (var pos in potentialRoomPositions)
     {
-      var room = RunRandomWalk(randomWalkData, pos);
+      var room = RunRandomWalk(randomWalkPresets[randomWalkPresetIndex], pos);
       floorPositions.UnionWith(room);
     }
 
@@ -102,7 +122,7 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
     {
       if (!roomPositions.Contains(pos))
       {
-        var room = RunRandomWalk(randomWalkData, pos);
+        var room = RunRandomWalk(randomWalkPresets[randomWalkPresetIndex], pos);
         roomPositions.UnionWith(room);
       }
     }
@@ -144,7 +164,7 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
 
     foreach (var roomPos in roomsToCreate)
     {
-      var roomFloor = RunRandomWalk(randomWalkData, roomPos);
+      var roomFloor = RunRandomWalk(randomWalkPresets[randomWalkPresetIndex], roomPos);
       roomPositions.UnionWith(roomFloor);
     }
 

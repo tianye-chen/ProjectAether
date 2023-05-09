@@ -8,13 +8,14 @@ using Random = UnityEngine.Random;
 public class RandomWalkMapGenerator : AbstractGenerator
 {
   [SerializeField]
-  protected RandomWalkData randomWalkData;
+  protected RandomWalkData[] randomWalkPresets;
+  protected int randomWalkPresetIndex = 0;
 
   protected override void RunProceduralGeneration()
   {
 
     // A collection of all floor positions
-    HashSet<Vector2Int> floorPos = RunRandomWalk(randomWalkData, startPos);
+    HashSet<Vector2Int> floorPos = RunRandomWalk(randomWalkPresets[randomWalkPresetIndex], startPos);
     tilemapVisualizer.ClearTiles();
     tilemapVisualizer.paintFloorTiles(floorPos);
     WallGenerator.CreateWalls(floorPos, tilemapVisualizer);

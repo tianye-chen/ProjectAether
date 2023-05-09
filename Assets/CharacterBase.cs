@@ -11,11 +11,11 @@ public class CharacterBase : MonoBehaviour
   //public List<Ability> abilities = new List<Ability>();
 
   // 1 = west 2 = east 3 = north 4 = south
-  public int direction = 2, level;
+  public int direction = 2; /*level*/
   public bool initiatedBlocking = false;
   public float maxHealth, maxSpeed, maxAtk, maxDef, maxAccuracy, maxMana;
   public float health, speed, atk, def, accuracy, mana;
-  public float minimumXP, maximumXP,currentXP;
+  //public float minimumXP, maximumXP,currentXP;
   public bool isInvulnerable;
 
   public enum selfElement { Water, Fire, Wind, Earth, Electricity };
@@ -85,12 +85,12 @@ public class CharacterBase : MonoBehaviour
     }
 
   }
-  public void UpdateLevel(float minimum, float maximum, float current, int lvl) {
+  /*public void UpdateLevel(float minimum, float maximum, float current, int lvl) {
       minimumXP = minimum;
       maximumXP = maximum;
       currentXP = current;
       level = lvl;
-  }
+  } */
   public void SetAnimation(string animation)
   {
     string[] animationStates = new string[7] { "charge", "walk", "release", "punch", "block", "idle", "dodging" };
@@ -143,10 +143,18 @@ public class CharacterBase : MonoBehaviour
       def = data.def;
       accuracy = data.accuracy;
       mana = data.mana;
-      minimumXP = data.minimumXP;
+      healthBar.SetMaxHealth(maxHealth);
+      healthBar2.SetMaxHealth(maxHealth);
+      healthBar.SetHealth(health);
+      healthBar2.SetHealth(health);
+      manaBar.SetMaxMana(maxMana);
+      manaBar.SetMana(mana);
+      
+      /*minimumXP = data.minimumXP;
       maximumXP = data.maximumXP;
       currentXP = data.currentXP;
-      level = data.level;
+      level = data.level;*/
+      
 
     }
 }

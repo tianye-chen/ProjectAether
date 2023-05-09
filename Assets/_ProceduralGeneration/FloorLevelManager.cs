@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FloorLevelManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class FloorLevelManager : MonoBehaviour
     generator = GetComponentInChildren<AbstractGenerator>();
     GetComponent<SpriteRenderer>().sprite = closedSprite;
     enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
   }
 
   private void Update()
@@ -33,6 +35,25 @@ public class FloorLevelManager : MonoBehaviour
       }
     }
   }
+
+  public static void PlacePlayer(HashSet<Vector2Int> floorPositions, GameObject player)
+  {
+    if (GameObject.FindGameObjectWithTag("Player") == null)
+    {
+      GameObject.Instantiate(player, new Vector3(0, 0, -2), Quaternion.identity);
+    }
+
+    if (floorLevel % 5 == 0)
+    {
+      Vector2Int pos = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
+      player.transform.position = new Vector3(pos.x, pos.y, -2);
+    }
+    else
+    {
+      player.transform.position = new Vector3(0, 0, -2);
+    }
+  }
+
 
   private void IncreaseFloorLevel()
   {

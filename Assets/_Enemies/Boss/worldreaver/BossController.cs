@@ -56,7 +56,7 @@ public class BossController : EnemyBase
     // spawns initial rotating orbs
     for (int i = 0; i < initOrbs; i++)
     {
-      GameObject orb = Instantiate(BossP2Ball, transform.position, Quaternion.identity);
+      GameObject orb = Instantiate(BossP2Ball, new Vector3(transform.position.x, transform.position.y, -2), Quaternion.identity);
       orb.GetComponent<BossP2Ball>().owner = gameObject;
     }
   }
@@ -112,7 +112,7 @@ public class BossController : EnemyBase
       yield return null;
       if (AttackTimer > 0.3f)
       {
-        Instantiate(BossP2Wave_1, new Vector2(Random.Range(Player.transform.position.x - 6, Player.transform.position.x + 6), Player.transform.position.y + 12), Quaternion.identity);
+        Instantiate(BossP2Wave_1, new Vector3(Random.Range(Player.transform.position.x - 6, Player.transform.position.x + 6), Player.transform.position.y + 12, -2), Quaternion.identity);
         AttackTimer = 0;
       }
       else
@@ -132,7 +132,7 @@ public class BossController : EnemyBase
     while (AttackDuration <= 10)
     {
       yield return new WaitForSeconds(0.1f);
-      InstBullet = Instantiate(BossP2Wave_2, new Vector2(transform.position.x - 1.25f, transform.position.y - 1.75f), Quaternion.identity);
+      InstBullet = Instantiate(BossP2Wave_2, new Vector3(transform.position.x - 1.25f, transform.position.y - 1.75f, -2), Quaternion.identity);
       InstBullet.transform.eulerAngles = Vector3.forward * Random.Range(-90, 90);
       AttackDuration += 0.1f;
     }
@@ -143,7 +143,7 @@ public class BossController : EnemyBase
     BossTransitions.SetBool("ArmRaised", false);
     for (int i = -90; i <= 90; i += 25) // Final instance of this boss attack, instantly fires several fire waves in a 180 degree area
     {
-      InstBullet = Instantiate(BossP2Wave_2, new Vector2(transform.position.x - 1.25f, transform.position.y - 1.75f), Quaternion.identity);
+      InstBullet = Instantiate(BossP2Wave_2, new Vector3(transform.position.x - 1.25f, transform.position.y - 1.75f, -2), Quaternion.identity);
       InstBullet.transform.eulerAngles = Vector3.forward * i;
     }
     IsAttacking = false;
@@ -160,7 +160,7 @@ public class BossController : EnemyBase
       yield return new WaitForSeconds(0.3f);
       for (int i = -1; i <= 1; i += 2)
       {
-        InstBullet = Instantiate(DefaultBullet, new Vector2(transform.position.x - 1.25f, transform.position.y - 0.75f), Quaternion.identity);
+        InstBullet = Instantiate(DefaultBullet, new Vector3(transform.position.x - 1.25f, transform.position.y - 0.75f, -2), Quaternion.identity);
         InstBullet.GetComponent<BulletController>().SetProjectileSpeed(1f);
         InstBullet.GetComponent<BulletController>().SetInstObject("BossP2Spiral");
         InstBullet.GetComponent<BulletController>().SetSpiralDirection(i);
@@ -182,7 +182,8 @@ public class BossController : EnemyBase
       yield return new WaitForSeconds(3f);
       for (int i = -1; i <= 1; i += 2)
       {
-        InstBullet = Instantiate(BossP2Ball, new Vector2(transform.position.x - 1.25f, transform.position.y - 0.75f), Quaternion.identity);
+        InstBullet = Instantiate(BossP2Ball, new Vector3(transform.position.x - 1.25f, transform.position.y - 0.75f, -2), Quaternion.identity);
+        InstBullet.GetComponent<BossP2Ball>().owner = gameObject;
         InstBullet.transform.eulerAngles = Vector3.forward * Random.Range(0, 360);
         InstBullet.GetComponent<BossP2Ball>().SetIsAttack(true);
       }
@@ -205,7 +206,7 @@ public class BossController : EnemyBase
       ReadyToFire = false;
       for (int i = 0; i <= 360; i += Random.Range(10, 20))
       {
-        InstBullet = Instantiate(DefaultBullet, new Vector2(transform.position.x - 1.25f, transform.position.y - 0.75f), Quaternion.identity);
+        InstBullet = Instantiate(DefaultBullet, new Vector3(transform.position.x - 1.25f, transform.position.y - 0.75f, -2), Quaternion.identity);
         InstBullet.GetComponent<BulletController>().SetProjectileSpeed(1f);
         InstBullet.transform.eulerAngles = Vector3.forward * i;
         InstBullet.transform.Translate(Vector2.up * 3.5f);

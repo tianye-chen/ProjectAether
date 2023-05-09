@@ -15,7 +15,6 @@ public class BossP2Ball : MonoBehaviour
   // private variables
   private GameObject InstBullet;
   private bool IsAttack = false;
-  private bool IsOverBoundary = false;
   private float speed = 10;
   private float ballCount;
   private bool isEvenlySpaced = false;
@@ -24,6 +23,7 @@ public class BossP2Ball : MonoBehaviour
   private float ownerY;
   private float yModifier = -0.75f;
   private float timer = 0f;
+  private float timeAlive = 0f;
   private float lerpTimer = 0f;
   void Start()
   {
@@ -40,9 +40,19 @@ public class BossP2Ball : MonoBehaviour
 
   private void FixedUpdate()
   {
-    if (!IsAttack)
+    timeAlive += Time.deltaTime;
+    if (timeAlive > 5f && IsAttack)
     {
-      transform.RotateAround(new Vector2(ownerX, ownerY), new Vector3(0, 0, 1f), Time.deltaTime / 2 * 90f);
+      Destroy(gameObject);
+    }
+
+    if (owner == null)
+    {
+      Destroy(gameObject);
+    } 
+    else if (!IsAttack)
+    {
+      transform.RotateAround(new Vector3(ownerX, ownerY, -2), new Vector3(0, 0, -2), Time.deltaTime / 2 * 90f);
 
       // calculate ball positions if they are not evenly spaced
       if (ballCount > 1 && !isEvenlySpaced)
@@ -73,17 +83,17 @@ public class BossP2Ball : MonoBehaviour
 
     }
 
-    if (timer > FireRate && !IsOverBoundary) // Prevents firing when the object is outside the boundary
+    if (timer > FireRate) // Prevents firing when the object is outside the boundary
     {
       gameObject.GetComponent<AudioSource>().Play();
       for (float i = 0; i <= 360; i += 360f / numShots)
       {
-        InstBullet = Instantiate(DefaultBullet, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+        InstBullet = Instantiate(DefaultBullet, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -1), Quaternion.identity);
         InstBullet.GetComponent<BulletController>().SetInstObject("Boss");
 
         SpriteRenderer bulletSprite = InstBullet.GetComponent<SpriteRenderer>();
         bulletSprite.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-        if (orbColor != null)
+        if (orbColor != new Color(0, 0, 0, 0))
           bulletSprite.color = orbColor;
 
         InstBullet.transform.eulerAngles = Vector3.forward * i;
@@ -96,18 +106,6 @@ public class BossP2Ball : MonoBehaviour
     if (IsAttack) // If the current instance is part of an attack of boss
     {
       transform.Translate(Vector2.up * 0.5f / speed);
-    }
-  }
-
-  private void OnTriggerEnter2D(Collider2D collision)
-  {
-    if (collision.gameObject.tag == "Terrain")
-    {
-      IsOverBoundary = !IsOverBoundary;
-      if (IsAttack)
-      {
-        Destroy(gameObject);
-      }
     }
   }
 

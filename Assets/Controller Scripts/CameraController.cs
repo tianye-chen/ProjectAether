@@ -15,14 +15,20 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-      if (player == null)
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+      if (player == null)
+      {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+      }
+      else 
+      {
         transform.position = new Vector3 (player.position.x + offset.x, player.position.y + offset.y, offset.z);    
+      }
     }
 
     public void SetCameraSize(float value)

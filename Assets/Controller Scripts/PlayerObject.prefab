@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -117, y: -423.9}
+  m_AnchoredPosition: {x: -156.10002, y: -373.99997}
   m_SizeDelta: {x: 61.7765, y: 60.3482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &484977977586427853
@@ -479,7 +479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -206.9, y: -423.9}
+  m_AnchoredPosition: {x: -246, y: -374}
   m_SizeDelta: {x: 61.7765, y: 60.3482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1625588341727290948
@@ -632,7 +632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300.0823, y: -423.9}
+  m_AnchoredPosition: {x: -339.1823, y: -373.99997}
   m_SizeDelta: {x: 61.7765, y: 60.3482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5416630214920947497
@@ -788,7 +788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.6, y: -423.9}
+  m_AnchoredPosition: {x: -63.70002, y: -373.99997}
   m_SizeDelta: {x: 61.7765, y: 60.3482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &73196306878221695
@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 7909583246696033048}
   - component: {fileID: 5699212418726530469}
   m_Layer: 5
-  m_Name: Wind (1)
+  m_Name: Earth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -963,7 +963,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66.1, y: -423.9}
+  m_AnchoredPosition: {x: 26.999977, y: -373.99997}
   m_SizeDelta: {x: 61.7765, y: 60.3482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7909583246696033048

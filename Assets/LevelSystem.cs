@@ -39,6 +39,7 @@ public class LevelSystem : MonoBehaviour
         }
         xpBar.UpdateValues(currentXP, maximumXP, minimumXP, level);
         xpBar2.UpdateValues(currentXP, maximumXP, minimumXP, level);
+        SavePlayerLevel();
         //Player.GetComponent<CharacterBase>().UpdateLevel(minimumXP, maximumXP, currentXP, level);
 
 

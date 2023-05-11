@@ -57,6 +57,7 @@ public class CharacterBase : MonoBehaviour
   {
     transform.position = new Vector3(transform.position.x, transform.position.y, -2);
     Debug.Log(transform.position.z);
+    SavePlayer();
   }
 
   public bool CantMove()

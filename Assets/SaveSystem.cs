@@ -40,6 +40,9 @@ public static class SaveSystem {
         }
         else {
             Debug.LogError("Save file not found in " + path);
+            BinaryFormatter formatter = new BinaryFormatter();
+            string path = Application.persistentDataPath + "/player.data";
+            FileStream stream = new FileStream(path, FileMode.Create);
             return null;
         }
 
@@ -58,6 +61,9 @@ public static class SaveSystem {
         }
         else {
             Debug.LogError("Save file not found in " + path);
+            BinaryFormatter formatter = new BinaryFormatter();
+            string path = Application.persistentDataPath + "/playerLevel.data";
+            FileStream stream = new FileStream(path, FileMode.Create);
             return null;
         }
 

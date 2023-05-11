@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 3841321218117416123}
   - component: {fileID: 3841321218117416120}
   - component: {fileID: 2022192652560765153}
+  - component: {fileID: 5204331334887848837}
   m_Layer: 0
   m_Name: HeroKnight_0
   m_TagString: Player
@@ -187,7 +188,6 @@ MonoBehaviour:
   dodging: 0
   blocking: 0
   direction: 2
-  level: 0
   initiatedBlocking: 0
   maxHealth: 1000
   maxSpeed: 20
@@ -201,9 +201,6 @@ MonoBehaviour:
   def: 0
   accuracy: 100
   mana: 0
-  minimumXP: 0
-  maximumXP: 0
-  currentXP: 0
   isInvulnerable: 0
   SelfElement: 0
   generalBoost: {fileID: 0}
@@ -236,6 +233,19 @@ MonoBehaviour:
   xpBar: {fileID: 6922350252848926755}
   xpBar2: {fileID: 7693501736313952619}
   Player: {fileID: 0}
+--- !u!114 &5204331334887848837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841321218117416101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca229248e3a5244480d762f9111b702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities: []
 --- !u!1001 &5891358926975323522
 PrefabInstance:
   m_ObjectHideFlags: 0

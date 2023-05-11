@@ -11,4 +11,7 @@ public class OptionsMenu : MonoBehaviour
     public void back() {
         other.BacktoPauseMenu();
     }
+    public void setFullScreen(bool isFullScreen) {
+        Screen.fullScreen = isFullScreen;
+    }
 }

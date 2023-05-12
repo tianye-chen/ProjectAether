@@ -14,7 +14,9 @@ public class BasicProjectile : MonoBehaviour
   public State stateEffect;
   public delegate void callbackHandler();
   public event callbackHandler callback;
+  public float lifetime = 5f;
   private float timeAlive = 0f;
+  
 
   public virtual void Start()
   {
@@ -37,7 +39,7 @@ public class BasicProjectile : MonoBehaviour
     }
 
     timeAlive += Time.deltaTime;
-    if (timeAlive > 5f)
+    if (timeAlive > lifetime)
     {
       Destroy(gameObject);
     }

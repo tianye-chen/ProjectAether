@@ -25,7 +25,6 @@ public class EnemyBase : CharacterBase
 
     if (Player == null)
     {
-      Debug.Log("Player not found");
       Player = GameObject.FindGameObjectWithTag("Player");
     }
 

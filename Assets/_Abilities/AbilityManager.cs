@@ -5,24 +5,25 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
   [SerializeField]
-  private List<Ability> abilities = new List<Ability>();
+  private IDictionary<string, Ability> abilities = new Dictionary<string, Ability>();
 
   public void Start()
   {
-    abilities.Add(new Healing_Ability());
+    abilities.Add("Heal", new Healing_Ability(1f, 5f));
+    abilities.Add("Elemental_Attack", new Elemental_Attack(1));
   }
 
   public void Update()
   {
-    // On E press, activate the first ability
-    if (Input.GetKeyDown(KeyCode.E))
-    {
-      ActivateAbility(0);
-    }
+    ManageAbilities();
   }
 
-  private void ActivateAbility(int index)
+  private void ManageAbilities()
   {
-    abilities[index].Activate(this.gameObject);
+    foreach (string abilityKey in abilities.Keys)
+    {
+      Ability ability = abilities[abilityKey];
+      ability.AbilityRuntime(gameObject);
+    }
   }
 }

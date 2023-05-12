@@ -56,7 +56,6 @@ public class CharacterBase : MonoBehaviour
   public virtual void Update()
   {
     transform.position = new Vector3(transform.position.x, transform.position.y, -2);
-    Debug.Log(transform.position.z);
     SavePlayer();
   }
 
@@ -97,7 +96,6 @@ public class CharacterBase : MonoBehaviour
     string[] animationStates = new string[7] { "charge", "walk", "release", "punch", "block", "idle", "dodging" };
     foreach (string i in animationStates) animator.SetInteger(i, 0);
     animator.SetInteger(animation, direction);
-
   }
 
   public virtual void TakeDamage(float damage)
@@ -161,7 +159,5 @@ public class CharacterBase : MonoBehaviour
       maximumXP = data.maximumXP;
       currentXP = data.currentXP;
       level = data.level;*/
-      
-
     }
 }

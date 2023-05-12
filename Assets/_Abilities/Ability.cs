@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Ability{
   [SerializeField]
   protected float cooldown;
-  protected float cooldownTimer;
+  protected static float cooldownTimer;
   [SerializeField]
   protected float amplitude;
 

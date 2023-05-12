@@ -37,4 +37,9 @@ public class Healing_Ability : Ability
     float newHealth = oldHealth + 10 + (oldHealth * 0.1f * amplitude);
     parent.GetComponent<CharacterBase>().health = (int)Mathf.Min(newHealth, maxHealth);
   }
+
+  public static float GetRemainingCooldown()
+  {
+    return cooldownTimer;
+  }
 }

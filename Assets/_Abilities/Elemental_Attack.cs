@@ -20,20 +20,20 @@ public class Elemental_Attack : Ability
     // scroll wheel up 
     if (Input.GetAxis("Mouse ScrollWheel") > 0f)
     {
-      selectedElement++;
-      if (selectedElement > 4)
+      selectedElement--;
+      if (selectedElement < 0)
       {
-        selectedElement = 0;
+        selectedElement = 4;
       }
     }
 
     // scroll wheel down
     if (Input.GetAxis("Mouse ScrollWheel") < 0f)
     {
-      selectedElement--;
-      if (selectedElement < 0)
+      selectedElement++;
+      if (selectedElement > 4)
       {
-        selectedElement = 4;
+        selectedElement = 0;
       }
     }
 

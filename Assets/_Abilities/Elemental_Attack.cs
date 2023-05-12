@@ -7,7 +7,7 @@ public class Elemental_Attack : Ability
 {
   private static int selectedElement;
   private float[] cooldowns = { 0f, 30f, 20f, 15f, 20f };
-  private float[] cooldownTimers = { 0f, 0f, 0f, 0f, 0f };
+  private static float[] cooldownTimers = { 0f, 0f, 0f, 0f, 0f };
 
   public Elemental_Attack(float amplitude)
   {
@@ -176,5 +176,24 @@ public class Elemental_Attack : Ability
   public static int GetSelectedElement()
   {
     return selectedElement;
+  }
+
+  public static float GetRemainingCooldowns(string element)
+  {
+    switch (element.ToLower())
+    {
+      case "lightning":
+        return cooldownTimers[0];
+      case "fire":
+        return cooldownTimers[1];
+      case "water":
+        return cooldownTimers[2];
+      case "air":
+        return cooldownTimers[3];
+      case "earth":
+        return cooldownTimers[4];
+      default:
+        return 0f;
+    }
   }
 }

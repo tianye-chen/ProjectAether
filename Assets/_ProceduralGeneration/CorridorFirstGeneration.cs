@@ -30,6 +30,7 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
     if (GameObject.FindGameObjectWithTag("Player") == null)
     {
       GameObject.Instantiate(player, new Vector3(0, 0, -2), Quaternion.identity);
+      Debug.Log("Player instantiated");
     }
   }
 

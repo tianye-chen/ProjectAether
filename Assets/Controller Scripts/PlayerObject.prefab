@@ -235,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3841321217783059923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: -3, y: 106, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 3841321218117416123}
   - component: {fileID: 3841321218117416120}
   - component: {fileID: 2022192652560765153}
+  - component: {fileID: 5204331334887848837}
   m_Layer: 0
   m_Name: HeroKnight_0
   m_TagString: Player
@@ -322,7 +323,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17ff727497887ae44ad23f98f4324701, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7308f7328caf70a46b72201500fd1589, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -413,9 +414,6 @@ MonoBehaviour:
   mana: 0
   isInvulnerable: 0
   SelfElement: 0
-  generalBoost: {fileID: 0}
-  EnergyBall: {fileID: 0}
-  SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 3841321218117416122}
   healthBar: {fileID: 6922350251767023354}
@@ -443,6 +441,18 @@ MonoBehaviour:
   xpBar: {fileID: 6922350252848926755}
   xpBar2: {fileID: 7693501736313952619}
   Player: {fileID: 0}
+--- !u!114 &5204331334887848837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841321218117416101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca229248e3a5244480d762f9111b702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4292071696406045292
 GameObject:
   m_ObjectHideFlags: 0

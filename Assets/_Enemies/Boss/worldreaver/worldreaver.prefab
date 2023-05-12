@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3235430915009048439}
   m_Layer: 0
   m_Name: worldreaver
-  m_TagString: WorldReaverBoss
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,16 +121,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d71b031a59f3c9419553dd4fcc59187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 500
-  Health: 500
+  attacking: 0
+  usingAbility: 0
+  beingHit: 0
+  dodging: 0
+  blocking: 0
+  direction: 2
+  initiatedBlocking: 0
+  maxHealth: 400
+  maxSpeed: 0
+  maxAtk: 15
+  maxDef: 15
+  maxAccuracy: 0
+  maxMana: 0
+  health: 0
+  speed: 0
+  atk: 0
+  def: 0
+  accuracy: 0
+  mana: 0
+  isInvulnerable: 0
+  SelfElement: 0
+  animator: {fileID: 0}
   rigid: {fileID: 0}
+  healthBar: {fileID: 0}
+  healthBar2: {fileID: 0}
+  manaBar: {fileID: 0}
+  defeated: 0
+  aggroRange: 0
+  disengageRange: 0
+  attackRange: 0
+  attackSpeed: 0
+  xp: 0
+  inDisengageRange: 0
+  Player: {fileID: 0}
+  initOrbs: 2
   DefaultBullet: {fileID: 6294995133622601483, guid: 912aa40d806093d408d98f16b7cbb8f4, type: 3}
   BossP2Ball: {fileID: 7894098706170807687, guid: ede9c9614720dd24b80e8cb29a713d44, type: 3}
   BossP2Wave_1: {fileID: 5981596633121878074, guid: 0e65514338dbdf14b808dda2cca86679, type: 3}
   BossP2Wave_2: {fileID: 2515655515476880199, guid: cdfd2a508373e58469c112f0b989184f, type: 3}
-  Player: {fileID: 0}
   BossTransitions: {fileID: 3235430915009048439}
-  initOrbs: 2
 --- !u!61 &3235430915009048438
 BoxCollider2D:
   m_ObjectHideFlags: 0

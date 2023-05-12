@@ -24,7 +24,9 @@ public class EnemyBase : CharacterBase
     base.Start();
 
     if (Player == null)
+    {
       Player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     // prevent all collisions between layer zero GameObjects
     Physics2D.IgnoreLayerCollision(0 , 0);

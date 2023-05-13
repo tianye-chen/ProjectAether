@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,8 +23,28 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            //inventoryManager.AddItem(itemName, sprite);
+            inventoryManager.AddItem(itemName, sprite, itemType);
             Destroy(gameObject);
         }
+    }
+
+    public void setItemName(string itemName)
+    {
+        this.itemName = itemName;
+    }
+
+    public void setSprite(Sprite sprite)
+    {
+        this.sprite = sprite;
+    }
+
+    public string getItemName()
+    {
+        return this.itemName;
+    }
+
+    public Sprite getSprite()
+    {
+        return this.sprite;
     }
 }

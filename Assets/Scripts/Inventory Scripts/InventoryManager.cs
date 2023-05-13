@@ -8,6 +8,12 @@ public class InventoryManager : MonoBehaviour
     private bool menuActivated;
 
     public ItemSlot[] itemSlot;
+    public ItemSO[] itemSOs;
+
+    private void Start()
+    {
+        DeselectAllSlots();
+    }
 
     // Update is called once per frame
     void Update()
@@ -35,6 +41,26 @@ public class InventoryManager : MonoBehaviour
                 itemSlot[i].AddItem(itemName, sprite, itemType);
                 return;
             }
+        }
+    }
+
+    public void UseItem(string itemName)
+    {
+        for(int i = 0; i < itemSOs.Length; i++)
+        {
+            if (itemSOs[i].itemName == itemName)
+            {
+                itemSOs[i].UseItem();
+            }
+        }
+    }
+
+    public void DeselectAllSlots()
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            itemSlot[i].selectedShader.SetActive(false);
+            itemSlot[i].thisItemSelected = false;
         }
     }
 }

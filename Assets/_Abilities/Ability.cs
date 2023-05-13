@@ -7,9 +7,10 @@ using TMPro;
 public abstract class Ability{
   [SerializeField]
   protected float cooldown;
-  protected static float cooldownTimer;
+  public static float cooldownTimer;
   [SerializeField]
   protected float amplitude;
+  [SerializeField] 
   
 
   public float Cooldown { get => cooldown; set => cooldown = value; }

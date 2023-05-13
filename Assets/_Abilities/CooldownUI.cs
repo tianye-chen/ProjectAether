@@ -11,12 +11,16 @@ public class CooldownUI : MonoBehaviour
     public TextMeshProUGUI waterCooldown;
     public TextMeshProUGUI windCooldown;
     public TextMeshProUGUI earthCooldown;
+    public TextMeshProUGUI healCooldown;
     public float electricValue;
     public float fireValue;
     public float waterValue;
     public float windValue;
     public float earthValue;
+    public float healValue;
     public int selectedElement;
+    public Healing_Ability Healing_Ability;
+    public Elemental_Attack Elemental_Attack;
     public GameObject s1;
     public GameObject s2;
     public GameObject s3;
@@ -38,17 +42,19 @@ public class CooldownUI : MonoBehaviour
         
 
     void UpdateValues() {
-        electricValue = Elemental_Attack.cooldownTimers[0];
+        electricValue = Elemental_Attack.GetRemainingCooldowns("lightning");
         electricCooldown.text = electricValue.ToString("#");
-        fireValue = Elemental_Attack.cooldownTimers[1];
+        fireValue = Elemental_Attack.GetRemainingCooldowns("fire");
         fireCooldown.text = fireValue.ToString("#");
-        waterValue = Elemental_Attack.cooldownTimers[2];
+        waterValue = Elemental_Attack.GetRemainingCooldowns("water");
         waterCooldown.text = waterValue.ToString("#");
-        windValue = Elemental_Attack.cooldownTimers[3];
+        windValue = Elemental_Attack.GetRemainingCooldowns("air");
         windCooldown.text = windValue.ToString("#");
-        earthValue = Elemental_Attack.cooldownTimers[4]; 
+        earthValue = Elemental_Attack.GetRemainingCooldowns("earth"); 
         earthCooldown.text = earthValue.ToString("#");
-        selectedElement = Elemental_Attack.selectedElement;
+        selectedElement = Elemental_Attack.GetSelectedElement();
+        healValue = Healing_Ability.GetRemainingCooldown();
+        healCooldown.text = healValue.ToString("#");
     }
 
     void UpdateSelector() {

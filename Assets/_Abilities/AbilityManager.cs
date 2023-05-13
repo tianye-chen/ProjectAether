@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AbilityManager : MonoBehaviour
 {
   [SerializeField]
   private IDictionary<string, Ability> abilities = new Dictionary<string, Ability>();
+  
+ 
 
   public void Start()
   {
@@ -16,6 +19,7 @@ public class AbilityManager : MonoBehaviour
   public void Update()
   {
     ManageAbilities();
+    
   }
 
   private void ManageAbilities()

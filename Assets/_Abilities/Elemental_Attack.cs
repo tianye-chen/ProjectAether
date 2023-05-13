@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 //[CreateAssetMenu(fileName = "ElementalAttack", menuName = "Ability/ElementalAttack")]
 public class Elemental_Attack : Ability
 {
-  private static int selectedElement;
-  private float[] cooldowns = { 0f, 30f, 20f, 15f, 20f };
-  private static float[] cooldownTimers = { 0f, 0f, 0f, 0f, 0f };
+  public static int selectedElement;
+  public static float[] cooldowns = { 1f, 30f, 20f, 15f, 20f };
+  public static float[] cooldownTimers = { 0f, 0f, 0f, 0f, 0f };
+ 
 
   public Elemental_Attack(float amplitude)
   {
@@ -65,6 +68,7 @@ public class Elemental_Attack : Ability
         {
           FireAttack(parent);
           StartCooldown(selectedElement);
+          //ireCooldown.text = cooldownTimers[1].ToString();
         }
         else
         {

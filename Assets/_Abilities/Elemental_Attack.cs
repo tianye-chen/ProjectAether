@@ -8,9 +8,8 @@ using TMPro;
 public class Elemental_Attack : Ability
 {
   private static int selectedElement;
-  private float[] cooldowns = { 1f, 30f, 20f, 15f, 20f };
+  private float[] cooldowns = { 0f, 30f, 20f, 15f, 20f };
   private static float[] cooldownTimers = { 0f, 0f, 0f, 0f, 0f };
- 
 
   public Elemental_Attack(float amplitude)
   {

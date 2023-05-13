@@ -7,7 +7,7 @@ using TMPro;
 public abstract class Ability{
   [SerializeField]
   protected float cooldown;
-  public static float cooldownTimer;
+  protected static float cooldownTimer;
   [SerializeField]
   protected float amplitude;
   [SerializeField] 

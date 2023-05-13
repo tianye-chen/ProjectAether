@@ -123,7 +123,7 @@ public class CharacterBase : MonoBehaviour
     if(gameObject.tag == "Enemy") {
       gameObject.GetComponent<EnemyBase>().giveXP();
     }
-    Destroy(gameObject);
+        SceneManager.LoadScene("Lost Scene");
   }
   public void SavePlayer() {
     if(gameObject.tag == "Player") 

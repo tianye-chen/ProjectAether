@@ -35,7 +35,7 @@ public class Healing_Ability : Ability
     float maxHealth = parent.GetComponent<CharacterBase>().maxHealth;
     float oldHealth = parent.GetComponent<CharacterBase>().health;
     float newHealth = oldHealth + 10 + (oldHealth * 0.1f * amplitude);
-    parent.GetComponent<CharacterBase>().health = (int)Mathf.Min(newHealth, maxHealth);
+    parent.GetComponent<CharacterBase>().HealSelf((int)Mathf.Min(newHealth, maxHealth));
   }
 
   public static float GetRemainingCooldown()

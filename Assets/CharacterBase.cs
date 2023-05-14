@@ -103,6 +103,9 @@ public class CharacterBase : MonoBehaviour
 
     if (!isInvulnerable)
     {
+      GameObject damageDisplay = (GameObject)Instantiate(Resources.Load("DamageNumber"), transform.position, Quaternion.identity);
+      damageDisplay.GetComponent<DamageNumber>().SetDamageNumber(damage);
+
       health -= damage;
       //controls health bar
       if (gameObject.tag == "Player")
@@ -115,6 +118,21 @@ public class CharacterBase : MonoBehaviour
     if (health <= 0)
     {
       Die();
+    }
+  }
+
+  public virtual void HealSelf(float heal)
+  {
+    GameObject healDisplay = (GameObject)Instantiate(Resources.Load("DamageNumber"), transform.position, Quaternion.identity);
+    healDisplay.GetComponent<DamageNumber>().SetHealingNumber(heal);
+    health += heal;
+    if (health > maxHealth)
+      health = maxHealth;
+
+    if (gameObject.tag == "Player")
+    {
+      healthBar.SetHealth(health);
+      healthBar2.SetHealth(health);
     }
   }
 

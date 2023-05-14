@@ -154,7 +154,7 @@ public class Elemental_Attack : Ability
   {
     GameObject waterAttack = (GameObject)Object.Instantiate(Resources.Load("Water"), parent.transform.position, Quaternion.identity);
     waterAttack.GetComponent<WaterAttack>().SetParent(parent);
-    waterAttack.GetComponent<WaterAttack>().SetHealStrength(10 * Amplitude);
+    waterAttack.GetComponent<WaterAttack>().SetHealStrength(30 * Amplitude);
   }
 
   public void AirAttack(GameObject parent)

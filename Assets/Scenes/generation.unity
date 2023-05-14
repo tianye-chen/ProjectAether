@@ -772,7 +772,7 @@ Transform:
   m_Children:
   - {fileID: 1895218956}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &60191112
 MonoBehaviour:
@@ -8002,7 +8002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2891252801867075222, guid: e4bdfef265c55a24cb4a320e35675627, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2891252801867075222, guid: e4bdfef265c55a24cb4a320e35675627, type: 3}
       propertyPath: m_AnchorMax.x
@@ -42725,7 +42725,7 @@ Transform:
   - {fileID: 486165334}
   - {fileID: 1362182172}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863391484
 GameObject:

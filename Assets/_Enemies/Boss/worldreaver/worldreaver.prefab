@@ -152,7 +152,7 @@ MonoBehaviour:
   disengageRange: 0
   attackRange: 0
   attackSpeed: 0
-  xp: 0
+  xp: 1500
   inDisengageRange: 0
   Player: {fileID: 0}
   initOrbs: 2
@@ -176,7 +176,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.15808113, y: 0.004649289}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.08, y: 0.21, z: 0.39999998, w: 0.44}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.96, y: 1.28}
     newSize: {x: 0.96, y: 1.28}

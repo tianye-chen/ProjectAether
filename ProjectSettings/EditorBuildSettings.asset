@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/generation.unity
     guid: 1ff5803e680a54a76b94b81dff6c68e1
+  - enabled: 1
+    path: Assets/Scenes/Lost Scene.unity
+    guid: 7bfca5786ca697f42942e313ebdd3a6b
+  - enabled: 1
+    path: Assets/Scenes/intro-scene.unity
+    guid: 9bfe593324290144cbf56dc3e8572646
   m_configObjects: {}

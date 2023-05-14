@@ -177,7 +177,7 @@ MonoBehaviour:
   disengageRange: 0
   attackRange: 0
   attackSpeed: 2
-  xp: 0
+  xp: 1500
   inDisengageRange: 0
   Player: {fileID: 0}
   KhioneCrystal: {fileID: 3431126240912287944, guid: bd7810f66d2914bc1bd2802b0c7d6aa7, type: 3}

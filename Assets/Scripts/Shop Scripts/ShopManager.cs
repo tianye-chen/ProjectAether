@@ -13,14 +13,14 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI cost;
     public RectTransform itemContainer;
     public TextMeshProUGUI goldTxt;
-    public Button buyBtn;
 
     public int gold = 0;
-    private bool isHidden = false;
+    private bool isHidden;
 
     // Start is called before the first frame update
     void Start()
     {
+        isHidden = false;
         UpdateGoldText();
     }
 

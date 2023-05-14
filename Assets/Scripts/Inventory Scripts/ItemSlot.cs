@@ -119,9 +119,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         itemToDrop.AddComponent<BoxCollider2D>();
 
         // Set location
-        itemToDrop.transform.position = GameObject.Find("Player").transform.position;
+        itemToDrop.transform.position = GameObject.FindWithTag("Player").transform.position + new Vector3(5f, 0f, 0f);
 
         // empty slot
         EmptySlot();
+        Debug.Log("Emptied Slot");
     }
 }

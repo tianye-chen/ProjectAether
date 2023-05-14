@@ -6,10 +6,18 @@ using TMPro;
 public class EquipmentStats : MonoBehaviour
 {
     [SerializeField] private TMP_Text healthTxt, manaTxt, spdTxt, defTxt, atkTxt;
-    [SerializeField] private CharacterBase player;
+    private CharacterBase player;
+    private GameObject playerObject;
 
     // Start is called before the first frame update
     void Start()
+    {
+        playerObject = GameObject.FindWithTag("Player");
+        player = playerObject.GetComponent<CharacterBase>();
+        UpdateEquipmentStats();
+    }
+
+    private void Update()
     {
         UpdateEquipmentStats();
     }

@@ -72,5 +72,6 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
 
         this.itemSprite = emptySprite;
         slotImage.sprite = this.emptySprite;
+        slotInUse = false;
     }
 }

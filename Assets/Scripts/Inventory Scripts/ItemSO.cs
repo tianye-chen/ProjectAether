@@ -1,39 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class ItemSO : ScriptableObject
 {
     public string itemName;
-    public StatToChange statToChange = new StatToChange();
-    public int amountToChangeStat;
+    public int attack, defense, speed, health, mana;
 
-    public Attribute attributeToChange = new Attribute();
-    public int amountToChangeAttr;
-
-    private HealthBar healthBar;
-    private ManaBar manaBar;
-    private CharacterBase character;
-
-    public void UseItem()
+    public void EquipItem()
     {
-        if(statToChange == StatToChange.health)
-        {
-            healthBar.SetMaxHealth(amountToChangeStat);
-        }
-        if (statToChange == StatToChange.mana)
-        {
-            manaBar.SetMaxMana(amountToChangeStat);
-        }
-        if(attributeToChange == Attribute.strength)
-        {
-            character.maxAtk = amountToChangeAttr;
-        }
-        if (attributeToChange == Attribute.defense)
-        {
-            character.maxDef = amountToChangeAttr;
-        }
+        // Update stats
+        CharacterBase player = GameObject.Find("StatManager").GetComponent<CharacterBase>();
+        player.maxAtk += attack;
+        player.maxDef += defense;
+        player.maxSpeed += speed;
+        player.maxHealth += health;
+        player.maxMana += mana;
+    }
+
+    public void UnEquipItem()
+    {
+        // Update stats
+        CharacterBase player = GameObject.Find("StatManager").GetComponent<CharacterBase>();
+        player.maxAtk -= attack;
+        player.maxDef -= defense;
+        player.maxSpeed -= speed;
+        player.maxHealth -= health;
+        player.maxMana -= mana;
     }
 
     public enum StatToChange

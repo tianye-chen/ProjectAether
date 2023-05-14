@@ -9,6 +9,8 @@ public class Item : MonoBehaviour
     [SerializeField] private string itemName;
     [SerializeField] private Sprite sprite;
 
+    private GameObject player;
+
     private InventoryManager inventoryManager;
 
     public ItemType itemType;
@@ -17,12 +19,15 @@ public class Item : MonoBehaviour
     void Start()
     {
         inventoryManager = GameObject.Find("EquipmentCanvas").GetComponent<InventoryManager>();
+        player = GameObject.FindWithTag("Player");
+        Debug.Log(player.name);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("Collision detected");
             inventoryManager.AddItem(itemName, sprite, itemType);
             Destroy(gameObject);
         }

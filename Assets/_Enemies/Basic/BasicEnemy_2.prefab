@@ -167,9 +167,6 @@ MonoBehaviour:
   mana: 0
   isInvulnerable: 0
   SelfElement: 0
-  generalBoost: {fileID: 0}
-  EnergyBall: {fileID: 0}
-  SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 0}
   healthBar: {fileID: 0}
@@ -180,7 +177,7 @@ MonoBehaviour:
   disengageRange: 10
   attackRange: 5
   attackSpeed: 0.5
-  xp: 20
+  xp: 100
   inDisengageRange: 0
   Player: {fileID: 0}
   ProjectileObject: {fileID: 7749449408827115259, guid: 02b6c934e01ae064eae2714ac78dde14, type: 3}

@@ -20,6 +20,7 @@ public class CasterCastingState : CasterStateController
       Inst.GetComponent<areaMarker>().InstObject = caster.castingObject;
       Inst.GetComponent<areaMarker>().radius = caster.castRadius;
       Inst.GetComponent<areaMarker>().duration = caster.castTime;
+      Inst.GetComponent<areaMarker>().damage = caster.atk;
     }
   }
 

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BeamController : MonoBehaviour
 {
-  // Start is called before the first frame update
+  public float damage = 1;
   private float timer = 0;
+
   void Start()
   {
     gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -32,7 +33,7 @@ public class BeamController : MonoBehaviour
   {
     if (collision.gameObject.tag == "Player")
     {
-      collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
+      collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
     }
   }
 }

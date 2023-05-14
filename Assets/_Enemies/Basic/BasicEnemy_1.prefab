@@ -152,7 +152,6 @@ MonoBehaviour:
   dodging: 0
   blocking: 0
   direction: 2
-  level: 0
   initiatedBlocking: 0
   maxHealth: 10
   maxSpeed: 2
@@ -166,14 +165,8 @@ MonoBehaviour:
   def: 1
   accuracy: 0
   mana: 0
-  minimumXP: 0
-  maximumXP: 0
-  currentXP: 0
   isInvulnerable: 0
   SelfElement: 0
-  generalBoost: {fileID: 0}
-  EnergyBall: {fileID: 0}
-  SuperBlock: {fileID: 0}
   animator: {fileID: 0}
   rigid: {fileID: 1954229729934718380}
   healthBar: {fileID: 0}
@@ -184,6 +177,6 @@ MonoBehaviour:
   disengageRange: 10
   attackRange: 3
   attackSpeed: 1.5
-  xp: 1000
+  xp: 75
   inDisengageRange: 0
   Player: {fileID: 0}

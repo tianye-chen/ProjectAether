@@ -38,6 +38,7 @@ public class CaptainEnemy : EnemyBase
       {
         Vector3 circleVector = new Vector3(Mathf.Cos(i * Mathf.Deg2Rad) * amplitude, Mathf.Sin(i * Mathf.Deg2Rad) * amplitude);
         instProj = Instantiate(projectile, circleVector + transform.position, Quaternion.identity);
+        instProj.GetComponent<BasicProjectile>().damage = atk;
         instProj.GetComponent<BasicProjectile>().SetColor(new Color(0, 155, 155));
 
         // adds the slow effect to the projectile

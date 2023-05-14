@@ -78,7 +78,7 @@ public class AssassinEnemyController : EnemyBase
     {
       if (currentState == attackState)
       {
-        collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
+        collision.gameObject.GetComponent<PlayerController>().TakeDamage(atk);
       }
     }
   }

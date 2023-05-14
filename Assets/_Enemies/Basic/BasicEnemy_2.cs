@@ -64,6 +64,7 @@ public class BasicEnemy_2 : EnemyBase
       {
         // Instantiate projectile
         GameObject projectile = Instantiate(ProjectileObject, transform.position, Quaternion.identity);
+        projectile.GetComponent<BasicProjectile>().damage = atk;
 
         LookAt2D(projectile.transform, Player.transform);
 

@@ -7,6 +7,7 @@ public class areaMarker : MonoBehaviour
   // public variables
   public float duration;
   public float radius;
+  public float damage;
   public GameObject InstObject;
 
   // private variables
@@ -23,7 +24,10 @@ public class areaMarker : MonoBehaviour
     if (timer > duration)
     {
       if (InstObject != null)
-        Instantiate(InstObject, transform.position, Quaternion.identity);
+      {
+        GameObject beam = Instantiate(InstObject, transform.position, Quaternion.identity);
+        beam.GetComponent<BeamController>().damage = damage;
+      }
       Destroy(gameObject);
     }
   }

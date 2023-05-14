@@ -29,7 +29,7 @@ public class BossP2Wave : MonoBehaviour
     if (collision.gameObject.tag == "Player")
     {
       Destroy(gameObject);
-      collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
+      collision.gameObject.GetComponent<PlayerController>().TakeDamage(15);
     }
     else if (collision.gameObject.tag == "Terrain")
       Destroy(gameObject);

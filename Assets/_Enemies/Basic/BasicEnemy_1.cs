@@ -72,7 +72,7 @@ public class BasicEnemy_1 : EnemyBase
   {
     if (collision.gameObject.tag == "Player")
     {
-      collision.gameObject.GetComponent<PlayerController>().TakeDamage(1);
+      collision.gameObject.GetComponent<PlayerController>().TakeDamage(atk);
     }
   }
 }

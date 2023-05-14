@@ -11,7 +11,7 @@ public class StartMenuScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("generation"); //Change later
+        SceneManager.LoadScene("intro-scene");
         UnityEngine.Debug.Log("Start");
 
 

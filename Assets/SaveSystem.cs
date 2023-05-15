@@ -26,6 +26,21 @@ public static class SaveSystem {
         stream.Close();
     }
 
+    public static void ResetAllPlayerStats()
+    {
+      BinaryFormatter formatter = new BinaryFormatter();
+      string playerDataPath = Application.persistentDataPath + "/player.data";
+      string levelDataPath = Application.persistentDataPath + "/playerLevel.data";
+
+      FileStream stream = new FileStream(playerDataPath, FileMode.Create);
+      formatter.Serialize(stream, PlayerData.GetNewPlayer());
+
+      stream = new FileStream(levelDataPath, FileMode.Create);
+      formatter.Serialize(stream, PlayerLevelData.GetNewPlayerLevelData());
+
+      stream.Close();
+    }
+
     public static PlayerData LoadPlayer() {
         string path = Application.persistentDataPath + "/player.data";
         if(File.Exists(path)) {

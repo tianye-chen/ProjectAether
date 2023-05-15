@@ -58,7 +58,6 @@ public class FloorLevelManager : MonoBehaviour
     }
   }
 
-
   private void IncreaseFloorLevel()
   {
     floorLevel++;
@@ -74,6 +73,11 @@ public class FloorLevelManager : MonoBehaviour
     GetComponent<SpriteRenderer>().sprite = closedSprite;
     hatchIndicator.enabled = false;
     isOpen = false;
+  }
+
+  public static float getFloorLevel()
+  {
+    return floorLevel;
   }
 
   public void OnTriggerEnter2D(Collider2D collision)

@@ -29,11 +29,7 @@ public class LevelSystem : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
-        if(Input.GetKeyDown("space")) {
-            resetLevel();
-        }
-        
+    {   
         if(currentXP >= maximumXP) {
             levelUP();
         }

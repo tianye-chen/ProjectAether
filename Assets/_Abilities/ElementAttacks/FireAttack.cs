@@ -51,7 +51,6 @@ public class FireAttack : MonoBehaviour
     if (collision.gameObject.tag == "Enemy")
     {
       collision.gameObject.GetComponent<EnemyBase>().TakeDamage(damage);
-      Debug.Log(collision.GetComponent<EnemyBase>().health);
     }
   }
 

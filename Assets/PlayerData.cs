@@ -23,11 +23,26 @@ public class PlayerData {
         accuracy = c.accuracy;
         maxMana = c.maxMana;
         mana = c.mana;
-       
-
-
     }
 
-    
+    private PlayerData()
+    {
+      maxHealth = 1000f;
+      health = 1000f;
+      maxSpeed = 5f;
+      speed = 5f;
+      maxAtk = 10f;
+      atk = 10f;
+      maxDef = 10f;
+      def = 10f;
+      maxAccuracy  = 10f;
+      accuracy = 10f;
+      maxMana = 100f;
+      mana = 100f;
+    }
 
+    public static PlayerData GetNewPlayer()
+    {
+      return new PlayerData();
+    } 
 }

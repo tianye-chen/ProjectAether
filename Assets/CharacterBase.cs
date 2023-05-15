@@ -149,13 +149,17 @@ public class CharacterBase : MonoBehaviour
       gameObject.GetComponent<EnemyBase>().giveXP();
       Destroy(gameObject);
     }
-    SceneManager.LoadScene("Lost Scene");
+    if (gameObject.tag == "Player")
+    {
+      SceneManager.LoadScene("Lost Scene");
+    }
   }
   public void SavePlayer()
   {
     if (gameObject.tag == "Player")
       SaveSystem.SavePlayer(this);
   }
+
   public void LoadPlayer()
   {
     if (gameObject.tag == "Player")

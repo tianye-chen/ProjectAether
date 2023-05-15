@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
   private float SpiralSpeed = 0;
   private int SpiralDir = 1;
   private bool BlastSpawn = true;
-  private float damage = 8;
+  private float damage = 10;
 
   void Start()
   {
@@ -89,10 +89,10 @@ public class BulletController : MonoBehaviour
         switch (instObject)
         {
           case ("BossP2BlastMove"):
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(10);
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(40);
             break;
           case ("BossP2Spiral"):
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(15);
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(25);
             break;
           default:
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);

@@ -146,36 +146,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a751348d7c84a33b197b8dd5a372c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacking: 0
-  usingAbility: 0
-  beingHit: 0
-  dodging: 0
-  blocking: 0
   direction: 2
-  initiatedBlocking: 0
   maxHealth: 1
   maxSpeed: 3
-  maxAtk: 15
+  maxAtk: 30
   maxDef: 0
   maxAccuracy: 0
+  maxMana: 0
   health: 0
   speed: 0
   atk: 0
   def: 0
   accuracy: 0
+  mana: 0
   isInvulnerable: 1
-  healthBar: {fileID: 0}
-  SelfElement: 0
-  generalBoost: {fileID: 0}
-  EnergyBall: {fileID: 0}
-  SuperBlock: {fileID: 0}
-  animator: {fileID: 0}
   rigid: {fileID: 0}
+  healthBar: {fileID: 0}
+  healthBar2: {fileID: 0}
+  manaBar: {fileID: 0}
   defeated: 0
   aggroRange: 0
   disengageRange: 0
   attackRange: 0
   attackSpeed: 2
+  xp: 0
   inDisengageRange: 0
   Player: {fileID: 0}
   khioneController: {fileID: 3555651093457781927, guid: 1251f2bb14eb4434c847e044224b2b89, type: 3}

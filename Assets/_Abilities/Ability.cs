@@ -10,7 +10,8 @@ public abstract class Ability{
   protected static float cooldownTimer;
   [SerializeField]
   protected float amplitude;
-  [SerializeField] 
+  [SerializeField]
+  protected float manaCost; 
   
 
   public float Cooldown { get => cooldown; set => cooldown = value; }

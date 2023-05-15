@@ -11,10 +11,11 @@ public class Elemental_Attack : Ability
   private float[] cooldowns = { 0f, 30f, 20f, 15f, 20f };
   private static float[] cooldownTimers = { 0f, 0f, 0f, 0f, 0f };
 
-  public Elemental_Attack(float amplitude)
+  public Elemental_Attack(float amplitude, float manaCost)
   {
     selectedElement = 0;
     this.amplitude = amplitude;
+    this.manaCost = manaCost;
   }
    
   public override void AbilityRuntime(GameObject parent)
@@ -52,7 +53,7 @@ public class Elemental_Attack : Ability
     switch (selectedElement)
     {
       case 0:
-        if (IsReady(selectedElement))
+        if (IsReady(selectedElement) && parent.GetComponent<CharacterBase>().checkMana(manaCost/10))
         {
           LightningAttack(parent);
           StartCooldown(selectedElement);
@@ -63,7 +64,7 @@ public class Elemental_Attack : Ability
         }
         break;
       case 1:
-        if (IsReady(selectedElement))
+        if (IsReady(selectedElement) && parent.GetComponent<CharacterBase>().checkMana(manaCost * 4))
         {
           FireAttack(parent);
           StartCooldown(selectedElement);
@@ -86,7 +87,7 @@ public class Elemental_Attack : Ability
         }
         break;
       case 3:
-        if (IsReady(selectedElement))
+        if (IsReady(selectedElement) && parent.GetComponent<CharacterBase>().checkMana(manaCost))
         {
           AirAttack(parent);
           StartCooldown(selectedElement);
@@ -97,7 +98,7 @@ public class Elemental_Attack : Ability
         }
         break;
       case 4:
-        if (IsReady(selectedElement))
+        if (IsReady(selectedElement) && parent.GetComponent<CharacterBase>().checkMana(manaCost * 3))
         {
           EarthAttack(parent);
           StartCooldown(selectedElement);
@@ -139,22 +140,23 @@ public class Elemental_Attack : Ability
     Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     Vector3 direction = mousePos - parent.transform.position;
     float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90;
-    
     Object.Instantiate(Resources.Load("Lightning"), parent.transform.position, Quaternion.Euler(0, 0, angle));
-    Debug.Log("Lightning Attack");
+    parent.GetComponent<CharacterBase>().depleteMana(manaCost / 10);
   }
 
   public void FireAttack(GameObject parent)
   {
     GameObject fireAttack =  (GameObject)Object.Instantiate(Resources.Load("Fire"), parent.transform.position, Quaternion.identity);
     fireAttack.GetComponent<FireAttack>().SetDamage(0.7f * Amplitude);
+    parent.GetComponent<CharacterBase>().depleteMana(manaCost * 4);
   }
 
   public void WaterAttack(GameObject parent)
   {
     GameObject waterAttack = (GameObject)Object.Instantiate(Resources.Load("Water"), parent.transform.position, Quaternion.identity);
     waterAttack.GetComponent<WaterAttack>().SetParent(parent);
-    waterAttack.GetComponent<WaterAttack>().SetHealStrength(30 * Amplitude);
+    waterAttack.GetComponent<WaterAttack>().SetHealStrength(20 * Amplitude);
+    parent.GetComponent<CharacterBase>().depleteMana(0);
   }
 
   public void AirAttack(GameObject parent)
@@ -162,6 +164,7 @@ public class Elemental_Attack : Ability
     GameObject airAttack = (GameObject)Object.Instantiate(Resources.Load("Wind"), parent.transform.position, Quaternion.identity);
     airAttack.GetComponent<AirAttack>().SetParent(parent);
     airAttack.GetComponent<AirAttack>().SetDamage(5 * Amplitude);
+    parent.GetComponent<CharacterBase>().depleteMana(manaCost);
   }
 
   public void EarthAttack(GameObject parent)
@@ -174,6 +177,7 @@ public class Elemental_Attack : Ability
     }
 
     Object.Instantiate(Resources.Load("Earth"), mousePos, Quaternion.Euler(0, 0, 0));
+    parent.GetComponent<CharacterBase>().depleteMana(manaCost * 3);
   }
 
   public static int GetSelectedElement()

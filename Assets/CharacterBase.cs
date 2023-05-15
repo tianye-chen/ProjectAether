@@ -6,24 +6,15 @@ using UnityEngine.SceneManagement;
 public class CharacterBase : MonoBehaviour
 {
   // public variables
-  public bool attacking = false, usingAbility = false, beingHit = false, dodging = false, blocking = false;
-
-  //public List<Ability> abilities = new List<Ability>();
 
   // 1 = west 2 = east 3 = north 4 = south
-  public int direction = 2; /*level*/
-  public bool initiatedBlocking = false;
+  public int direction = 2;
   public float maxHealth, maxSpeed, maxAtk, maxDef, maxAccuracy, maxMana;
   public float health, speed, atk, def, accuracy, mana;
   //public float minimumXP, maximumXP,currentXP;
   public bool isInvulnerable;
 
-  public enum selfElement { Water, Fire, Wind, Earth, Electricity };
-  public selfElement SelfElement;
-
   // assets
-  public Ability generalBoost, EnergyBall, SuperBlock;
-  public Animator animator;
   public Rigidbody2D rigid;
   public HealthBar healthBar;
   public HealthBar healthBar2;
@@ -31,8 +22,6 @@ public class CharacterBase : MonoBehaviour
   public ManaBar manaBar;
 
   public bool defeated = false;
-
-  // public RegularAbilities myRegularAbilities;
 
   public StateMachine stateMachine;
 
@@ -59,15 +48,6 @@ public class CharacterBase : MonoBehaviour
     SavePlayer();
   }
 
-  public bool CantMove()
-  {
-    return attacking || usingAbility || beingHit || dodging || blocking;
-  }
-  public void BecomeIdle()
-  {
-    gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-    SetAnimation("idle");
-  }
   public void SetStats()
   {
     mana = maxMana;
@@ -91,12 +71,6 @@ public class CharacterBase : MonoBehaviour
       currentXP = current;
       level = lvl;
   } */
-  public void SetAnimation(string animation)
-  {
-    string[] animationStates = new string[7] { "charge", "walk", "release", "punch", "block", "idle", "dodging" };
-    foreach (string i in animationStates) animator.SetInteger(i, 0);
-    animator.SetInteger(animation, direction);
-  }
 
   public virtual void TakeDamage(float damage)
   {
@@ -134,6 +108,38 @@ public class CharacterBase : MonoBehaviour
       healthBar.SetHealth(health);
       healthBar2.SetHealth(health);
     }
+  }
+
+  public virtual void depleteMana(float manaCost)
+  {
+    mana -= manaCost;
+    if (mana < 0)
+      mana = 0;
+
+    if (gameObject.tag == "Player")
+    {
+      manaBar.SetMana(mana);
+    }
+  }
+
+  public virtual void regenerateMana(float manaRegen)
+  {
+    mana += manaRegen;
+    if (mana > maxMana)
+      mana = maxMana;
+
+    if (gameObject.tag == "Player")
+    {
+      manaBar.SetMana(mana);
+    }
+  }
+
+  public bool checkMana(float manaCost)
+  {
+    if (mana >= manaCost)
+      return true;
+    else
+      return false;
   }
 
   public virtual void Die()

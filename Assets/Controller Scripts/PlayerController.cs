@@ -4,86 +4,112 @@ using UnityEngine;
 
 public class PlayerController : CharacterBase
 {
-    private float verticalMovement;
-    private float horizontalMovement;
+  [SerializeField]
+  private Animator animator;
+  private float verticalMovement;
+  private float horizontalMovement;
+  private float basicAttackCooldown = 1f;
+  private float basicAttackTimer = 0f;
 
-    // testing purposes only
-    public GameObject testSpawnMob;
+  // testing purposes only
+  public GameObject testSpawnMob;
 
-    public override void Update ()
+  public override void Update()
+  {
+    base.Update();
+    PlayerAction();
+    PlayerMovement();
+  }
+
+  public void PlayerMovement()
+  {
+    verticalMovement = Input.GetAxis("Vertical");
+    horizontalMovement = Input.GetAxis("Horizontal");
+
+    // Flip sprite if moving left
+    if (horizontalMovement == 0 && verticalMovement == 0)
     {
-        base.Update();
-        PlayerAction();
-        PlayerMovement();
+      animator.SetBool("isRunning", false);
+    }
+    else if (horizontalMovement < 0)
+    {
+      GetComponent<SpriteRenderer>().flipX = true;
+      animator.SetBool("isRunning", true);
+    }
+    else if (horizontalMovement > 0)
+    {
+      GetComponent<SpriteRenderer>().flipX = false;
+      animator.SetBool("isRunning", true);
     }
 
-    public void PlayerMovement()
+    if (verticalMovement != 0)
     {
-        verticalMovement = Input.GetAxis("Vertical");
-        horizontalMovement = Input.GetAxis("Horizontal");
-
-        // Flip sprite if moving left
-        if (horizontalMovement == 0)
-        {
-          // Do nothing
-        }
-        else if (horizontalMovement < 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
-
-        rigid.velocity = new Vector3(horizontalMovement * speed, verticalMovement * speed, -1);
+      animator.SetBool("isRunning", true);
     }
 
-    public void PlayerAction()
+    rigid.velocity = new Vector3(horizontalMovement * speed, verticalMovement * speed, -1);
+  }
+
+  public void PlayerAction()
+  {
+    if (Input.GetMouseButtonDown(0) && basicAttackTimer <= 0f)
     {
-      if (Input.GetMouseButtonDown(0))
+      basicAttackTimer = basicAttackCooldown;
+      animator.SetBool("isAttacking", true);
+
+      // Get angle of mouse click relative to player
+      Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+      Vector3 direction = mousePos - transform.position;
+      float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+
+      // Damage enemies in range of player in direction of mouse click
+      Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 5);
+      foreach (Collider2D hitCollider in hitColliders)
       {
-        // Get angle of mouse click relative to player
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePos - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-   
-        // Damage enemies in range of player in direction of mouse click
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 5);
-        foreach (Collider2D hitCollider in hitColliders)
+        if (hitCollider.gameObject.tag == "Enemy")
         {
-          if (hitCollider.gameObject.tag == "Enemy")
-          {
-            // Get angle of enemy relative to player
-            Vector3 enemyPos = hitCollider.gameObject.transform.position;
-            Vector3 enemyDirection = enemyPos - transform.position;
-            float enemyAngle = Mathf.Atan2(enemyDirection.y, enemyDirection.x) * Mathf.Rad2Deg;
+          // Get angle of enemy relative to player
+          Vector3 enemyPos = hitCollider.gameObject.transform.position;
+          Vector3 enemyDirection = enemyPos - transform.position;
+          float enemyAngle = Mathf.Atan2(enemyDirection.y, enemyDirection.x) * Mathf.Rad2Deg;
 
-            // If enemy is within 45 degrees of mouse click, damage enemy
-            if (Mathf.Abs(angle - enemyAngle) < 45)
-            {
-              hitCollider.gameObject.GetComponent<EnemyBase>().TakeDamage(1);
-              Debug.Log(direction + " " + mousePos);
-            }
+          // If enemy is within 45 degrees of mouse click, damage enemy
+          if (Mathf.Abs(angle - enemyAngle) < 45)
+          {
+            hitCollider.gameObject.GetComponent<EnemyBase>().TakeDamage(5);
+            Debug.Log(direction + " " + mousePos);
           }
         }
       }
 
-      // testing purposes only
-      if (Input.GetKeyDown(KeyCode.Alpha1))
-      {
-        Instantiate(testSpawnMob, new Vector3(0, 0, 0), Quaternion.identity);
-      }
+      StartCoroutine(resetAttackAnimation());
     }
-    
-    public void OnCollisionEnter2D(Collision2D collision)
+    else
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            collision.gameObject.GetComponent<EnemyBase>().TakeDamage(1);
-
-            Debug.Log("colliding");
-        }
+      basicAttackTimer -= Time.deltaTime;
     }
+
+    if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKeyDown(KeyCode.LeftShift))
+    {
+      // Spawn test mob
+      Instantiate(testSpawnMob, transform.position, Quaternion.identity);
+    }
+  }
+
+  private IEnumerator resetAttackAnimation()
+  {
+    yield return new WaitForSeconds(0.4f);
+    animator.SetBool("isAttacking", false);
+  }
+
+  public void OnCollisionEnter2D(Collision2D collision)
+  {
+    if (collision.gameObject.tag == "Enemy")
+    {
+      collision.gameObject.GetComponent<EnemyBase>().TakeDamage(1);
+
+      Debug.Log("colliding");
+    }
+  }
 }

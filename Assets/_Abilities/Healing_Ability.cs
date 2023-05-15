@@ -25,7 +25,7 @@ public class Healing_Ability : Ability
 
   public override void Activate(GameObject parent)
   {
-    if (!IsReady() || parent.GetComponent<CharacterBase>().checkMana(manaCost))
+    if (!IsReady() || !parent.GetComponent<CharacterBase>().checkMana(manaCost))
     {
       Debug.Log("Ability not ready, cooldown: " + cooldownTimer + " seconds");
       return;
@@ -35,7 +35,7 @@ public class Healing_Ability : Ability
     StartCooldown();
     parent.GetComponent<CharacterBase>().depleteMana((int)manaCost);
     float oldHealth = parent.GetComponent<CharacterBase>().health;
-    float healAmount = oldHealth * amplitude * 0.05f;
+    float healAmount = oldHealth * amplitude * 0.1f;
     parent.GetComponent<CharacterBase>().HealSelf((int)healAmount);
   }
 

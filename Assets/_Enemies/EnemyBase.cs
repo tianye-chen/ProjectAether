@@ -28,9 +28,8 @@ public class EnemyBase : CharacterBase
       Player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // prevent all collisions between layer zero GameObjects
+    Physics2D.IgnoreLayerCollision(0 , 8);
     Physics2D.IgnoreLayerCollision(0 , 0);
-
     health = maxHealth;
 
   }

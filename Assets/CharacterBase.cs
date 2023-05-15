@@ -36,12 +36,12 @@ public class CharacterBase : MonoBehaviour
     transform.position = new Vector3(transform.position.x, transform.position.y, -2);
     LoadPlayer();
   }
- 
+
   public virtual void FixedUpdate()
   {
     stateMachine.UpdateStates();
   }
-  
+
   public virtual void Update()
   {
     transform.position = new Vector3(transform.position.x, transform.position.y, -2);
@@ -144,44 +144,48 @@ public class CharacterBase : MonoBehaviour
 
   public virtual void Die()
   {
-    if(gameObject.tag == "Enemy") {
+    if (gameObject.tag == "Enemy")
+    {
       gameObject.GetComponent<EnemyBase>().giveXP();
+      Destroy(gameObject);
     }
-        SceneManager.LoadScene("Lost Scene");
+    SceneManager.LoadScene("Lost Scene");
   }
-  public void SavePlayer() {
-    if(gameObject.tag == "Player") 
-        SaveSystem.SavePlayer(this);
-    }
-  public void LoadPlayer() {
-      if (gameObject.tag == "Player")
-      {
-        PlayerData data = SaveSystem.LoadPlayer();
-        maxHealth = data.maxHealth;
-        maxSpeed = data.maxSpeed;
-        maxAtk = data.maxAtk;
-        maxDef = data.maxDef;
-        maxAccuracy = data.maxAccuracy;
-        maxMana = data.maxMana;
-        health = data.health;
-        speed = data.speed;
-        atk = data.atk;
-        def = data.def;
-        accuracy = data.accuracy;
-        mana = data.mana;
-      
-       
-        healthBar.SetMaxHealth(maxHealth);
-        healthBar2.SetMaxHealth(maxHealth);
-        healthBar.SetHealth(health);
-        healthBar2.SetHealth(health);
-        manaBar.SetMaxMana(maxMana);
-        manaBar.SetMana(mana);
-      }
+  public void SavePlayer()
+  {
+    if (gameObject.tag == "Player")
+      SaveSystem.SavePlayer(this);
+  }
+  public void LoadPlayer()
+  {
+    if (gameObject.tag == "Player")
+    {
+      PlayerData data = SaveSystem.LoadPlayer();
+      maxHealth = data.maxHealth;
+      maxSpeed = data.maxSpeed;
+      maxAtk = data.maxAtk;
+      maxDef = data.maxDef;
+      maxAccuracy = data.maxAccuracy;
+      maxMana = data.maxMana;
+      health = data.health;
+      speed = data.speed;
+      atk = data.atk;
+      def = data.def;
+      accuracy = data.accuracy;
+      mana = data.mana;
 
-      /*minimumXP = data.minimumXP;
-      maximumXP = data.maximumXP;
-      currentXP = data.currentXP;
-      level = data.level;*/
+
+      healthBar.SetMaxHealth(maxHealth);
+      healthBar2.SetMaxHealth(maxHealth);
+      healthBar.SetHealth(health);
+      healthBar2.SetHealth(health);
+      manaBar.SetMaxMana(maxMana);
+      manaBar.SetMana(mana);
     }
+
+    /*minimumXP = data.minimumXP;
+    maximumXP = data.maximumXP;
+    currentXP = data.currentXP;
+    level = data.level;*/
+  }
 }

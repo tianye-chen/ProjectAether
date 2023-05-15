@@ -102,14 +102,4 @@ public class PlayerController : CharacterBase
     yield return new WaitForSeconds(0.4f);
     animator.SetBool("isAttacking", false);
   }
-
-  public void OnCollisionEnter2D(Collision2D collision)
-  {
-    if (collision.gameObject.tag == "Enemy")
-    {
-      collision.gameObject.GetComponent<EnemyBase>().TakeDamage(1);
-
-      Debug.Log("colliding");
-    }
-  }
 }

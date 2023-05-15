@@ -49,7 +49,6 @@ public class BasicEnemy_1 : EnemyBase
 
   private IEnumerator Attack()
   {
-    Debug.Log("Attacking");
     // lunge attack
     while (Vector2.Distance(transform.position, Player.transform.position) > 0.1)
     {
@@ -64,15 +63,6 @@ public class BasicEnemy_1 : EnemyBase
       transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, -speed * Time.deltaTime * 3);
       this.transform.position = new Vector3(transform.position.x, transform.position.y, -2);
       yield return null;
-    }
-  }
-
-  // when the enemy hits the player, deal damage
-  public void OnCollisionEnter2D(Collision2D collision)
-  {
-    if (collision.gameObject.tag == "Player")
-    {
-      collision.gameObject.GetComponent<PlayerController>().TakeDamage(atk);
     }
   }
 }

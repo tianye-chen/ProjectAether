@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class FloorLevelManager : MonoBehaviour
 {
   public static int floorLevel = 1;
   [SerializeField]
   private Sprite closedSprite, openSprite;
+  [SerializeField]
+  private TextMeshProUGUI hatchIndicator;
   private bool isOpen = false;
   private AbstractGenerator generator;
   private int enemyCount = 0;
@@ -18,7 +21,7 @@ public class FloorLevelManager : MonoBehaviour
     generator = GetComponentInChildren<AbstractGenerator>();
     GetComponent<SpriteRenderer>().sprite = closedSprite;
     enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
+    hatchIndicator.enabled = false;
   }
 
   private void Update()
@@ -31,6 +34,7 @@ public class FloorLevelManager : MonoBehaviour
       if (enemyCount == 0)
       {
         GetComponent<SpriteRenderer>().sprite = openSprite;
+        hatchIndicator.enabled = true;
         isOpen = true;
       }
     }
@@ -68,6 +72,7 @@ public class FloorLevelManager : MonoBehaviour
   {
     enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
     GetComponent<SpriteRenderer>().sprite = closedSprite;
+    hatchIndicator.enabled = false;
     isOpen = false;
   }
 

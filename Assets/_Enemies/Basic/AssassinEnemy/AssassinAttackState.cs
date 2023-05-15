@@ -13,11 +13,12 @@ public class AssassinAttackState : AssassinStateController
   {
     Debug.Log("Assassin entering attack state");
     assassinPosition = assassin.transform.position;
+    assassin.triggerCollider.GetComponent<Collider2D>().enabled = true;
   }
 
   public override void Update(AssassinEnemyController assassin)
   {
-    assassin.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+    assassin.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     assassin.speed = assassin.maxSpeed;
 
     if (!isAttacking)
@@ -50,6 +51,7 @@ public class AssassinAttackState : AssassinStateController
     }
 
     isAttacking = false;
+    assassin.triggerCollider.GetComponent<Collider2D>().enabled = false;
 
     // reset the rotations
     assassin.transform.eulerAngles = new Vector3(0, 0, 0);

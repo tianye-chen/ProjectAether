@@ -35,11 +35,14 @@ public class AssassinEnemyController : EnemyBase
   public AssassinRegularState regularState = new AssassinRegularState();
   public AssassinAttackState attackState = new AssassinAttackState();
 
+  public GameObject triggerCollider;
 
   // Start is called before the first frame update
   public override void Start()
   {
     base.Start();
+    triggerCollider = transform.GetChild(0).gameObject;
+    triggerCollider.GetComponent<Collider2D>().enabled = false;
     currentState = regularState;
     currentState.EnterState(this);
   }

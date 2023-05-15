@@ -13,7 +13,7 @@ public class AssassinStealthState : AssassinStateController
 
   public override void Update(AssassinEnemyController assassin)
   {
-    assassin.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0f);
+    assassin.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0f);
     assassin.speed = Random.Range(15f, 25f);
 
     assassin.move();

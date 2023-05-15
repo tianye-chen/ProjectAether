@@ -146,16 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a348c87c53890403a800e46fa20c8bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacking: 0
-  usingAbility: 0
-  beingHit: 0
-  dodging: 0
-  blocking: 0
   direction: 2
-  initiatedBlocking: 0
   maxHealth: 500
   maxSpeed: 0
-  maxAtk: 10
+  maxAtk: 20
   maxDef: 25
   maxAccuracy: 0
   maxMana: 0
@@ -166,8 +160,6 @@ MonoBehaviour:
   accuracy: 0
   mana: 0
   isInvulnerable: 0
-  SelfElement: 0
-  animator: {fileID: 0}
   rigid: {fileID: 0}
   healthBar: {fileID: 0}
   healthBar2: {fileID: 0}

@@ -32,10 +32,9 @@ public class Healing_Ability : Ability
 
     Debug.Log("Healing ability activated");
     StartCooldown();
-    float maxHealth = parent.GetComponent<CharacterBase>().maxHealth;
     float oldHealth = parent.GetComponent<CharacterBase>().health;
-    float newHealth = oldHealth + 10 + (oldHealth * 0.1f * amplitude);
-    parent.GetComponent<CharacterBase>().HealSelf((int)Mathf.Min(newHealth, maxHealth));
+    float healAmount = oldHealth * amplitude * 0.05f;
+    parent.GetComponent<CharacterBase>().HealSelf((int)healAmount);
   }
 
   public static float GetRemainingCooldown()

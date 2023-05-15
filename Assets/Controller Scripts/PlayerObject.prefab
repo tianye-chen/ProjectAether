@@ -756,7 +756,7 @@ Transform:
   m_GameObject: {fileID: 3841321217783059923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: 106, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3841321218117416100}
@@ -780,6 +780,7 @@ GameObject:
   - component: {fileID: 3841321218117416120}
   - component: {fileID: 2022192652560765153}
   - component: {fileID: 5204331334887848837}
+  - component: {fileID: 2410980837718418548}
   m_Layer: 0
   m_Name: HeroKnight_0
   m_TagString: Player
@@ -795,8 +796,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3841321218117416101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 1.31, y: -0.09, z: 0}
+  m_LocalScale: {x: 2.26378, y: 2.26378, z: 2.26378}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3841321217783059922}
@@ -843,7 +844,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -913,13 +914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0dc09a85a047e49a4cd720c64f66c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacking: 0
-  usingAbility: 0
-  beingHit: 0
-  dodging: 0
-  blocking: 0
   direction: 2
-  initiatedBlocking: 0
   maxHealth: 10
   maxSpeed: 10
   maxAtk: 10
@@ -933,13 +928,12 @@ MonoBehaviour:
   accuracy: 10
   mana: 10
   isInvulnerable: 0
-  SelfElement: 0
-  animator: {fileID: 0}
   rigid: {fileID: 3841321218117416122}
   healthBar: {fileID: 6922350251767023354}
   healthBar2: {fileID: 5068773941866151632}
   manaBar: {fileID: 6922350252075976970}
   defeated: 0
+  animator: {fileID: 2410980837718418548}
   testSpawnMob: {fileID: 3235430915009048205, guid: bbf22a6c94dc45042b4e2aa5a8479d51, type: 3}
 --- !u!114 &2022192652560765153
 MonoBehaviour:
@@ -960,7 +954,7 @@ MonoBehaviour:
   StatPoint: 0
   xpBar: {fileID: 6922350252848926755}
   xpBar2: {fileID: 7693501736313952619}
-  Player: {fileID: 0}
+  Player: {fileID: 3555651093457781920, guid: 1251f2bb14eb4434c847e044224b2b89, type: 3}
 --- !u!114 &5204331334887848837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,6 +967,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca229248e3a5244480d762f9111b702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2410980837718418548
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841321218117416101}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b2ef092a08a7ea40aa3bed45b562b76, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &4031675769516196753
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,7 @@ public class WaterAttack : MonoBehaviour
     if (Vector3.Distance(parent.transform.position, transform.position) <= healRadius)
     {
       parent.GetComponent<CharacterBase>().HealSelf(healStrength);
+      parent.GetComponent<CharacterBase>().regenerateMana(healStrength / 2);
     }
   }
 

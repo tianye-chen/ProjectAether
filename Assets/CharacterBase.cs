@@ -122,6 +122,26 @@ public class CharacterBase : MonoBehaviour
     }
   }
 
+  public virtual void regenerateMana(float manaRegen)
+  {
+    mana += manaRegen;
+    if (mana > maxMana)
+      mana = maxMana;
+
+    if (gameObject.tag == "Player")
+    {
+      manaBar.SetMana(mana);
+    }
+  }
+
+  public bool checkMana(float manaCost)
+  {
+    if (mana >= manaCost)
+      return true;
+    else
+      return false;
+  }
+
   public virtual void Die()
   {
     if(gameObject.tag == "Enemy") {

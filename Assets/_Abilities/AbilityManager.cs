@@ -7,13 +7,11 @@ public class AbilityManager : MonoBehaviour
 {
   [SerializeField]
   private IDictionary<string, Ability> abilities = new Dictionary<string, Ability>();
-  
- 
 
   public void Start()
   {
-    abilities.Add("Heal", new Healing_Ability(1f, 5f));
-    abilities.Add("Elemental_Attack", new Elemental_Attack(1));
+    abilities.Add("Heal", new Healing_Ability(1f, 5f, 15f));
+    abilities.Add("Elemental_Attack", new Elemental_Attack(1f, 10f));
   }
 
   public void Update()

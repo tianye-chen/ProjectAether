@@ -16,6 +16,7 @@ TagManager:
   - EnemyContainer
   - ProceduralGenerator
   - UI_FloorDisplay
+  - Item
   layers:
   - Default
   - TransparentFX

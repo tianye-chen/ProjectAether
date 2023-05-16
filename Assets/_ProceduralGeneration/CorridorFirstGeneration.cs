@@ -24,6 +24,8 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
   private Sprite[] decorations, illuminatedDecorations;
   [SerializeField]
   private EnemyBase[] mobs;
+  [SerializeField]
+  private Item[] items;
 
   private void Awake() 
   {
@@ -76,6 +78,7 @@ public class CorridorFirstGeneration : RandomWalkMapGenerator
     floorPositions.UnionWith(roomPositions);
     PlaceDecorations.PlaceDecorationsOnFloor(floorPositions, decorations, illuminatedDecorations);
     PlaceMobs.PlaceMobsOnFloor(floorPositions, mobs);
+    PlaceItems.PlaceItemsOnFloor(floorPositions, items);
     FloorLevelManager.PlacePlayer(floorPositions, player);
     tilemapVisualizer.paintFloorTiles(floorPositions);
     WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);

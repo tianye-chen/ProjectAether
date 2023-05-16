@@ -223,10 +223,13 @@ public class KhioneController : EnemyBase
 
     skull = Instantiate(BlueSkull, new Vector2(transform.position.x, transform.position.y - 0.75f), Quaternion.identity);
     skull.GetComponent<BlueSkull>().changeMoveDirection(new Vector2(0, 1));
+    skull.GetComponent<BlueSkull>().setOwner(this.gameObject);
     skull = Instantiate(BlueSkull, transform.position, Quaternion.identity);
     skull.GetComponent<BlueSkull>().changeMoveDirection(new Vector2(1, -1));
+    skull.GetComponent<BlueSkull>().setOwner(this.gameObject);
     skull = Instantiate(BlueSkull, transform.position, Quaternion.identity);
     skull.GetComponent<BlueSkull>().changeMoveDirection(new Vector2(-1, -1));
+    skull.GetComponent<BlueSkull>().setOwner(this.gameObject);
   }
 
   public void crystalDestroyed(KhioneCrystal crystal)

@@ -31,6 +31,7 @@ public class CasterRegularState : CasterStateController
         for (int i = 0; i < caster.numProjectiles; i++)
         {
           Inst = MonoBehaviour.Instantiate(caster.projectileObject, caster.transform.position, Quaternion.identity);
+          Inst.GetComponent<BasicProjectile>().SetDamage(caster.atk * 3);
           if (caster.direction == 2)
             Inst.transform.Rotate(0, 0, (-90 + 10 * caster.numProjectiles / 2) - i * 10);
           else

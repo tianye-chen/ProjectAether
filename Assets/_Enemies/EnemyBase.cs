@@ -32,6 +32,8 @@ public class EnemyBase : CharacterBase
     Physics2D.IgnoreLayerCollision(0 , 0);
     health = maxHealth;
 
+    atk += (atk * (FloorLevelManager.floorLevel * 0.05f));
+    health += (health * (FloorLevelManager.floorLevel * 0.05f));
   }
 
   public virtual void move()

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6165044435527612420}
   - component: {fileID: 708350867553970671}
   - component: {fileID: 5535156558035553558}
+  - component: {fileID: -1120599809538535617}
   m_Layer: 10
   m_Name: earth
   m_TagString: Terrain
@@ -133,3 +134,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.375, y: 1.175}
   m_EdgeRadius: 0
+--- !u!114 &-1120599809538535617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379046798449832228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d8f67f594ac2440984e1ba31827763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

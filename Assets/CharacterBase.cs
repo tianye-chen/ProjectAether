@@ -78,15 +78,18 @@ public class CharacterBase : MonoBehaviour
     if (!isInvulnerable)
     {
       GameObject damageDisplay = (GameObject)Instantiate(Resources.Load("DamageNumber"), transform.position, Quaternion.identity);
-      damageDisplay.GetComponent<DamageNumber>().SetDamageNumber(damage);
 
       health -= damage;
       //controls health bar
       if (gameObject.tag == "Player")
       {
+        health = (int)health;
+        damage = (int)damage;
         healthBar.SetHealth(health);
         healthBar2.SetHealth(health);
       }
+
+      damageDisplay.GetComponent<DamageNumber>().SetDamageNumber(damage);
     }
 
     if (health <= 0)

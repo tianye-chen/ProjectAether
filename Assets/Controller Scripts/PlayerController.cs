@@ -77,7 +77,7 @@ public class PlayerController : CharacterBase
           // If enemy is within 45 degrees of mouse click, damage enemy
           if (Mathf.Abs(angle - enemyAngle) < 45)
           {
-            hitCollider.gameObject.GetComponent<EnemyBase>().TakeDamage(5);
+            hitCollider.gameObject.GetComponent<EnemyBase>().TakeDamage(1 + (atk/10));
             Debug.Log(direction + " " + mousePos);
           }
         }

@@ -38,9 +38,15 @@ public class Item : MonoBehaviour
         this.itemName = itemName;
     }
 
+    public void setItemType(ItemType itemType)
+    {
+        this.itemType = itemType;
+    }
+
     public void setSprite(Sprite sprite)
     {
         this.sprite = sprite;
+        GetComponentInChildren<SpriteRenderer>().sprite = sprite;
     }
 
     public string getItemName()

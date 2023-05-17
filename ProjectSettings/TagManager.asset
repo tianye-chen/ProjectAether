@@ -27,7 +27,7 @@ TagManager:
   - FloorLevelManager
   - EnemyTriggerCollider
   - Player
-  - 
+  - Item
   - Terrain
   - 
   - 

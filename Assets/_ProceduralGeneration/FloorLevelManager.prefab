@@ -73,7 +73,13 @@ MonoBehaviour:
   - {fileID: 7554004040070673218, guid: e596ae132a743134c912dbe781c006bf, type: 3}
   - {fileID: 3555651093457781927, guid: 1251f2bb14eb4434c847e044224b2b89, type: 3}
   - {fileID: 3235430915009048202, guid: bbf22a6c94dc45042b4e2aa5a8479d51, type: 3}
-  items: []
+  items:
+  - {fileID: 3436542419245698652, guid: 6f0301ff8517c7749922751954f4f26d, type: 3}
+  itemSprites:
+  - {fileID: 21300000, guid: a0d5a2ea9c12d284092ca3415a40498b, type: 3}
+  - {fileID: 21300000, guid: 1edae144bb8ffdd40a8b446f4756feab, type: 3}
+  - {fileID: 21300000, guid: cee8612c8d9d1aa41837c5b9f7fb8b08, type: 3}
+  - {fileID: 21300000, guid: 389004d9442dfcb4eb557dd494c44f8c, type: 3}
 --- !u!1 &8487247832462459093
 GameObject:
   m_ObjectHideFlags: 0
